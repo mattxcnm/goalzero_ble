@@ -16,7 +16,7 @@ A Home Assistant custom integration for Goal Zero devices via Bluetooth Low Ener
 ## Supported Devices
 
 - **Yeti 500** - Portable power station with battery and power monitoring
-- **Alta 80** - Solar light tower with battery, solar, and lighting sensors
+- **Alta 80** - Portable fridge with 2 zones
 - **Extensible** - Built to support additional Goal Zero BLE devices
 
 ## Features
@@ -62,9 +62,10 @@ Simply go to Settings > Devices & Services > Add Integration and search for "Goa
 - Voltage and current monitoring
 
 ### Alta 80
-- Battery percentage
-- Solar power generation
-- Light output and brightness control
+- Zone temperaturatures
+- Zone setpoint
+- Eco mode on/off
+- Battery protection level low/mid/high
 
 ## Contributing
 
