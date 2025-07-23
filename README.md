@@ -1,5 +1,16 @@
 # Goal Zero BLE Integration
 
+> **⚠️ WORK IN PROGRESS - NOT FUNCTIONAL YET ⚠️**
+> 
+> 🚧 **This integration is in active development and does not currently work!** 🚧
+> 
+> - 🤖 Most code is AI-generated and has not been tested or verified
+> - 🔌 BLE communication protocols are not yet implemented
+> - 🧪 No device testing has been performed
+> - 📋 Consider this a development template/starting point
+> 
+> **DO NOT USE in production environments!** Contributions and testing welcome!
+
 A Home Assistant custom integration for Goal Zero devices via Bluetooth Low Energy (BLE).
 
 ## Supported Devices
