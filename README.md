@@ -2,12 +2,21 @@
 
 A Home Assistant custom integration for Goal Zero devices via Bluetooth Low Energy (BLE).
 
+## Supported Devices
+
+- **Yeti 500** - Portable power station with battery and power monitoring
+- **Alta 80** - Solar light tower with battery, solar, and lighting sensors
+- **Extensible** - Built to support additional Goal Zero BLE devices
+
 ## Features
 
-- Battery percentage monitoring
-- Power consumption/generation tracking
-- Automatic device discovery via Bluetooth
-- HACS compatible
+- 🔋 Battery percentage monitoring
+- ⚡ Power consumption/generation tracking
+- 📱 Automatic device discovery and identification via Bluetooth
+- 🎯 Device-specific sensors and capabilities
+- 🏠 Full Home Assistant integration with automations
+- 📊 Model-specific data interpretation
+- 🔧 HACS compatible
 
 ## Installation
 
@@ -17,7 +26,7 @@ A Home Assistant custom integration for Goal Zero devices via Bluetooth Low Ener
 2. Go to "Integrations"
 3. Click the three dots in the top right corner
 4. Select "Custom repositories"
-5. Add this repository URL: `https://github.com/mattroach/goalzero_ble`
+5. Add this repository URL: `https://github.com/mattxcnm/goalzero_ble`
 6. Select "Integration" as the category
 7. Click "Add"
 8. Search for "Goal Zero BLE" and install
@@ -30,13 +39,22 @@ A Home Assistant custom integration for Goal Zero devices via Bluetooth Low Ener
 
 ## Configuration
 
-The integration supports automatic discovery of Goal Zero devices via Bluetooth. Simply go to Settings > Devices & Services > Add Integration and search for "Goal Zero BLE".
+The integration supports automatic discovery of Goal Zero devices via Bluetooth. The integration will automatically detect the device type (Yeti 500, Alta 80, etc.) and configure the appropriate sensors.
 
-## Supported Devices
+Simply go to Settings > Devices & Services > Add Integration and search for "Goal Zero BLE".
 
-- Goal Zero Yeti series power stations
-- Other Goal Zero devices with BLE capability
+## Device-Specific Features
+
+### Yeti 500
+- Battery percentage
+- Power input/output
+- Voltage and current monitoring
+
+### Alta 80
+- Battery percentage
+- Solar power generation
+- Light output and brightness control
 
 ## Contributing
 
-Pull requests are welcome! Please feel free to contribute to this project.
+Pull requests are welcome! Please feel free to contribute to this project, especially for adding support for additional Goal Zero devices.
