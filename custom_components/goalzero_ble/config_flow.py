@@ -7,11 +7,13 @@ from typing import Any
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.components import bluetooth
-from homeassistant.const import CONF_ADDRESS, CONF_NAME
+from homeassistant.const import CONF_ADDRESS, CONF_NAME, CONF_MAC
 from homeassistant.data_entry_flow import FlowResult
+import homeassistant.helpers.config_validation as cv
 
 from .const import DOMAIN, DEFAULT_NAME
 from .devices import detect_device_type
+from .ble_manager import GoalZeroBLEManager
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -75,19 +77,23 @@ class GoalZeroBLEConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
         """Handle the initial step."""
-        if user_input is not None:
-            # Try to detect device type from name
-            device_type = detect_device_type(user_input[CONF_NAME])
-            if not device_type:
-                device_type = "yeti500"  # Default fallback
+        errors = {}
 
-            return self.async_create_entry(
-                title=user_input[CONF_NAME],
-                data={
-                    **user_input,
-                    "device_type": device_type,
-                },
-            )
+        if user_input is not None:
+            mac_address = user_input[CONF_MAC]
+
+            # Validate MAC address and try to discover device
+            ble_manager = GoalZeroBLEManager(mac_address)
+            if await ble_manager.discover_device():
+                await self.async_set_unique_id(mac_address.upper())
+                self._abort_if_unique_id_configured()
+
+                return self.async_create_entry(
+                    title=f"Goal Zero BLE ({mac_address})",
+                    data={CONF_MAC: mac_address.upper()},
+                )
+            else:
+                errors["base"] = "device_not_found"
 
         return self.async_show_form(
             step_id="user",
@@ -97,4 +103,5 @@ class GoalZeroBLEConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     vol.Required(CONF_NAME, default=DEFAULT_NAME): str,
                 }
             ),
+            errors=errors,
         )
