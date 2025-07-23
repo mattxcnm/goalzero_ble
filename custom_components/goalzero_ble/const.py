@@ -6,6 +6,10 @@ MANUFACTURER = "Goal Zero"
 # Device models
 ALTA_80 = "Alta 80"
 
+# GATT Handles (discovered via goalzero_gatt.py)
+ALTA80_WRITE_HANDLE = 0x000A
+ALTA80_READ_HANDLE = 0x000C
+
 # BLE Configuration
 BLE_SCAN_TIMEOUT = 30
 BLE_CONNECT_TIMEOUT = 10
@@ -18,6 +22,15 @@ COMMANDS = {
     "left_setpoint_up": "FEFE040500020500",
     "right_setpoint_down": "FEFE040624022A00",
     "right_setpoint_up": "FEFE040623022900",
+}
+
+# Alta 80 specific commands (based on goalzero_gatt.py testing)
+ALTA80_COMMANDS = {
+    "status_request": "FEFE03010200",
+    "temp_down": "FEFE040501020600",
+    "temp_up": "FEFE040500020500", 
+    "power_on": "FEFE050100000000",  # To be verified with actual device
+    "power_off": "FEFE050101000000",  # To be verified with actual device
 }
 
 # Eco mode commands (placeholder - will need actual values)

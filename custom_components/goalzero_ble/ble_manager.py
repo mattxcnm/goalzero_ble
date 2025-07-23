@@ -13,6 +13,8 @@ from .const import (
     NOTIFY_CHAR_UUID,
     SERVICE_UUID,
     WRITE_CHAR_UUID,
+    ALTA80_WRITE_HANDLE,
+    ALTA80_READ_HANDLE,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -106,6 +108,73 @@ class GoalZeroBLEManager:
         except Exception as e:
             _LOGGER.error("Failed to send command %s: %s", command_hex, e)
             return False
+
+    async def send_command_with_handles(
+        self, 
+        command_hex: str, 
+        write_handle: int, 
+        read_handle: int,
+        expected_responses: int = 2,
+        timeout: int = 10
+    ) -> list[str]:
+        """Send a command using specific GATT handles and collect responses."""
+        if not self._connected or not self.client:
+            if not await self.connect():
+                return []
+
+        responses = []
+        response_count = 0
+
+        def handle_notification(sender, data):
+            nonlocal response_count, responses
+            response_count += 1
+            hex_data = data.hex().upper()
+            _LOGGER.debug("Handle response %d: %s", response_count, hex_data)
+            responses.append(hex_data)
+
+        try:
+            # Find characteristics by handle
+            write_char = None
+            read_char = None
+            
+            services = self.client.services
+            for service in services.services.values():
+                for char in service.characteristics:
+                    if char.handle == write_handle:
+                        write_char = char
+                    if char.handle == read_handle:
+                        read_char = char
+            
+            if not write_char or not read_char:
+                _LOGGER.error(
+                    "Required handles not found. Write: 0x%04X (%s), Read: 0x%04X (%s)",
+                    write_handle, write_char is not None,
+                    read_handle, read_char is not None
+                )
+                return []
+            
+            # Start notifications
+            await self.client.start_notify(read_char, handle_notification)
+            
+            # Send command
+            command_bytes = bytes.fromhex(command_hex)
+            await self.client.write_gatt_char(write_char, command_bytes)
+            _LOGGER.debug("Sent command to handle 0x%04X: %s", write_handle, command_hex)
+            
+            # Wait for expected responses
+            elapsed = 0
+            while response_count < expected_responses and elapsed < timeout:
+                await asyncio.sleep(0.1)
+                elapsed += 0.1
+            
+            # Stop notifications
+            await self.client.stop_notify(read_char)
+            
+            return responses
+            
+        except Exception as e:
+            _LOGGER.error("Failed to send command with handles: %s", e)
+            return []
 
     def _notification_handler(self, sender, data: bytearray):
         """Handle notifications from the device."""

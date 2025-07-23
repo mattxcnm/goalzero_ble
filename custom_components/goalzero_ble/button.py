@@ -11,6 +11,7 @@ from .const import (
     ALTA_80,
     BATTERY_PROTECTION_COMMANDS,
     ECO_COMMANDS,
+    ALTA80_COMMANDS,
 )
 from .coordinator import GoalZeroCoordinator
 
@@ -24,7 +25,15 @@ async def async_setup_entry(
     coordinator = hass.data[DOMAIN][config_entry.entry_id]
     
     entities = [
-        # Temperature control buttons
+        # Alta 80 Temperature control buttons (using GATT commands)
+        GoalZeroTempButton(coordinator, config_entry, "temp_up", "Temperature Up", "mdi:thermometer-plus"),
+        GoalZeroTempButton(coordinator, config_entry, "temp_down", "Temperature Down", "mdi:thermometer-minus"),
+        
+        # Alta 80 Power control buttons
+        GoalZeroModeButton(coordinator, config_entry, "power_on", "Power On", "mdi:power", ALTA80_COMMANDS),
+        GoalZeroModeButton(coordinator, config_entry, "power_off", "Power Off", "mdi:power-off", ALTA80_COMMANDS),
+        
+        # Legacy temperature control buttons (for other devices)
         GoalZeroTempButton(coordinator, config_entry, "left_setpoint_up", "Left Zone Temp Up", "mdi:thermometer-plus"),
         GoalZeroTempButton(coordinator, config_entry, "left_setpoint_down", "Left Zone Temp Down", "mdi:thermometer-minus"),
         GoalZeroTempButton(coordinator, config_entry, "right_setpoint_up", "Right Zone Temp Up", "mdi:thermometer-plus"),
@@ -71,7 +80,12 @@ class GoalZeroTempButton(GoalZeroBaseButton):
 
     async def async_press(self) -> None:
         """Handle button press."""
-        await self.coordinator.send_command(self.command_key)
+        # Check if this is an Alta 80 specific command
+        if self.command_key in ALTA80_COMMANDS:
+            await self.coordinator.send_custom_command(ALTA80_COMMANDS[self.command_key])
+        else:
+            # Use legacy command structure for other devices
+            await self.coordinator.send_command(self.command_key)
 
 
 class GoalZeroModeButton(GoalZeroBaseButton):
