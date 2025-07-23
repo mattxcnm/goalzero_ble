@@ -1,0 +1,4561 @@
+[
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:09.738000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:09.738000000 UTC",
+          "frame.time_epoch": "1753283829.738000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.004000000",
+          "frame.time_delta_displayed": "0.000000000",
+          "frame.time_relative": "13.197000000",
+          "frame.number": "225",
+          "frame.len": "15",
+          "frame.cap_len": "15",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "11",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "7",
+          "btl2cap.cid": "0x003a",
+          "btl2cap.payload": "09:05:0b:33:15:00:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:09.741000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:09.741000000 UTC",
+          "frame.time_epoch": "1753283829.741000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.003000000",
+          "frame.time_delta_displayed": "0.003000000",
+          "frame.time_relative": "13.200000000",
+          "frame.number": "226",
+          "frame.len": "11",
+          "frame.cap_len": "11",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "7",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "3",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x02",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x02"
+          },
+          "btatt.client_rx_mtu": "185"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:09.824000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:09.824000000 UTC",
+          "frame.time_epoch": "1753283829.824000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.042000000",
+          "frame.time_delta_displayed": "0.083000000",
+          "frame.time_relative": "13.283000000",
+          "frame.number": "229",
+          "frame.len": "11",
+          "frame.cap_len": "11",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "7",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "3",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x03",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x03"
+          },
+          "btatt.server_rx_mtu": "23",
+          "btatt.request_in_frame": "226"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:09.827000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:09.827000000 UTC",
+          "frame.time_epoch": "1753283829.827000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.003000000",
+          "frame.time_delta_displayed": "0.003000000",
+          "frame.time_relative": "13.286000000",
+          "frame.number": "230",
+          "frame.len": "15",
+          "frame.cap_len": "15",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "11",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "7",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x08",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x08"
+          },
+          "btatt.starting_handle": "0x0008",
+          "btatt.ending_handle": "0x0008",
+          "btatt.uuid16": "0x2803"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:09.884000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:09.884000000 UTC",
+          "frame.time_epoch": "1753283829.884000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.053000000",
+          "frame.time_delta_displayed": "0.057000000",
+          "frame.time_relative": "13.343000000",
+          "frame.number": "232",
+          "frame.len": "13",
+          "frame.cap_len": "13",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "9",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "5",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x01",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x01"
+          },
+          "btatt.req_opcode_in_error": "0x08",
+          "btatt.req_opcode_in_error_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x08"
+          },
+          "btatt.handle": "0x0008",
+          "btatt.error_code": "0x0a",
+          "btatt.uuid16": "0x2803"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:09.885000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:09.885000000 UTC",
+          "frame.time_epoch": "1753283829.885000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.001000000",
+          "frame.time_delta_displayed": "0.001000000",
+          "frame.time_relative": "13.344000000",
+          "frame.number": "233",
+          "frame.len": "15",
+          "frame.cap_len": "15",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "11",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "7",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x08",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x08"
+          },
+          "btatt.starting_handle": "0x0009",
+          "btatt.ending_handle": "0xffff",
+          "btatt.uuid16": "0x2802"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:09.944000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:09.944000000 UTC",
+          "frame.time_epoch": "1753283829.944000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.055000000",
+          "frame.time_delta_displayed": "0.059000000",
+          "frame.time_relative": "13.403000000",
+          "frame.number": "235",
+          "frame.len": "13",
+          "frame.cap_len": "13",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "9",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "5",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x01",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x01"
+          },
+          "btatt.req_opcode_in_error": "0x08",
+          "btatt.req_opcode_in_error_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x08"
+          },
+          "btatt.handle": "0x0009",
+          "btatt.error_code": "0x0a",
+          "btatt.uuid16": "0x2802"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:09.947000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:09.947000000 UTC",
+          "frame.time_epoch": "1753283829.947000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.003000000",
+          "frame.time_delta_displayed": "0.003000000",
+          "frame.time_relative": "13.406000000",
+          "frame.number": "236",
+          "frame.len": "13",
+          "frame.cap_len": "13",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "9",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "5",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x12",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000e",
+          "btatt.value": "01:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:10.003000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:10.003000000 UTC",
+          "frame.time_epoch": "1753283830.003000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.053000000",
+          "frame.time_delta_displayed": "0.056000000",
+          "frame.time_relative": "13.462000000",
+          "frame.number": "238",
+          "frame.len": "9",
+          "frame.cap_len": "9",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "5",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "1",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x13",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x13"
+          },
+          "btatt.handle": "0x000e",
+          "btatt.request_in_frame": "236"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:10.031000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:10.031000000 UTC",
+          "frame.time_epoch": "1753283830.031000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.028000000",
+          "frame.time_delta_displayed": "0.028000000",
+          "frame.time_relative": "13.490000000",
+          "frame.number": "239",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:10.094000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:10.094000000 UTC",
+          "frame.time_epoch": "1753283830.094000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.061000000",
+          "frame.time_delta_displayed": "0.063000000",
+          "frame.time_relative": "13.553000000",
+          "frame.number": "241",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:00:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:10.154000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:10.154000000 UTC",
+          "frame.time_epoch": "1753283830.154000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.060000000",
+          "frame.time_delta_displayed": "0.060000000",
+          "frame.time_relative": "13.613000000",
+          "frame.number": "242",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:23:00:00:04:fe:fe:02:00:1f:02:00:00:09:1b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:11.839000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:11.839000000 UTC",
+          "frame.time_epoch": "1753283831.839000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.057000000",
+          "frame.time_delta_displayed": "1.685000000",
+          "frame.time_relative": "15.298000000",
+          "frame.number": "254",
+          "frame.len": "15",
+          "frame.cap_len": "15",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "11",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "7",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x08",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x08"
+          },
+          "btatt.starting_handle": "0x0001",
+          "btatt.ending_handle": "0x0007",
+          "btatt.uuid16": "0x2a00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:11.894000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:11.894000000 UTC",
+          "frame.time_epoch": "1753283831.894000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.055000000",
+          "frame.time_delta_displayed": "0.055000000",
+          "frame.time_relative": "15.353000000",
+          "frame.number": "255",
+          "frame.len": "26",
+          "frame.cap_len": "26",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "22",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "18",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x09",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x09"
+          },
+          "btatt.length": "16",
+          "btatt.attribute_data": {
+            "btatt.handle": "0x0003",
+            "btatt.handle_tree": {
+              "btatt.uuid16": "0x2a00"
+            },
+            "btatt.device_name": "gzf1-80-F14D2A"
+          },
+          "btatt.uuid16": "0x2a00",
+          "btatt.request_in_frame": "254"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:13.022000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:13.022000000 UTC",
+          "frame.time_epoch": "1753283833.022000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.220000000",
+          "frame.time_delta_displayed": "1.128000000",
+          "frame.time_relative": "16.481000000",
+          "frame.number": "263",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:13.063000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:13.063000000 UTC",
+          "frame.time_epoch": "1753283833.063000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.041000000",
+          "frame.time_delta_displayed": "0.041000000",
+          "frame.time_relative": "16.522000000",
+          "frame.number": "264",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:00:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:13.093000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:13.093000000 UTC",
+          "frame.time_epoch": "1753283833.093000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.030000000",
+          "frame.time_delta_displayed": "0.030000000",
+          "frame.time_relative": "16.552000000",
+          "frame.number": "265",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:23:00:00:04:fe:fe:02:00:1f:02:00:00:09:1b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:18.019000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:18.019000000 UTC",
+          "frame.time_epoch": "1753283838.019000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.185000000",
+          "frame.time_delta_displayed": "4.926000000",
+          "frame.time_relative": "21.478000000",
+          "frame.number": "339",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:18.104000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:18.104000000 UTC",
+          "frame.time_epoch": "1753283838.104000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.078000000",
+          "frame.time_delta_displayed": "0.085000000",
+          "frame.time_relative": "21.563000000",
+          "frame.number": "341",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:00:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:18.105000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:18.105000000 UTC",
+          "frame.time_epoch": "1753283838.105000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.001000000",
+          "frame.time_delta_displayed": "0.001000000",
+          "frame.time_relative": "21.564000000",
+          "frame.number": "342",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:23:00:00:04:fe:fe:02:00:1f:02:00:00:09:1b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:23.022000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:23.022000000 UTC",
+          "frame.time_epoch": "1753283843.022000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.081000000",
+          "frame.time_delta_displayed": "4.917000000",
+          "frame.time_relative": "26.481000000",
+          "frame.number": "505",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:23.085000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:23.085000000 UTC",
+          "frame.time_epoch": "1753283843.085000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.018000000",
+          "frame.time_delta_displayed": "0.063000000",
+          "frame.time_relative": "26.544000000",
+          "frame.number": "507",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:00:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:23.113000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:23.113000000 UTC",
+          "frame.time_epoch": "1753283843.113000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.028000000",
+          "frame.time_delta_displayed": "0.028000000",
+          "frame.time_relative": "26.572000000",
+          "frame.number": "508",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:23:00:00:04:fe:fe:02:00:1f:02:00:00:09:1b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:28.023000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:28.023000000 UTC",
+          "frame.time_epoch": "1753283848.023000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.029000000",
+          "frame.time_delta_displayed": "4.910000000",
+          "frame.time_relative": "31.482000000",
+          "frame.number": "676",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:28.066000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:28.066000000 UTC",
+          "frame.time_epoch": "1753283848.066000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.006000000",
+          "frame.time_delta_displayed": "0.043000000",
+          "frame.time_relative": "31.525000000",
+          "frame.number": "681",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:00:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:28.126000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:28.126000000 UTC",
+          "frame.time_epoch": "1753283848.126000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.029000000",
+          "frame.time_delta_displayed": "0.060000000",
+          "frame.time_relative": "31.585000000",
+          "frame.number": "683",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:23:00:00:04:fe:fe:02:00:1f:02:00:00:09:1b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:33.023000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:33.023000000 UTC",
+          "frame.time_epoch": "1753283853.023000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.071000000",
+          "frame.time_delta_displayed": "4.897000000",
+          "frame.time_relative": "36.482000000",
+          "frame.number": "855",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:33.069000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:33.069000000 UTC",
+          "frame.time_epoch": "1753283853.069000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.046000000",
+          "frame.time_delta_displayed": "0.046000000",
+          "frame.time_relative": "36.528000000",
+          "frame.number": "856",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:00:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:33.099000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:33.099000000 UTC",
+          "frame.time_epoch": "1753283853.099000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.030000000",
+          "frame.time_delta_displayed": "0.030000000",
+          "frame.time_relative": "36.558000000",
+          "frame.number": "857",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:23:00:00:04:fe:fe:02:00:1f:02:00:00:09:1b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:38.024000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:38.024000000 UTC",
+          "frame.time_epoch": "1753283858.024000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.065000000",
+          "frame.time_delta_displayed": "4.925000000",
+          "frame.time_relative": "41.483000000",
+          "frame.number": "897",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:38.080000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:38.080000000 UTC",
+          "frame.time_epoch": "1753283858.080000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.047000000",
+          "frame.time_delta_displayed": "0.056000000",
+          "frame.time_relative": "41.539000000",
+          "frame.number": "899",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:00:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:38.110000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:38.110000000 UTC",
+          "frame.time_epoch": "1753283858.110000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.030000000",
+          "frame.time_delta_displayed": "0.030000000",
+          "frame.time_relative": "41.569000000",
+          "frame.number": "900",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:23:00:00:04:fe:fe:02:00:1f:02:00:00:09:1b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:43.020000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:43.020000000 UTC",
+          "frame.time_epoch": "1753283863.020000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.021000000",
+          "frame.time_delta_displayed": "4.910000000",
+          "frame.time_relative": "46.479000000",
+          "frame.number": "1043",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:43.089000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:43.089000000 UTC",
+          "frame.time_epoch": "1753283863.089000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.069000000",
+          "frame.time_delta_displayed": "0.069000000",
+          "frame.time_relative": "46.548000000",
+          "frame.number": "1044",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:00:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:43.090000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:43.090000000 UTC",
+          "frame.time_epoch": "1753283863.090000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.001000000",
+          "frame.time_delta_displayed": "0.001000000",
+          "frame.time_relative": "46.549000000",
+          "frame.number": "1045",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:23:00:00:04:fe:fe:02:00:1f:02:00:00:09:1b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:47.086000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:47.086000000 UTC",
+          "frame.time_epoch": "1753283867.086000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.019000000",
+          "frame.time_delta_displayed": "3.996000000",
+          "frame.time_relative": "50.545000000",
+          "frame.number": "1191",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:05:01:02:06"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:47.140000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:47.140000000 UTC",
+          "frame.time_epoch": "1753283867.140000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.003000000",
+          "frame.time_delta_displayed": "0.054000000",
+          "frame.time_relative": "50.599000000",
+          "frame.number": "1194",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:05:01:02:06"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:48.021000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:48.021000000 UTC",
+          "frame.time_epoch": "1753283868.021000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.095000000",
+          "frame.time_delta_displayed": "0.881000000",
+          "frame.time_relative": "51.480000000",
+          "frame.number": "1215",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:48.070000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:48.070000000 UTC",
+          "frame.time_epoch": "1753283868.070000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.033000000",
+          "frame.time_delta_displayed": "0.049000000",
+          "frame.time_relative": "51.529000000",
+          "frame.number": "1218",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:01:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:48.102000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:48.102000000 UTC",
+          "frame.time_epoch": "1753283868.102000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.006000000",
+          "frame.time_delta_displayed": "0.032000000",
+          "frame.time_relative": "51.561000000",
+          "frame.number": "1221",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:23:00:00:04:fe:fe:02:00:1f:02:00:00:09:1c"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:48.237000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:48.237000000 UTC",
+          "frame.time_epoch": "1753283868.237000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.069000000",
+          "frame.time_delta_displayed": "0.135000000",
+          "frame.time_relative": "51.696000000",
+          "frame.number": "1223",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:05:02:02:07"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:48.281000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:48.281000000 UTC",
+          "frame.time_epoch": "1753283868.281000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.044000000",
+          "frame.time_delta_displayed": "0.044000000",
+          "frame.time_relative": "51.740000000",
+          "frame.number": "1224",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:05:02:02:07"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:49.370000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:49.370000000 UTC",
+          "frame.time_epoch": "1753283869.370000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.087000000",
+          "frame.time_delta_displayed": "1.089000000",
+          "frame.time_relative": "52.829000000",
+          "frame.number": "1244",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:05:03:02:08"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:49.421000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:49.421000000 UTC",
+          "frame.time_epoch": "1753283869.421000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.018000000",
+          "frame.time_delta_displayed": "0.051000000",
+          "frame.time_relative": "52.880000000",
+          "frame.number": "1247",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:05:03:02:08"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:52.071000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:52.071000000 UTC",
+          "frame.time_epoch": "1753283872.071000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.012000000",
+          "frame.time_delta_displayed": "2.650000000",
+          "frame.time_relative": "55.530000000",
+          "frame.number": "1287",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:05:02:02:07"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:52.120000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:52.120000000 UTC",
+          "frame.time_epoch": "1753283872.120000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.004000000",
+          "frame.time_delta_displayed": "0.049000000",
+          "frame.time_relative": "55.579000000",
+          "frame.number": "1309",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:05:02:02:07"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:53.021000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:53.021000000 UTC",
+          "frame.time_epoch": "1753283873.021000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.065000000",
+          "frame.time_delta_displayed": "0.901000000",
+          "frame.time_relative": "56.480000000",
+          "frame.number": "1322",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:53.111000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:53.111000000 UTC",
+          "frame.time_epoch": "1753283873.111000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.011000000",
+          "frame.time_delta_displayed": "0.090000000",
+          "frame.time_relative": "56.570000000",
+          "frame.number": "1326",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:02:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:53.111000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:53.111000000 UTC",
+          "frame.time_epoch": "1753283873.111000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.000000000",
+          "frame.time_delta_displayed": "0.000000000",
+          "frame.time_relative": "56.570000000",
+          "frame.number": "1327",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:23:00:00:04:fe:fe:02:00:1f:02:00:00:09:1d"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:53.554000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:53.554000000 UTC",
+          "frame.time_epoch": "1753283873.554000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.171000000",
+          "frame.time_delta_displayed": "0.443000000",
+          "frame.time_relative": "57.013000000",
+          "frame.number": "1333",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:05:01:02:06"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:53.590000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:53.590000000 UTC",
+          "frame.time_epoch": "1753283873.590000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.009000000",
+          "frame.time_delta_displayed": "0.036000000",
+          "frame.time_relative": "57.049000000",
+          "frame.number": "1336",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:05:01:02:06"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:54.971000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:54.971000000 UTC",
+          "frame.time_epoch": "1753283874.971000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.045000000",
+          "frame.time_delta_displayed": "1.381000000",
+          "frame.time_relative": "58.430000000",
+          "frame.number": "1354",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:05:00:02:05"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:55.029000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:55.029000000 UTC",
+          "frame.time_epoch": "1753283875.029000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.058000000",
+          "frame.time_delta_displayed": "0.058000000",
+          "frame.time_relative": "58.488000000",
+          "frame.number": "1355",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:05:00:02:05"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:57.588000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:57.588000000 UTC",
+          "frame.time_epoch": "1753283877.588000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.053000000",
+          "frame.time_delta_displayed": "2.559000000",
+          "frame.time_relative": "61.047000000",
+          "frame.number": "1406",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:06:24:02:2a"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:57.640000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:57.640000000 UTC",
+          "frame.time_epoch": "1753283877.640000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.033000000",
+          "frame.time_delta_displayed": "0.052000000",
+          "frame.time_relative": "61.099000000",
+          "frame.number": "1408",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:06:24:02:2a"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:58.021000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:58.021000000 UTC",
+          "frame.time_epoch": "1753283878.021000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.028000000",
+          "frame.time_delta_displayed": "0.381000000",
+          "frame.time_relative": "61.480000000",
+          "frame.number": "1415",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:58.090000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:58.090000000 UTC",
+          "frame.time_epoch": "1753283878.090000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.036000000",
+          "frame.time_delta_displayed": "0.069000000",
+          "frame.time_relative": "61.549000000",
+          "frame.number": "1419",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:00:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:58.092000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:58.092000000 UTC",
+          "frame.time_epoch": "1753283878.092000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.002000000",
+          "frame.time_delta_displayed": "0.002000000",
+          "frame.time_relative": "61.551000000",
+          "frame.number": "1420",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:24:00:00:04:fe:fe:02:00:1f:02:00:00:09:1c"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:58.738000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:58.738000000 UTC",
+          "frame.time_epoch": "1753283878.738000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.094000000",
+          "frame.time_delta_displayed": "0.646000000",
+          "frame.time_relative": "62.197000000",
+          "frame.number": "1430",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:06:25:02:2b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:58.780000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:58.780000000 UTC",
+          "frame.time_epoch": "1753283878.780000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.032000000",
+          "frame.time_delta_displayed": "0.042000000",
+          "frame.time_relative": "62.239000000",
+          "frame.number": "1432",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:06:25:02:2b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:59.838000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:59.838000000 UTC",
+          "frame.time_epoch": "1753283879.838000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.046000000",
+          "frame.time_delta_displayed": "1.058000000",
+          "frame.time_relative": "63.297000000",
+          "frame.number": "1451",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:06:26:02:2c"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:17:59.891000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:17:59.891000000 UTC",
+          "frame.time_epoch": "1753283879.891000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.023000000",
+          "frame.time_delta_displayed": "0.053000000",
+          "frame.time_relative": "63.350000000",
+          "frame.number": "1454",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:06:26:02:2c"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:18:02.422000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:18:02.422000000 UTC",
+          "frame.time_epoch": "1753283882.422000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.091000000",
+          "frame.time_delta_displayed": "2.531000000",
+          "frame.time_relative": "65.881000000",
+          "frame.number": "1573",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:06:25:02:2b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:18:02.470000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:18:02.470000000 UTC",
+          "frame.time_epoch": "1753283882.470000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.048000000",
+          "frame.time_delta_displayed": "0.048000000",
+          "frame.time_relative": "65.929000000",
+          "frame.number": "1574",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:06:25:02:2b"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:18:03.058000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:18:03.058000000 UTC",
+          "frame.time_epoch": "1753283883.058000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.122000000",
+          "frame.time_delta_displayed": "0.588000000",
+          "frame.time_relative": "66.517000000",
+          "frame.number": "1582",
+          "frame.len": "17",
+          "frame.cap_len": "17",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "13",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "9",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:03:01:02:00"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:18:03.099000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:18:03.099000000 UTC",
+          "frame.time_epoch": "1753283883.099000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.035000000",
+          "frame.time_delta_displayed": "0.041000000",
+          "frame.time_relative": "66.558000000",
+          "frame.number": "1584",
+          "frame.len": "31",
+          "frame.cap_len": "31",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "27",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "23",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:21:01:00:01:00:00:00:44:fc:04:00:01:fe:fe:02:00:fb:64"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:18:03.129000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:18:03.129000000 UTC",
+          "frame.time_epoch": "1753283883.129000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.030000000",
+          "frame.time_delta_displayed": "0.030000000",
+          "frame.time_relative": "66.588000000",
+          "frame.number": "1585",
+          "frame.len": "27",
+          "frame.cap_len": "27",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "23",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "19",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "0e:06:25:00:00:04:fe:fe:02:00:1f:02:00:00:09:1d"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:18:03.572000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:18:03.572000000 UTC",
+          "frame.time_epoch": "1753283883.572000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.035000000",
+          "frame.time_delta_displayed": "0.443000000",
+          "frame.time_relative": "67.031000000",
+          "frame.number": "1593",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:06:24:02:2a"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:18:03.609000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:18:03.609000000 UTC",
+          "frame.time_epoch": "1753283883.609000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.037000000",
+          "frame.time_delta_displayed": "0.037000000",
+          "frame.time_relative": "67.068000000",
+          "frame.number": "1594",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:06:24:02:2a"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:18:04.689000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:18:04.689000000 UTC",
+          "frame.time_epoch": "1753283884.689000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.552000000",
+          "frame.time_delta_displayed": "1.080000000",
+          "frame.time_relative": "68.148000000",
+          "frame.number": "1600",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "0",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.src": "00:00:00:00:00:00",
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.dst": "fd:06:22:f1:4d:2a"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "0"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "0",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.src.name": "",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.dst.name": "gzf1-80-F14D2A",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x52",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "1",
+            "btatt.opcode.method": "0x12"
+          },
+          "btatt.handle": "0x000b",
+          "btatt.value": "fe:fe:04:06:23:02:29"
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2025-07-23",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "102",
+          "frame.time": "Jul 23, 2025 11:18:04.751000000 EDT",
+          "frame.time_utc": "Jul 23, 2025 15:18:04.751000000 UTC",
+          "frame.time_epoch": "1753283884.751000000",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_delta": "0.002000000",
+          "frame.time_delta_displayed": "0.062000000",
+          "frame.time_relative": "68.210000000",
+          "frame.number": "1605",
+          "frame.len": "18",
+          "frame.cap_len": "18",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.p2p_dir": "1",
+          "frame.protocols": "bluetooth:hci_h1:bthci_acl:btl2cap:btatt"
+        },
+        "bluetooth": {
+          "bluetooth.addr": "fd:06:22:f1:4d:2a",
+          "bluetooth.src": "fd:06:22:f1:4d:2a",
+          "bluetooth.addr": "00:00:00:00:00:00",
+          "bluetooth.dst": "00:00:00:00:00:00"
+        },
+        "hci_h1": {
+          "hci_h1.direction": "1"
+        },
+        "bthci_acl": {
+          "bthci_acl.chandle": "0x0052",
+          "bthci_acl.pb_flag": "2",
+          "bthci_acl.bc_flag": "0",
+          "bthci_acl.length": "14",
+          "bthci_acl.data": "",
+          "bthci_acl.connect_in": "204",
+          "bthci_acl.src.bd_addr": "fd:06:22:f1:4d:2a",
+          "bthci_acl.src.name": "gzf1-80-F14D2A",
+          "bthci_acl.src.role": "0",
+          "bthci_acl.dst.bd_addr": "00:00:00:00:00:00",
+          "bthci_acl.dst.name": "",
+          "bthci_acl.dst.role": "0",
+          "bthci_acl.mode": "-1"
+        },
+        "btl2cap": {
+          "btl2cap.length": "10",
+          "btl2cap.cid": "0x0004"
+        },
+        "btatt": {
+          "btatt.opcode": "0x1b",
+          "btatt.opcode_tree": {
+            "btatt.opcode.authentication_signature": "0",
+            "btatt.opcode.command": "0",
+            "btatt.opcode.method": "0x1b"
+          },
+          "btatt.handle": "0x000d",
+          "btatt.value": "fe:fe:04:06:23:02:29"
+        }
+      }
+    }
+  }
+]
