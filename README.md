@@ -62,9 +62,10 @@ Simply go to Settings > Devices & Services > Add Integration and search for "Goa
 - Voltage and current monitoring
 
 ### Alta 80
-- Battery percentage
-- Solar power generation
-- Light output and brightness control
+- Zone temperaturatures
+- Zone setpoint
+- Eco mode on/off
+- Battery protection level low/mid/high
 
 ## Contributing
 
