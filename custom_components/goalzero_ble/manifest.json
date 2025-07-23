@@ -1,0 +1,19 @@
+{
+  "domain": "goalzero_ble",
+  "name": "Goal Zero BLE",
+  "codeowners": ["@mattxcnm"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/mattxcnm/goalzero_ble",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/mattxcnm/goalzero_ble/issues",
+  "requirements": ["bleak>=0.19.0"],
+  "version": "1.0.0",
+  "bluetooth": [
+    {
+      "manufacturer_id": 65535,
+      "service_uuid": "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
+    }
+  ]
+}
