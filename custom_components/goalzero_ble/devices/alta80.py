@@ -138,34 +138,59 @@ class Alta80Device(GoalZeroDevice):
         """Return list of button definitions for this device."""
         return [
             {
-                "key": "temp_up",
-                "name": "Temperature Up",
+                "key": "zone1_temp_up",
+                "name": "Zone 1 Temp Up",
                 "icon": "mdi:thermometer-plus",
             },
             {
-                "key": "temp_down",
-                "name": "Temperature Down",
+                "key": "zone1_temp_down",
+                "name": "Zone 1 Temp Down",
                 "icon": "mdi:thermometer-minus",
             },
             {
-                "key": "power_on",
-                "name": "Power On",
-                "icon": "mdi:power",
+                "key": "zone2_temp_up",
+                "name": "Zone 2 Temp Up",
+                "icon": "mdi:thermometer-plus",
             },
             {
-                "key": "power_off",
-                "name": "Power Off",
-                "icon": "mdi:power-off",
+                "key": "zone2_temp_down",
+                "name": "Zone 2 Temp Down",
+                "icon": "mdi:thermometer-minus",
             },
             {
-                "key": "eco_on",
-                "name": "Eco Mode On",
+                "key": "toggle_eco_mode",
+                "name": "Toggle Eco Mode",
                 "icon": "mdi:leaf",
             },
             {
-                "key": "eco_off",
-                "name": "Eco Mode Off",
-                "icon": "mdi:leaf-off",
+                "key": "cycle_battery_protection",
+                "name": "Cycle Battery Protection",
+                "icon": "mdi:battery-heart",
+            },
+        ]
+
+    def get_numbers(self) -> list[dict[str, Any]]:
+        """Return list of number entity definitions for this device."""
+        return [
+            {
+                "key": "zone1_setpoint",
+                "name": "Zone 1 Temperature Setpoint",
+                "icon": "mdi:thermometer",
+                "min_value": -5,
+                "max_value": 68,
+                "step": 1,
+                "unit": UnitOfTemperature.FAHRENHEIT,
+                "mode": "box",
+            },
+            {
+                "key": "zone2_setpoint", 
+                "name": "Zone 2 Temperature Setpoint",
+                "icon": "mdi:thermometer",
+                "min_value": 0,
+                "max_value": 35,
+                "step": 1,
+                "unit": UnitOfTemperature.FAHRENHEIT,
+                "mode": "box",
             },
         ]
 
@@ -574,3 +599,158 @@ class Alta80Device(GoalZeroDevice):
         # Convert single data packet to hex string format for consistency
         hex_data = data.hex().upper()
         return self._parse_status_responses([hex_data])
+    
+    # Control command methods for Alta 80
+    
+    def create_zone1_temp_command(self, temp_f: int) -> bytes:
+        """Create Zone 1 temperature setpoint command.
+        
+        Args:
+            temp_f: Temperature in Fahrenheit (-5 to 68)
+            
+        Returns:
+            Command bytes to send
+        """
+        temp_f = max(-5, min(68, temp_f))  # Clamp to valid range
+        temp_hex = temp_f & 0xFF  # Handle negative temps with 2's complement
+        checksum = (0x04 + 0x05 + temp_hex + 0x02) & 0xFF
+        
+        command = bytes([0xFE, 0xFE, 0x04, 0x05, temp_hex, 0x02, checksum])
+        _LOGGER.debug("Zone 1 temp command for %d°F: %s", temp_f, command.hex(':'))
+        return command
+    
+    def create_zone2_temp_command(self, temp_f: int) -> bytes:
+        """Create Zone 2 temperature setpoint command.
+        
+        Args:
+            temp_f: Temperature in Fahrenheit (0 to 35)
+            
+        Returns:
+            Command bytes to send
+        """
+        temp_f = max(0, min(35, temp_f))  # Clamp to valid range
+        temp_hex = temp_f & 0xFF
+        checksum = (0x04 + 0x06 + temp_hex + 0x02) & 0xFF
+        
+        command = bytes([0xFE, 0xFE, 0x04, 0x06, temp_hex, 0x02, checksum])
+        _LOGGER.debug("Zone 2 temp command for %d°F: %s", temp_f, command.hex(':'))
+        return command
+    
+    def create_eco_mode_command(self, enabled: bool) -> bytes:
+        """Create eco mode on/off command.
+        
+        Args:
+            enabled: True to enable eco mode, False to disable
+            
+        Returns:
+            Command bytes to send
+        """
+        eco_byte = 0x02 if enabled else 0x01
+        command = bytes([0xFE, 0xFE, 0x21, eco_byte, 0x00, 0x01, 0x00, 0x00, 0x00, 0x44,
+                        0xFC, 0x04, 0x00, 0x01, 0xFE, 0xFE, 0x02, 0x00, 0x03, 0x64])
+        
+        _LOGGER.debug("Eco mode command (%s): %s", "ON" if enabled else "OFF", command.hex(':'))
+        return command
+    
+    def create_battery_protection_command(self, level: str) -> bytes:
+        """Create battery protection level command.
+        
+        Args:
+            level: "low", "med", or "high"
+            
+        Returns:
+            Command bytes to send
+        """
+        level_map = {
+            "low": 0x00,
+            "med": 0x01,
+            "high": 0x02
+        }
+        
+        if level not in level_map:
+            raise ValueError(f"Level must be 'low', 'med', or 'high', got: {level}")
+        
+        level_byte = level_map[level]
+        command = bytes([0xFE, 0xFE, 0x21, 0x02, 0x00, 0x01, 0x01, level_byte, 0x00, 0x44,
+                        0xFC, 0x04, 0x00, 0x01, 0xFE, 0xFE, 0x02, 0x00, 0x03, 0x64])
+        
+        _LOGGER.debug("Battery protection command (%s): %s", level, command.hex(':'))
+        return command
+    
+    def create_button_command(self, button_key: str, **kwargs) -> bytes:
+        """Create command for button press.
+        
+        Args:
+            button_key: The button key identifier
+            **kwargs: Additional parameters (e.g., current_temp for temp adjustment buttons)
+            
+        Returns:
+            Command bytes to send
+        """
+        if button_key == "zone1_temp_up":
+            current_temp = kwargs.get("current_temp", 32)  # Default to 32°F if unknown
+            return self.create_zone1_temp_command(current_temp + 1)
+        
+        elif button_key == "zone1_temp_down":
+            current_temp = kwargs.get("current_temp", 32)
+            return self.create_zone1_temp_command(current_temp - 1)
+            
+        elif button_key == "zone2_temp_up":
+            current_temp = kwargs.get("current_temp", 32)
+            return self.create_zone2_temp_command(current_temp + 1)
+            
+        elif button_key == "zone2_temp_down":
+            current_temp = kwargs.get("current_temp", 32)
+            return self.create_zone2_temp_command(current_temp - 1)
+            
+        elif button_key == "toggle_eco_mode":
+            current_eco = kwargs.get("current_eco_mode", False)
+            return self.create_eco_mode_command(not current_eco)
+            
+        elif button_key == "cycle_battery_protection":
+            current_level = kwargs.get("current_battery_protection", "low")
+            level_cycle = {"low": "med", "med": "high", "high": "low"}
+            next_level = level_cycle.get(current_level, "low")
+            return self.create_battery_protection_command(next_level)
+        
+        else:
+            raise ValueError(f"Unknown button key: {button_key}")
+    
+    def create_number_set_command(self, number_key: str, value: float) -> bytes:
+        """Create command for number entity value change.
+        
+        Args:
+            number_key: The number entity key identifier
+            value: The new value to set
+            
+        Returns:
+            Command bytes to send
+        """
+        if number_key == "zone1_setpoint":
+            return self.create_zone1_temp_command(int(value))
+        elif number_key == "zone2_setpoint":
+            return self.create_zone2_temp_command(int(value))
+        else:
+            raise ValueError(f"Unknown number key: {number_key}")
+
+    async def send_command(self, ble_manager, command: bytes) -> bool:
+        """Send a command to the Alta 80 device.
+        
+        Args:
+            ble_manager: The BLE manager instance
+            command: Command bytes to send
+            
+        Returns:
+            True if command was sent successfully
+        """
+        try:
+            _LOGGER.info("Sending Alta 80 command: %s", command.hex(':'))
+            success = await ble_manager.send_command(self.name, command)
+            if success:
+                _LOGGER.info("✓ Command sent successfully")
+            else:
+                _LOGGER.warning("⚠ Command send failed")
+            return success
+        except Exception as e:
+            _LOGGER.error("Error sending command: %s", e)
+            return False

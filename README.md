@@ -146,7 +146,19 @@ The Alta 80 provides comprehensive monitoring through 36 status bytes:
   - Filters out static `0xFE` bytes
   - Includes signed integer decoding for temperature bytes
 
-#### 🔘 Controls
+#### 🔘 Controls & Setpoints
+
+**Temperature Controls:**
+- **Zone 1 Temp Up/Down** (`button.alta80_zone1_temp_up/down`): Adjust Zone 1 setpoint by 1°F
+- **Zone 2 Temp Up/Down** (`button.alta80_zone2_temp_up/down`): Adjust Zone 2 setpoint by 1°F
+- **Zone 1 Setpoint** (`number.alta80_zone1_setpoint`): Direct temperature control (-5°F to 68°F)
+- **Zone 2 Setpoint** (`number.alta80_zone2_setpoint`): Direct temperature control (0°F to 35°F)
+
+**System Controls:**
+- **Toggle Eco Mode** (`button.alta80_toggle_eco_mode`): Switch eco mode on/off
+- **Cycle Battery Protection** (`button.alta80_cycle_battery_protection`): Cycle through Low→Med→High→Low
+
+**Data Refresh:**
 - **Refresh Data** (`button.alta80_refresh`): Manually refresh device status
 
 ### Entity Properties

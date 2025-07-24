@@ -8,10 +8,10 @@ from homeassistant.components.button import ButtonEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN
 from .coordinator import GoalZeroCoordinator
+from .entity import GoalZeroEntity
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -24,66 +24,70 @@ async def async_setup_entry(
     """Set up Goal Zero BLE buttons."""
     coordinator: GoalZeroCoordinator = hass.data[DOMAIN][config_entry.entry_id]
     
-    if not coordinator.device:
-        _LOGGER.error("No device found for coordinator")
-        return
-
-    # Get button definitions from device
-    button_definitions = coordinator.device.get_buttons()
-    
-    # Create button entities
     entities = []
-    for button_def in button_definitions:
-        entities.append(GoalZeroButton(coordinator, button_def))
     
-    _LOGGER.info("Setting up %d buttons for %s", len(entities), coordinator.device_name)
-    async_add_entities(entities)
+    # Get button definitions from device
+    device = coordinator.device
+    if hasattr(device, 'get_buttons'):
+        button_definitions = device.get_buttons()
+        
+        for button_def in button_definitions:
+            entities.append(
+                GoalZeroButton(
+                    coordinator,
+                    button_def["key"],
+                    button_def["name"],
+                    button_def.get("icon"),
+                )
+            )
+    
+    if entities:
+        async_add_entities(entities, update_before_add=True)
 
 
-class GoalZeroButton(CoordinatorEntity, ButtonEntity):
+class GoalZeroButton(GoalZeroEntity, ButtonEntity):
     """Goal Zero BLE button."""
 
-    def __init__(self, coordinator: GoalZeroCoordinator, button_definition: dict[str, Any]) -> None:
+    def __init__(
+        self,
+        coordinator: GoalZeroCoordinator,
+        key: str,
+        name: str,
+        icon: str | None,
+    ) -> None:
         """Initialize the button."""
-        super().__init__(coordinator)
-        
-        self.coordinator = coordinator
-        self.button_def = button_definition
-        self._button_key = button_definition["key"]
-        
-        # Set up entity attributes
-        self._attr_unique_id = f"{coordinator.address}_{self._button_key}"
-        self._attr_name = f"{coordinator.device_name} {button_definition['name']}"
-        self._attr_icon = button_definition.get("icon")
-        
-        # Device info
-        self._attr_device_info = coordinator.device_info
+        super().__init__(coordinator, key, name, icon)
 
     async def async_press(self) -> None:
         """Handle button press."""
         try:
-            _LOGGER.debug("Button %s pressed for %s", self._button_key, self.coordinator.device_name)
+            _LOGGER.debug("Button %s pressed", self._key)
             
-            # Send command via coordinator
-            success = await self.coordinator.send_command(self._button_key)
+            # Get current device data for context
+            current_data = self.coordinator.data or {}
             
-            if not success:
-                _LOGGER.error("Failed to send command %s to %s", self._button_key, self.coordinator.device_name)
+            # Create command for the button
+            device = self.coordinator.device
+            if hasattr(device, 'create_button_command'):
+                command = device.create_button_command(
+                    self._key,
+                    current_temp=current_data.get("zone_1_temp", 32),  # Default to 32°F
+                    current_eco_mode=current_data.get("eco_mode", False),
+                    current_battery_protection=current_data.get("battery_protection", "low"),
+                )
+                
+                # Send command via BLE manager
+                ble_manager = self.coordinator.ble_manager
+                success = await device.send_command(ble_manager, command)
+                
+                if success:
+                    # Request a data refresh to get updated device state
+                    await self.coordinator.async_request_refresh()
+                    _LOGGER.info("Successfully executed button %s", self._key)
+                else:
+                    _LOGGER.error("Failed to execute button %s", self._key)
             else:
-                _LOGGER.debug("Successfully sent command %s to %s", self._button_key, self.coordinator.device_name)
+                _LOGGER.error("Device does not support button commands")
                 
         except Exception as e:
-            _LOGGER.error("Error pressing button %s: %s", self._button_key, e)
-
-    @property
-    def available(self) -> bool:
-        """Return True if entity is available."""
-        return self.coordinator.is_connected
-
-    @property
-    def extra_state_attributes(self) -> dict[str, Any] | None:
-        """Return additional state attributes."""
-        return {
-            "device_type": self.coordinator.device_type,
-            "command_key": self._button_key,
-        }
+            _LOGGER.error("Error pressing button %s: %s", self._key, e)

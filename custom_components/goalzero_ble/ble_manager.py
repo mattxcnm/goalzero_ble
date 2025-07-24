@@ -129,8 +129,15 @@ class GoalZeroBLEManager:
                     self._connected = False
                     _LOGGER.info("Disconnected from device %s", self.address)
 
-    async def send_command(self, command_hex: str) -> bool:
-        """Send a command to the device using dynamic GATT discovery."""
+    async def send_command(self, command_data: str | bytes) -> bool:
+        """Send a command to the device using dynamic GATT discovery.
+        
+        Args:
+            command_data: Command as hex string or bytes
+            
+        Returns:
+            True if command was sent successfully
+        """
         if not self._connected or not self._client:
             _LOGGER.error("Not connected to device %s", self.address)
             return False
@@ -142,8 +149,15 @@ class GoalZeroBLEManager:
                 _LOGGER.error("No write characteristic found for device %s", self.address)
                 return False
 
+            # Convert command to bytes if it's a hex string
+            if isinstance(command_data, str):
+                command_bytes = bytes.fromhex(command_data)
+                command_hex = command_data
+            else:
+                command_bytes = command_data
+                command_hex = command_data.hex()
+
             # Send command
-            command_bytes = bytes.fromhex(command_hex)
             await self._client.write_gatt_char(write_char, command_bytes)
             _LOGGER.debug("Sent command to %s: %s", self.address, command_hex)
             return True
@@ -289,6 +303,31 @@ class GoalZeroBLEManager:
         except Exception as e:
             _LOGGER.error("Error during GATT discovery for %s: %s", self.address, e)
             return {}
+
+    async def send_command_to_device(self, device_name: str, command_data: str | bytes) -> bool:
+        """Send a command to a specific device by name.
+        
+        Args:
+            device_name: Name of the device to send command to
+            command_data: Command as hex string or bytes
+            
+        Returns:
+            True if command was sent successfully
+        """
+        try:
+            # Connect to device if not already connected
+            if not self._connected:
+                success = await self.ensure_connected()
+                if not success:
+                    _LOGGER.error("Failed to connect to device %s for command", device_name)
+                    return False
+            
+            # Send the command
+            return await self.send_command(command_data)
+            
+        except Exception as e:
+            _LOGGER.error("Error sending command to device %s: %s", device_name, e)
+            return False
 
     @property
     def is_connected(self) -> bool:

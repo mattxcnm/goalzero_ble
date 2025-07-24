@@ -22,8 +22,8 @@ def extract_btatt_pairs(obj):
     return results
 
 def main():
-    input_file = "Alta80_3x.json"   # Replace with your actual file path
-    output_file = "Alta80_3x.csv"
+    input_file = "testing/Alta80_full_range.json"   # Replace with your actual file path
+    output_file = "testing/Alta80_full_range.csv"
 
     # Load JSON data
     with open(input_file, 'r') as f:
