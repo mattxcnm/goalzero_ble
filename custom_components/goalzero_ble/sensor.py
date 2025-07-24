@@ -92,8 +92,13 @@ class GoalZeroSensor(CoordinatorEntity, SensorEntity):
         """Return additional state attributes."""
         attrs = {
             "device_type": self.coordinator.device_type,
-            "last_update": self.coordinator.last_update_success_time,
         }
+        
+        # Add last update time if available
+        if hasattr(self.coordinator, 'last_update_success_time'):
+            attrs["last_update"] = self.coordinator.last_update_success_time
+        elif hasattr(self.coordinator, 'last_update_time'):
+            attrs["last_update"] = self.coordinator.last_update_time
         
         # Add raw sensor value if different from native_value
         raw_value = self.coordinator.get_sensor_value(self._sensor_key)
