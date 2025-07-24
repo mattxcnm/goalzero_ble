@@ -1,0 +1,81 @@
+2025-07-24 08:55:23.932 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration goalzero_ble which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-07-24 08:55:37.954 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 2: {'input_number', 'fordpass', 'unifi', 'roomba', 'petlibro', 'input_text', 'bermuda', 'scrape', 'vivint', 'forecast_solar', 'lg_thinq', 'withings', 'icloud', 'shopping_list', 'my', 'filter', 'timer', 'analytics', 'radio_browser', 'govee_ble', 'hardware', 'thermal_comfort', 'lunar_phase', 'esphome', 'homekit_controller', 'wemo', 'pirateweather', 'moon', 'ibeacon', 'thread', 'cloudflare', 'person', 'input_datetime', 'accuweather', 'wyoming', 'input_boolean', 'input_button', 'matter', 'tuya_local', 'statistics', 'mobile_app', 'integration', 'scene', 'rpi_power', 'default_config', 'schedule', 'co2signal', 'sensi', 'ipp', 'switchbot', 'system_health', 'homekit', 'automation', 'utility_meter', 'notify', 'apple_tv', 'chime_tts', 'application_credentials', 'otbr', 'llama_conversation', 'goalzero_ble', 'rest_command', 'hacs', 'sun', 'homeassistant_sky_connect', 'script', 'tag', 'local_fcsp', 'nws', 'private_ble_device', 'blitzortung', 'zone', 'go2rtc', 'input_select'} | {'cloud', 'backup', 'recorder', 'counter', 'logger', 'network', 'template', 'http', 'zeroconf', 'frontend', 'group', 'bluetooth', 'sensor', 'hassio'}
+2025-07-24 08:55:42.426 INFO (MainThread) [homeassistant.setup] Setting up goalzero_ble
+2025-07-24 08:55:42.427 INFO (MainThread) [homeassistant.setup] Setup of domain goalzero_ble took 0.00 seconds
+2025-07-24 08:55:42.427 INFO (MainThread) [custom_components.goalzero_ble] Setting up Goal Zero BLE integration for gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-24 08:55:42.427 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Creating device instance for type alta80
+2025-07-24 08:55:42.427 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Initialized BLE manager for FD:06:22:F1:4D:2A (alta80) with dynamic GATT discovery
+2025-07-24 08:55:42.427 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Initialized coordinator for gzf1-80-F14D2A (alta80) at FD:06:22:F1:4D:2A with 30s update interval
+2025-07-24 08:55:42.427 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-24 08:55:42.427 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-24 08:55:42.427 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-24 08:55:42.427 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-24 08:55:42.427 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-24 08:55:42.427 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-24 08:55:42.427 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] BLE error on attempt 1/2: No backend with an available connection slot that can reach address FD:06:22:F1:4D:2A was found
+2025-07-24 08:55:45.429 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 2/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-24 08:55:45.429 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] BLE error on attempt 2/2: No backend with an available connection slot that can reach address FD:06:22:F1:4D:2A was found
+2025-07-24 08:55:45.429 ERROR (MainThread) [custom_components.goalzero_ble.devices.alta80] All connection attempts failed for gzf1-80-F14D2A (FD:06:22:F1:4D:2A). Last error: No backend with an available connection slot that can reach address FD:06:22:F1:4D:2A was found
+2025-07-24 08:55:45.429 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 43 keys
+2025-07-24 08:55:45.429 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 3.002 seconds (success: True)
+2025-07-24 08:55:51.327 INFO (MainThread) [homeassistant.components.sensor] Setting up goalzero_ble.sensor
+2025-07-24 08:55:51.328 INFO (MainThread) [custom_components.goalzero_ble.sensor] Setting up 43 sensors for gzf1-80-F14D2A
+2025-07-24 08:55:51.338 INFO (MainThread) [homeassistant.components.button] Setting up goalzero_ble.button
+2025-07-24 08:55:51.338 INFO (MainThread) [custom_components.goalzero_ble.button] Setting up 6 buttons for gzf1-80-F14D2A
+2025-07-24 08:55:51.340 INFO (MainThread) [custom_components.goalzero_ble] Successfully set up Goal Zero BLE integration for gzf1-80-F14D2A
+2025-07-24 08:56:21.248 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-24 08:56:21.249 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-24 08:56:21.249 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-24 08:56:21.249 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-24 08:56:21.249 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-24 08:56:21.249 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-24 08:56:25.529 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-24 08:56:26.531 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
+2025-07-24 08:56:26.531 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
+2025-07-24 08:56:26.531 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
+2025-07-24 08:56:26.531 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write characteristic: 0x0003
+2025-07-24 08:56:26.532 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
+2025-07-24 08:56:26.532 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
+2025-07-24 08:56:26.532 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
+2025-07-24 08:56:26.532 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
+2025-07-24 08:56:26.532 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
+2025-07-24 08:56:26.533 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
+2025-07-24 08:56:26.533 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
+2025-07-24 08:56:26.533 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
+2025-07-24 08:56:27.079 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending status command attempt 1: FEFE03010200
+2025-07-24 08:56:30.539 DEBUG (MainThread) [custom_components.goalzero_ble.config_flow] Bluetooth discovery triggered for gzf1-80-F14D2A
+2025-07-24 08:56:30.539 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Detected device type alta80 for name gzf1-80-F14D2A
+2025-07-24 08:56:31.301 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to first command, retrying...
+2025-07-24 08:56:32.322 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending status command attempt 2: FEFE03010200
+2025-07-24 08:56:47.982 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No responses received from Alta 80 within 12s
+2025-07-24 08:56:47.982 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No responses received from Alta 80 device
+2025-07-24 08:56:48.272 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
+2025-07-24 08:56:48.273 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 43 keys
+2025-07-24 08:56:48.273 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 27.025 seconds (success: True)
+2025-07-24 08:57:18.247 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-24 08:57:18.247 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-24 08:57:18.248 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-24 08:57:18.248 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-24 08:57:18.248 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-24 08:57:18.248 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-24 08:57:20.518 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-24 08:57:21.518 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write characteristic: 0x0003
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
+2025-07-24 08:57:21.519 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
+2025-07-24 08:57:22.069 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending status command attempt 1: FEFE03010200
+2025-07-24 08:57:25.386 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to first command, retrying...
+2025-07-24 08:57:26.387 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending status command attempt 2: FEFE03010200
+2025-07-24 08:57:42.112 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No responses received from Alta 80 within 12s
+2025-07-24 08:57:42.113 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No responses received from Alta 80 device
+2025-07-24 08:57:42.165 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
+2025-07-24 08:57:42.165 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 43 keys
+2025-07-24 08:57:42.165 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 23.918 seconds (success: True)

@@ -267,7 +267,8 @@ class Alta80Device(GoalZeroDevice):
             response_count += 1
             hex_data = data.hex().upper()
             responses.append(hex_data)  # CRITICAL FIX: Actually store the response!
-            _LOGGER.debug("Alta 80 Response %d: %s", response_count, hex_data)
+            _LOGGER.info("🔔 Alta 80 Notification %d from 0x%04X: %s (%d bytes)", 
+                        response_count, sender.handle if hasattr(sender, 'handle') else 0, hex_data, len(data))
         try:
             # Find characteristics dynamically by properties instead of hardcoded handles
             write_char = None
@@ -287,10 +288,14 @@ class Alta80Device(GoalZeroDevice):
                         char.uuid, char.handle, properties
                     )
                     
-                    # Look for write characteristic (typically has 'write' or 'write-without-response')
-                    if not write_char and ('write' in properties or 'write-without-response' in properties):
-                        write_char = char
-                        _LOGGER.info("✓ Selected write characteristic: 0x%04X", char.handle)
+                    # Look for write characteristic - prioritize write-without-response in custom service
+                    if not write_char:
+                        if 'write-without-response' in properties:
+                            write_char = char
+                            _LOGGER.info("✓ Selected write-without-response characteristic: 0x%04X", char.handle)
+                        elif 'write' in properties and '1234' in str(service.uuid):  # Custom service
+                            write_char = char
+                            _LOGGER.info("✓ Selected write characteristic in custom service: 0x%04X", char.handle)
                     
                     # Look for read/notify characteristic (typically has 'notify' or 'read')
                     if not read_char and ('notify' in properties or 'indicate' in properties):
@@ -303,7 +308,8 @@ class Alta80Device(GoalZeroDevice):
                 _LOGGER.error(
                     "Required characteristics not found for Alta 80. "
                     "Write char: %s (handle: %s), Read/notify char: %s (handle: %s). "
-                    "Available handles: %s",
+                    "Available handles: %s. "
+                    "Expected: write-without-response on service 00001234 (handle 0x000B) and notify on service 00001234 (handle 0x000D)",
                     write_char is not None, 
                     f"0x{write_char.handle:04X}" if write_char else "None",
                     read_char is not None,
@@ -312,48 +318,110 @@ class Alta80Device(GoalZeroDevice):
                 )
                 return self._get_default_data()
             
+            _LOGGER.info("✓ Using write characteristic 0x%04X and read/notify characteristic 0x%04X", 
+                        write_char.handle, read_char.handle)
+            
             # Start notifications
+            _LOGGER.info("Starting notifications on characteristic 0x%04X...", read_char.handle)
             await client.start_notify(read_char, notification_handler)
+            _LOGGER.info("✓ Notifications started successfully")
             
             # Wait a moment for notifications to be set up
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(1.0)  # Increased from 0.5 to 1.0 seconds
+            _LOGGER.debug("Notification setup delay complete")
             
-            # Send status request command - try twice if no response
-            command_bytes = bytes.fromhex("FEFE03010200")
+            # Test if device is responsive with a simple probe first
+            _LOGGER.debug("Testing device responsiveness...")
+            test_command = bytes.fromhex("FEFE")  # Simple 2-byte probe
+            try:
+                await client.write_gatt_char(write_char, test_command)
+                _LOGGER.debug("✓ Probe command sent successfully")
+            except Exception as e:
+                _LOGGER.error("Failed to send probe command: %s", e)
             
-            for command_attempt in range(2):
-                _LOGGER.debug("Sending status command attempt %d: FEFE03010200", command_attempt + 1)
-                await client.write_gatt_char(write_char, command_bytes)
+            await asyncio.sleep(0.5)  # Brief wait for any response
+            
+            if response_count > 0:
+                _LOGGER.info("✓ Device responded to probe command")
+            else:
+                _LOGGER.warning("No response to probe command - device may be sleeping or unresponsive")
+            
+            # Send status request command - try up to 3 times if no response
+            # Also try alternative command formats in case the device expects different protocol
+            command_variants = [
+                ("FEFE03010200", "Standard status command"),
+                ("FEFE030102", "Status command without length byte"),
+                ("FEFE0301020000", "Status command with padding"),
+            ]
+            
+            for command_attempt in range(3):  # Increased from 2 to 3 attempts
+                # Try different command variants on different attempts
+                cmd_hex, cmd_desc = command_variants[command_attempt % len(command_variants)]
+                command_bytes = bytes.fromhex(cmd_hex)
                 
-                # Wait for initial response
-                initial_wait = 3  # Wait 3 seconds for first response
+                _LOGGER.info("Sending command attempt %d: %s (%s) to handle 0x%04X", 
+                           command_attempt + 1, cmd_hex, cmd_desc, write_char.handle)
+                try:
+                    await client.write_gatt_char(write_char, command_bytes)
+                    _LOGGER.debug("✓ Command sent successfully")
+                except Exception as e:
+                    _LOGGER.error("Failed to send command: %s", e)
+                    continue  # Skip to next attempt if write fails
+                
+                # Wait for initial response - increased timeout
+                initial_wait = 8  # Increased from 3 to 8 seconds for first response
                 elapsed = 0
                 initial_response_count = response_count
                 
+                _LOGGER.debug("Waiting up to %ds for response to command %d...", initial_wait, command_attempt + 1)
                 while response_count == initial_response_count and elapsed < initial_wait:
-                    await asyncio.sleep(0.1)
-                    elapsed += 0.1
+                    await asyncio.sleep(0.2)  # Check every 200ms instead of 100ms
+                    elapsed += 0.2
                 
                 if response_count > initial_response_count:
-                    _LOGGER.debug("Got response on command attempt %d", command_attempt + 1)
+                    _LOGGER.info("✓ Got response on command attempt %d (%s) after %.1fs", 
+                               command_attempt + 1, cmd_desc, elapsed)
                     break
-                elif command_attempt == 0:
-                    _LOGGER.warning("No response to first command, retrying...")
-                    await asyncio.sleep(1)  # Wait before retry
+                elif command_attempt < 2:  # Don't log for the last attempt
+                    _LOGGER.warning("No response to command attempt %d (%s) after %ds, retrying...", 
+                                  command_attempt + 1, cmd_desc, initial_wait)
+                    await asyncio.sleep(2)  # Increased wait before retry
             
-            # Wait for all expected responses (expecting 2 responses total)
-            timeout_duration = 12  # Increased timeout
+            # Wait for all expected responses (expecting 2 responses total) - increased timeout
+            timeout_duration = 20  # Increased from 12 to 20 seconds
             elapsed = 0
+            _LOGGER.debug("Waiting up to %ds for all responses (currently have %d)...", timeout_duration, response_count)
             while response_count < 2 and elapsed < timeout_duration:
-                await asyncio.sleep(0.1)
-                elapsed += 0.1
+                await asyncio.sleep(0.2)  # Check every 200ms
+                elapsed += 0.2
             
             if response_count == 0:
                 _LOGGER.warning("No responses received from Alta 80 within %ds", timeout_duration)
+                
+                # Try alternative approach: direct read from characteristic
+                _LOGGER.info("Trying alternative approach: direct characteristic read...")
+                try:
+                    # Look for readable characteristics
+                    for service in services.services.values():
+                        for char in service.characteristics:
+                            if 'read' in char.properties:
+                                _LOGGER.debug("Attempting to read from characteristic 0x%04X", char.handle)
+                                try:
+                                    read_data = await client.read_gatt_char(char)
+                                    hex_data = read_data.hex().upper()
+                                    _LOGGER.info("Direct read from 0x%04X: %s", char.handle, hex_data)
+                                    if read_data:
+                                        responses.append(hex_data)
+                                        response_count += 1
+                                except Exception as e:
+                                    _LOGGER.debug("Failed to read from 0x%04X: %s", char.handle, e)
+                except Exception as e:
+                    _LOGGER.debug("Error during direct read attempt: %s", e)
+                    
             elif response_count < 2:
                 _LOGGER.warning("Only received %d of 2 expected responses from Alta 80", response_count)
             else:
-                _LOGGER.debug("Received all %d expected responses from Alta 80", response_count)
+                _LOGGER.info("✓ Received all %d expected responses from Alta 80", response_count)
             
             # Stop notifications
             try:
