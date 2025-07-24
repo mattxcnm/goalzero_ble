@@ -129,7 +129,7 @@ async def send_gatt_command():
             await client.start_notify(read_char, notification_handler)
             
             # Monitor for 5 minutes (300 seconds), sending commands every 15 seconds
-            duration = 3600  # 1 hour
+            duration = 28800  # 1 hour
             interval = 15   # 15 seconds
 
             print(f"\n🚀 Starting 1-hour monitoring session...")
