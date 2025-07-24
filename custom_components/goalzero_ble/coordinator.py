@@ -53,6 +53,9 @@ class GoalZeroCoordinator(DataUpdateCoordinator):
         # Initialize BLE manager
         self.ble_manager = GoalZeroBLEManager(self.address, self.device_type)
         
+        # Flag to track if we've done GATT discovery for debugging
+        self._gatt_discovery_done = False
+        
         _LOGGER.info(
             "Initialized coordinator for %s (%s) at %s with %ds update interval",
             self.device_name,
@@ -79,6 +82,13 @@ class GoalZeroCoordinator(DataUpdateCoordinator):
                 data = await self.device.update_data(self.ble_manager)
             
             if data is None:
+                # If no data and we haven't done GATT discovery, try it for debugging
+                if not self._gatt_discovery_done and self.device_type != DEVICE_TYPE_ALTA80:
+                    _LOGGER.info("Attempting GATT discovery for debugging %s", self.device_name)
+                    if await self.ble_manager.ensure_connected():
+                        await self.ble_manager.discover_gatt_services()
+                        self._gatt_discovery_done = True
+                
                 raise UpdateFailed(f"No data received from {self.device_name}")
             
             _LOGGER.debug("Successfully updated data for %s: %d keys", self.device_name, len(data))

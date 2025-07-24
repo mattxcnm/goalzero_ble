@@ -39,7 +39,8 @@ class GoalZeroDevice(ABC):
             name=self.name,
             manufacturer=MANUFACTURER,
             model=self.model,
-            via_device=(DOMAIN, self.address),
+            # Don't set via_device for BLE devices to avoid circular reference
+            # via_device should only be used when this device is connected through another device
         )
 
     @abstractmethod

@@ -67,30 +67,50 @@ class GoalZeroBLEManager:
     async def _connect_internal(self) -> bool:
         """Internal connection method (must be called with lock held)."""
         if not self._device and not await self.discover_device():
+            _LOGGER.warning("Cannot connect: device %s not discoverable", self.address)
             return False
 
         try:
+            # Clean up any existing connection
             if self._client:
                 try:
-                    await self._client.disconnect()
-                except Exception:
-                    pass  # Ignore disconnect errors
-                self._client = None
+                    if self._client.is_connected:
+                        await asyncio.wait_for(
+                            self._client.disconnect(), timeout=BLE_DISCONNECT_TIMEOUT
+                        )
+                except Exception as e:
+                    _LOGGER.debug("Error cleaning up old connection: %s", e)
+                finally:
+                    self._client = None
 
             if not self._device:
+                _LOGGER.error("Device object is None, cannot connect")
                 return False
                 
+            _LOGGER.debug("Attempting to connect to %s (%s)", self._device.name, self.address)
             self._client = BleakClient(self._device)
+            
+            # Use asyncio.wait_for with proper timeout handling
             await asyncio.wait_for(
                 self._client.connect(), timeout=BLE_CONNECT_TIMEOUT
             )
             
+            if not self._client.is_connected:
+                _LOGGER.error("Connection established but client reports not connected")
+                self._client = None
+                return False
+            
             self._connected = True
-            _LOGGER.info("Connected to device %s", self.address)
+            _LOGGER.info("Successfully connected to device %s (%s)", self._device.name, self.address)
             return True
             
+        except asyncio.TimeoutError:
+            _LOGGER.error("Connection timeout after %ds for device %s", BLE_CONNECT_TIMEOUT, self.address)
+            self._connected = False
+            self._client = None
+            return False
         except Exception as e:
-            _LOGGER.error("Failed to connect to %s: %s", self.address, e)
+            _LOGGER.error("Failed to connect to %s: %s (type: %s)", self.address, e, type(e).__name__)
             self._connected = False
             self._client = None
             return False
@@ -188,8 +208,11 @@ class GoalZeroBLEManager:
             read_char = None
             
             services = self._client.services
+            available_handles = []
+            
             for service in services.services.values():
                 for char in service.characteristics:
+                    available_handles.append(f"0x{char.handle:04X}")
                     if char.handle == write_handle:
                         write_char = char
                     if char.handle == read_handle:
@@ -197,9 +220,12 @@ class GoalZeroBLEManager:
 
             if not write_char or not read_char:
                 _LOGGER.error(
-                    "Required characteristics not found for %s. Write: 0x%04X (%s), Read: 0x%04X (%s)",
+                    "Required characteristics not found for %s. "
+                    "Write: 0x%04X (%s), Read: 0x%04X (%s). "
+                    "Available handles: %s",
                     self.address, write_handle, write_char is not None, 
-                    read_handle, read_char is not None
+                    read_handle, read_char is not None,
+                    ", ".join(available_handles)
                 )
                 return []
 
@@ -229,6 +255,52 @@ class GoalZeroBLEManager:
         except Exception as e:
             _LOGGER.error("Failed to send command and collect responses from %s: %s", self.address, e)
             return []
+
+    async def discover_gatt_services(self) -> dict:
+        """Discover and log all GATT services and characteristics for debugging."""
+        if not self._connected or not self._client:
+            _LOGGER.error("Not connected to device %s for GATT discovery", self.address)
+            return {}
+
+        try:
+            services_info = {}
+            services = self._client.services
+            
+            _LOGGER.info("=== GATT Discovery for %s ===", self.address)
+            for service in services.services.values():
+                service_info = {
+                    "uuid": str(service.uuid),
+                    "characteristics": []
+                }
+                
+                _LOGGER.info("Service: %s", service.uuid)
+                for char in service.characteristics:
+                    char_info = {
+                        "uuid": str(char.uuid),
+                        "handle": f"0x{char.handle:04X}",
+                        "properties": [prop for prop in char.properties]
+                    }
+                    service_info["characteristics"].append(char_info)
+                    
+                    _LOGGER.info(
+                        "  Characteristic: %s (Handle: 0x%04X, Properties: %s)", 
+                        char.uuid, char.handle, char.properties
+                    )
+                    
+                    for descriptor in char.descriptors:
+                        _LOGGER.info(
+                            "    Descriptor: %s (Handle: 0x%04X)", 
+                            descriptor.uuid, descriptor.handle
+                        )
+                
+                services_info[str(service.uuid)] = service_info
+            
+            _LOGGER.info("=== End GATT Discovery ===")
+            return services_info
+            
+        except Exception as e:
+            _LOGGER.error("Error during GATT discovery for %s: %s", self.address, e)
+            return {}
 
     @property
     def is_connected(self) -> bool:

@@ -1,6 +1,7 @@
 """Goal Zero Alta 80 device implementation."""
 from __future__ import annotations
 
+import asyncio
 import logging
 from typing import Any
 
@@ -172,23 +173,43 @@ class Alta80Device(GoalZeroDevice):
                 _LOGGER.debug("Alta 80 Response %d: %s", response_count, hex_data)
                 responses.append(hex_data)
             
-            async with BleakClient(device_address) as client:
-                _LOGGER.debug("Connected to Alta 80 device")
+            async with BleakClient(device_address, timeout=12.0) as client:
+                _LOGGER.info("Connected to Alta 80 device %s (%s)", self.name, device_address)
                 
                 # Find characteristics by handle (same as goalzero_gatt.py)
                 write_char = None
                 read_char = None
                 
                 services = client.services
+                available_handles = []
                 for service in services.services.values():
                     for char in service.characteristics:
+                        available_handles.append(f"0x{char.handle:04X}")
                         if char.handle == 0x000A:  # WRITE_HANDLE
                             write_char = char
                         if char.handle == 0x000C:  # READ_HANDLE
                             read_char = char
                 
                 if not write_char or not read_char:
-                    _LOGGER.error("Required GATT handles not found")
+                    _LOGGER.error(
+                        "Required GATT handles not found for Alta 80. "
+                        "Write: 0x000A (%s), Read: 0x000C (%s). "
+                        "Available handles: %s",
+                        write_char is not None, read_char is not None,
+                        ", ".join(available_handles)
+                    )
+                    
+                    # Log all available characteristics for debugging
+                    _LOGGER.info("=== Alta 80 GATT Discovery ===")
+                    for service in services.services.values():
+                        _LOGGER.info("Service: %s", service.uuid)
+                        for char in service.characteristics:
+                            _LOGGER.info(
+                                "  Characteristic: %s (Handle: 0x%04X, Properties: %s)", 
+                                char.uuid, char.handle, char.properties
+                            )
+                    _LOGGER.info("=== End GATT Discovery ===")
+                    
                     return self._get_default_data()
                 
                 # Start notifications
@@ -200,15 +221,24 @@ class Alta80Device(GoalZeroDevice):
                 _LOGGER.debug("Sent status command: FEFE03010200")
                 
                 # Wait for responses (expecting 2 responses)
-                import asyncio
-                timeout = 5
+                timeout_duration = 5
                 elapsed = 0
-                while response_count < 2 and elapsed < timeout:
+                while response_count < 2 and elapsed < timeout_duration:
                     await asyncio.sleep(0.1)
                     elapsed += 0.1
                 
+                if response_count == 0:
+                    _LOGGER.warning("No responses received from Alta 80 within %ds", timeout_duration)
+                elif response_count < 2:
+                    _LOGGER.warning("Only received %d of 2 expected responses from Alta 80", response_count)
+                else:
+                    _LOGGER.debug("Received all %d expected responses from Alta 80", response_count)
+                
                 # Stop notifications
-                await client.stop_notify(read_char)
+                try:
+                    await client.stop_notify(read_char)
+                except Exception as e:
+                    _LOGGER.debug("Error stopping notifications: %s", e)
                 
             # Parse responses if we got them
             if responses:
@@ -218,8 +248,11 @@ class Alta80Device(GoalZeroDevice):
                 _LOGGER.warning("No responses received from Alta 80 device")
                 self._data = self._get_default_data()
                 
+        except asyncio.TimeoutError:
+            _LOGGER.error("Connection timeout for Alta 80 device %s", self.name)
+            self._data = self._get_default_data()
         except Exception as e:
-            _LOGGER.error("Error updating Alta 80 data: %s", e)
+            _LOGGER.error("Error updating Alta 80 data: %s (type: %s)", e, type(e).__name__)
             self._data = self._get_default_data()
         
         return self._data

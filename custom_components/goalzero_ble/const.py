@@ -26,9 +26,9 @@ YETI_500_MODEL = "Yeti 500"
 
 # BLE Configuration
 BLE_SCAN_TIMEOUT = 30
-BLE_CONNECT_TIMEOUT = 15
-BLE_DISCONNECT_TIMEOUT = 10
-BLE_COMMAND_TIMEOUT = 5
+BLE_CONNECT_TIMEOUT = 12  # Reduced from 15 to avoid 10+2s timeout pattern
+BLE_DISCONNECT_TIMEOUT = 5  # Reduced from 10 to disconnect faster
+BLE_COMMAND_TIMEOUT = 8    # Increased from 5 for better reliability
 
 # Alta 80 GATT Configuration
 ALTA80_WRITE_HANDLE = 0x000A
