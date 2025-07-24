@@ -32,21 +32,51 @@ class Alta80Device(GoalZeroDevice):
         sensors = []
         
         # Raw status bytes (0-35, exactly 36 bytes total)
+        # Skip bytes that are always 0xFE (254) as they don't change
+        # These are common positions for 0xFE based on typical BLE protocols
+        # You can adjust this list based on your actual data observations
+        fe_bytes = {0, 1, 13, 14, 19, 20, 25, 26}  # Adjust based on your observations
+        
         for i in range(36):  # Exactly 36 bytes in concatenated response
-            sensors.append({
-                "key": f"status_byte_{i}",
-                "name": f"Status Byte {i}",
-                "device_class": None,
-                "state_class": None,
-                "unit": None,
-                "icon": "mdi:hexadecimal",
-            })
+            # Skip 0xFE bytes that don't change
+            if i in fe_bytes:
+                continue
+                
+            # Special handling for temperature bytes (signed integers)
+            if i in {18, 35}:  # Temperature bytes
+                zone_num = 1 if i == 18 else 2
+                sensors.append({
+                    "key": f"status_byte_{i}",
+                    "name": f"Status Byte {i} (Zone {zone_num} Temp Raw)",
+                    "device_class": None,
+                    "state_class": SensorStateClass.MEASUREMENT,
+                    "unit": None,
+                    "icon": "mdi:thermometer-lines",
+                })
+            else:
+                # Regular numeric bytes
+                sensors.append({
+                    "key": f"status_byte_{i}",
+                    "name": f"Status Byte {i}",
+                    "device_class": None,
+                    "state_class": SensorStateClass.MEASUREMENT,  # Enable line graphs
+                    "unit": None,
+                    "icon": "mdi:hexadecimal",
+                })
         
         # Decoded sensors for known bytes
         sensors.extend([
             {
                 "key": "zone_1_temp",
                 "name": "Zone 1 Temperature",
+                "device_class": SensorDeviceClass.TEMPERATURE,
+                "state_class": SensorStateClass.MEASUREMENT,
+                "unit": UnitOfTemperature.CELSIUS,
+                "icon": "mdi:thermometer",
+            },
+            {
+                "key": "zone_2_temp", 
+                "name": "Zone 2 Temperature",
                 "device_class": SensorDeviceClass.TEMPERATURE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "unit": UnitOfTemperature.CELSIUS,
@@ -456,6 +486,7 @@ class Alta80Device(GoalZeroDevice):
         # Initialize decoded values
         data.update({
             "zone_1_temp": None,
+            "zone_2_temp": None,
             "zone_1_setpoint_exceeded": None,
             "zone_2_temp_high_res": None,
             "compressor_state_a": None,
@@ -499,18 +530,23 @@ class Alta80Device(GoalZeroDevice):
                 parsed_data["zone_1_temp"] = zone_1_temp_raw
                 _LOGGER.debug("Zone 1 temp (byte 18): %d°C", zone_1_temp_raw)
             
+            if len(all_bytes) > 35:
+                # Byte 35: Zone 2 temp (signed integer)
+                zone_2_temp_raw = all_bytes[35]
+                if zone_2_temp_raw > 127:  # Convert to signed
+                    zone_2_temp_raw = zone_2_temp_raw - 256
+                parsed_data["zone_2_temp"] = zone_2_temp_raw
+                _LOGGER.debug("Zone 2 temp (byte 35): %d°C", zone_2_temp_raw)
+                
+                # Keep the high-res version for compatibility 
+                parsed_data["zone_2_temp_high_res"] = zone_2_temp_raw / 10.0 if zone_2_temp_raw != 0 else 0
+                _LOGGER.debug("Zone 2 temp high res (byte 35): %.1f", parsed_data["zone_2_temp_high_res"])
+            
             if len(all_bytes) > 34:
                 # Byte 34: Zone 1 setpoint exceeded (boolean-ish)
                 setpoint_exceeded = all_bytes[34]
                 parsed_data["zone_1_setpoint_exceeded"] = bool(setpoint_exceeded)
                 _LOGGER.debug("Zone 1 setpoint exceeded (byte 34): %s", setpoint_exceeded)
-            
-            if len(all_bytes) > 35:
-                # Byte 35: Zone 2 temp high resolution
-                zone_2_temp_high_res = all_bytes[35]
-                # This might be a high resolution value, possibly needs scaling
-                parsed_data["zone_2_temp_high_res"] = zone_2_temp_high_res / 10.0 if zone_2_temp_high_res != 0 else 0
-                _LOGGER.debug("Zone 2 temp high res (byte 35): %.1f", parsed_data["zone_2_temp_high_res"])
             
             # Note: You mentioned "compressor state a" and "compressor state b" but didn't specify
             # which bytes they are. I'll add placeholders that can be updated when the byte positions are known
