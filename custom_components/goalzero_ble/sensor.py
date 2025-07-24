@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN
+from .const import DOMAIN, DEVICE_TYPE_ALTA80
 from .coordinator import GoalZeroCoordinator
 
 _LOGGER = logging.getLogger(__name__)
@@ -79,6 +79,12 @@ class GoalZeroSensor(CoordinatorEntity, SensorEntity):
     @property
     def available(self) -> bool:
         """Return True if entity is available."""
+        # For Alta 80 devices that connect/disconnect for each update,
+        # availability is based only on last update success
+        if self.coordinator.device_type == DEVICE_TYPE_ALTA80:
+            return self.coordinator.last_update_success
+        # For other devices that maintain persistent connections,
+        # availability requires both successful update and active connection
         return self.coordinator.last_update_success and self.coordinator.is_connected
 
     @property
