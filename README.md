@@ -1,140 +1,598 @@
-# Goal Zero BLE Integration
+# Goal Zero BLE Integration for Home Assistant
 
-A Home Assistant custom integration for Goal Zero devices via Bluetooth Low Energy (BLE).
+A Home Assistant HACS integration for Goal Zero BLE devices, providing wireless monitoring and control of portable power stations through Bluetooth Low Energy (BLE).
 
-## 🚀 Features
+## 📋 Table of Contents
 
-- **� Multiple Device Support**: Alta 80 fridge/freezer and Yeti 500 power station
-- **📱 Automatic Discovery**: Automatically detects Goal Zero devices via Bluetooth
-- **⚙️ Configurable Updates**: Set custom update intervals per device
-- **🔧 Modular Architecture**: Easy to extend for future Goal Zero devices  
-- **📊 Rich Sensors**: Battery, power, temperature, and status monitoring
-- **🎮 Device Controls**: Temperature adjustment, power management, and mode controls
-- **🏠 Home Assistant Integration**: Full integration with automations and dashboards
+- [Features](#features)
+- [Supported Devices](#supported-devices)
+- [Quick Start](#quick-start)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Sensors and Entities](#sensors-and-entities)
+- [Architecture](#architecture)
+- [Troubleshooting](#troubleshooting)
+- [Advanced Usage](#advanced-usage)
+- [Development](#development)
+- [Contributing](#contributing)
 
-## 📋 Supported Devices
+## ✨ Features
 
-| Device | Model Pattern | Features |
-|--------|---------------|----------|
-| **Alta 80** | `gzf1-80-XXXXXX` | Battery %, Power consumption, Fridge/Ambient temps, Compressor status, Temperature controls, Power/Eco modes |
-| **Yeti 500** | `gzy5c-XXXXXXXXXXXX` | Battery %, Power in/out, Voltage, Current, Power controls |
+- **Automatic Device Discovery**: Detects Goal Zero devices via Bluetooth with automatic pattern matching
+- **Robust BLE Communication**: Advanced connection handling with retries, timeouts, and error recovery
+- **Rich Sensor Data**: Comprehensive monitoring of battery status, power flow, temperature, and device health
+- **Modular Device Support**: Extensible architecture for adding new Goal Zero device models
+- **User-Friendly Setup**: Simple configuration through Home Assistant's UI with device validation
+- **Lovelace Integration**: Sensors include proper state classes for beautiful graphs and visualizations
 
-## 🛠️ Installation
+## 🔌 Supported Devices
 
-### HACS (Recommended)
+| Device | Model Pattern | Status | Notes |
+|--------|---------------|--------|-------|
+| **Alta 80** | `gzf1-80-XXXXXX` | ✅ Full Support | All 36 status bytes exposed, decoded key metrics |
+| **Yeti 500** | `gzy5c-XXXXXXXXXXXX` | ⚠️ Partial Support | Basic framework ready, needs sensor mapping |
+
+### Device Detection Patterns
+
+- **Alta 80**: Devices with names matching `gzf1-80-[A-F0-9]{6}` (e.g., `gzf1-80-1A2B3C`)
+- **Yeti 500**: Devices with names matching `gzy5c-[A-F0-9]{12}` (e.g., `gzy5c-1A2B3C4D5E6F`)
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Home Assistant with Bluetooth support
+- HACS (Home Assistant Community Store) installed
+- Goal Zero device in Bluetooth pairing mode
+
+### 1. Install the Integration
 
 1. Open HACS in Home Assistant
-2. Go to "Integrations" 
-3. Click the three dots menu → "Custom repositories"
-4. Add repository URL: `https://github.com/mattxcnm/goalzero_ble`
-5. Category: "Integration"
-6. Install "Goal Zero BLE"
-7. Restart Home Assistant
+2. Go to "Integrations"
+3. Click the menu (⋮) and select "Custom repositories"
+4. Add this repository: `https://github.com/mattxcnm/goalzero_ble`
+5. Set category to "Integration"
+6. Click "Add"
+7. Find "Goal Zero BLE" in HACS and install it
+8. Restart Home Assistant
 
-### Manual Installation
+### 2. Add Your Device
 
-1. Download and copy `custom_components/goalzero_ble/` to your Home Assistant config
-2. Restart Home Assistant
-3. Add the integration via Settings → Devices & Services
+1. Go to **Settings** → **Devices & Services** → **Integrations**
+2. Click **"+ Add Integration"**
+3. Search for **"Goal Zero BLE"**
+4. Select your detected device OR enter the device name manually
+5. Configure the update interval (default: 30 seconds)
+6. Click **"Submit"**
 
-## ⚡ Quick Setup
+Your Goal Zero device will appear in Home Assistant with all available sensors!
 
-### Automatic Discovery
-1. Ensure your Goal Zero device is powered on and in range
-2. Go to **Settings** → **Devices & Services** → **Add Integration**
-3. The integration will automatically discover nearby Goal Zero devices
-4. Click **Configure** when your device appears
-5. Set your preferred update interval (10-300 seconds)
-6. Click **Submit**
+## 📦 Installation
 
-### Manual Setup
-1. Go to **Settings** → **Devices & Services** → **Add Integration**
-2. Search for "Goal Zero BLE"
-3. Enter your device name exactly (e.g., `gzf1-80-A1B2C3`)
-4. Set update interval (10-300 seconds) 
-5. Click **Submit**
+### Option 1: HACS (Recommended)
 
-## 📊 Sensors & Controls
+1. **Add Custom Repository**:
+   - HACS → Integrations → Menu (⋮) → Custom repositories
+   - Repository: `https://github.com/mattxcnm/goalzero_ble`
+   - Category: Integration
+   - Add
 
-### Alta 80 Fridge/Freezer
+2. **Install Integration**:
+   - Search for "Goal Zero BLE" in HACS
+   - Download and install
+   - Restart Home Assistant
 
-**Sensors:**
-- Battery percentage
-- Power consumption (W)
-- Fridge temperature (°C)
-- Ambient temperature (°C) 
-- Compressor status
+### Option 2: Manual Installation
 
-**Controls:**
-- Temperature up/down
-- Power on/off
-- Eco mode on/off
+1. **Download Files**:
+   ```bash
+   cd /config/custom_components/
+   git clone https://github.com/mattxcnm/goalzero_ble.git
+   ```
 
-### Yeti 500 Power Station
+2. **Restart Home Assistant**
 
-**Sensors:**
-- Battery percentage
-- Power output (W)
-- Power input (W)
-- Voltage (V)
-- Current (A)
+3. **Add Integration** via UI as described in Quick Start
 
-**Controls:**
-- Power on/off
+## ⚙️ Configuration
 
-## 🔧 Configuration Options
+### Basic Configuration
 
-- **Update Interval**: How often to poll the device (10-300 seconds)
-- **Device Name**: Exact BLE device name for manual setup
+The integration is configured through Home Assistant's UI:
+
+1. **Device Selection**: Choose from auto-discovered devices or enter manually
+2. **Update Interval**: How often to poll the device (10-300 seconds, default: 30)
+3. **Device Validation**: Automatic verification of device connectivity
+
+### Configuration Options
+
+| Option | Default | Range | Description |
+|--------|---------|-------|-------------|
+| `update_interval` | 30 seconds | 10-300s | How often to poll device status |
+| `device_name` | Auto-detected | - | BLE device name (manual entry) |
+
+### Example Configuration Flow
+
+```
+┌─ Bluetooth Device Detected ─┐
+│ Device: gzf1-80-A1B2C3      │
+│ Model: Alta 80              │
+│ Address: AA:BB:CC:DD:EE:FF  │
+│                             │
+│ Update Interval: [30] sec   │
+│ [Cancel] [Submit]           │
+└─────────────────────────────┘
+```
+
+## 📊 Sensors and Entities
+
+### Alta 80 Sensors
+
+The Alta 80 provides comprehensive monitoring through 36 status bytes:
+
+#### 🔋 Power & Battery
+- **Battery Level** (`sensor.alta80_battery_level`): Battery percentage (0-100%)
+- **Power In** (`sensor.alta80_power_in`): Input power in watts
+- **Power Out** (`sensor.alta80_power_out`): Output power in watts
+- **Voltage** (`sensor.alta80_voltage`): Battery voltage in volts
+
+#### 🌡️ Temperature
+- **Internal Temperature** (`sensor.alta80_temp_internal`): Device internal temperature (°C)
+- **External Temperature** (`sensor.alta80_temp_external`): External temperature sensor (°C)
+
+#### 📈 Raw Data Sensors
+- **Status Byte 0-35** (`sensor.alta80_byte_0` to `sensor.alta80_byte_35`): Raw status bytes
+  - State class: `measurement` (enables line graphs in Lovelace)
+  - Filters out static `0xFE` bytes
+  - Includes signed integer decoding for temperature bytes
+
+#### 🔘 Controls
+- **Refresh Data** (`button.alta80_refresh`): Manually refresh device status
+
+### Entity Properties
+
+All sensors include:
+- **Device Info**: Manufacturer, model, firmware version, identifiers
+- **State Classes**: Proper classification for Lovelace graphs and statistics
+- **Units of Measurement**: Where applicable (%, W, V, °C)
+- **Availability**: Based on last successful update, not persistent connection
+
+### Lovelace Cards
+
+Sensors support rich Lovelace visualizations:
+
+```yaml
+# Example: Power flow card
+type: entities
+title: Alta 80 Power
+entities:
+  - sensor.alta80_battery_level
+  - sensor.alta80_power_in
+  - sensor.alta80_power_out
+  - sensor.alta80_voltage
+
+# Example: Historical graph
+type: history-graph
+title: Power History
+entities:
+  - sensor.alta80_power_in
+  - sensor.alta80_power_out
+hours_to_show: 24
+```
 
 ## 🏗️ Architecture
 
-The integration uses a modular device-based architecture:
+### Component Overview
 
-- **Device Registry**: Handles device detection and type mapping
-- **BLE Manager**: Manages Bluetooth connections and GATT communication
-- **Device Classes**: Device-specific parsing and command handling
-- **Coordinator**: Manages data updates and connection lifecycle
-- **Dynamic Entities**: Sensors/buttons are created based on device capabilities
+```
+goalzero_ble/
+├── __init__.py              # Integration setup and entry point
+├── config_flow.py           # Configuration UI and device discovery
+├── coordinator.py           # Data update coordination
+├── ble_manager.py          # BLE connection and communication
+├── device_registry.py      # Device type detection and registry
+├── sensor.py               # Sensor platform implementation
+├── button.py               # Button platform implementation
+├── const.py                # Constants and configuration
+├── manifest.json           # Integration metadata
+├── strings.json            # UI text and translations
+└── devices/                # Device-specific implementations
+    ├── __init__.py
+    ├── base.py             # Base device class
+    ├── alta80.py           # Alta 80 specific implementation
+    └── yeti500.py          # Yeti 500 specific implementation
+```
 
-## 🔍 Troubleshooting
+### Key Components
 
-### Device Not Found
-- Ensure device is powered on and within Bluetooth range
-- Check device name matches exactly (case-sensitive)
-- Try power cycling the Goal Zero device
+#### 1. **BLE Manager** (`ble_manager.py`)
+- Handles all Bluetooth Low Energy communication
+- Dynamic GATT service and characteristic discovery
+- Connection retries, timeouts, and stabilization
+- Command queuing and response handling
 
-### Connection Issues  
-- Reduce update interval if experiencing frequent disconnections
-- Ensure no other apps are connected to the device
-- Check Home Assistant logs for specific error messages
+#### 2. **Device Registry** (`device_registry.py`)
+- Pattern-based device type detection
+- Device-specific configuration and capabilities
+- Extensible for new device models
 
-### Sensor Values Unavailable
-- Verify device is responding to status requests
-- Check that BLE communication is working in HA logs
-- Some sensors may not be available depending on device state
+#### 3. **Coordinator** (`coordinator.py`)
+- Manages data updates and caching
+- Error handling and recovery
+- Entity availability management
 
-## 🚧 Development & Contributions
+#### 4. **Device Classes** (`devices/`)
+- **Base Device**: Common functionality and interfaces
+- **Alta 80**: Full implementation with 36-byte status parsing
+- **Yeti 500**: Framework ready for implementation
 
-This integration is designed to be easily extensible for additional Goal Zero devices. To add a new device:
+### BLE Communication Flow
 
-1. Add device pattern to `device_registry.py`
-2. Create device class in `devices/` following existing patterns
-3. Add GATT handles and commands to constants
-4. Update device registry mappings
+```
+[Home Assistant] 
+       ↓
+[Coordinator] ← Timer → [Update Interval]
+       ↓
+[BLE Manager] → [Device Discovery] → [GATT Services]
+       ↓
+[Device Class] → [Data Parsing] → [Sensor Updates]
+       ↓
+[Sensor Platform] → [Entity Updates] → [UI Display]
+```
 
-Pull requests welcome! Please feel free to contribute additional device support or improvements.
+### Connection Management
 
-## 📚 Protocol Information
+- **Dynamic Discovery**: All GATT services and characteristics discovered at runtime
+- **Retry Logic**: Configurable retries with exponential backoff
+- **Timeout Handling**: Separate timeouts for connection, discovery, and operations
+- **Stabilization**: Delays after connection for device stability
+- **Error Recovery**: Graceful handling of BLE disconnections and failures
 
-The integration uses GATT handles for BLE communication:
+## 🔧 Troubleshooting
 
-- **Commands**: Hex payloads sent to write handles
-- **Responses**: Data received from read handles  
-- **Parsing**: Device-specific interpretation of response data
+### Common Issues
 
-Command payloads and response parsing can be customized per device type for future reverse engineering discoveries.
+#### 1. **Device Not Found**
+```
+Error: Device not found via Bluetooth
+```
+**Solutions**:
+- Ensure device is in pairing/discoverable mode
+- Check device is within Bluetooth range
+- Verify device name matches supported patterns
+- Restart Bluetooth service: Settings → System → Hardware
 
-## ⚠️ Disclaimer
+#### 2. **Connection Timeouts**
+```
+Error: Cannot connect to device
+```
+**Solutions**:
+- Move closer to the device
+- Check for Bluetooth interference
+- Restart the Goal Zero device
+- Increase update interval to reduce connection frequency
 
-This is an unofficial integration not affiliated with Goal Zero. Use at your own risk. Device protocols were reverse-engineered and may change with firmware updates.
+#### 3. **Sensor Data Not Updating**
+**Check**:
+- Device connectivity in Bluetooth settings
+- Integration logs for connection errors
+- Update interval configuration
+- Device battery level
+
+#### 4. **Missing Sensors**
+**For Alta 80**: All 36 bytes + decoded sensors should appear
+**Solutions**:
+- Reload the integration
+- Check logs for parsing errors
+- Verify device firmware compatibility
+
+### Debug Logging
+
+Enable detailed logging for troubleshooting:
+
+```yaml
+# configuration.yaml
+logger:
+  logs:
+    custom_components.goalzero_ble: debug
+    custom_components.goalzero_ble.ble_manager: debug
+    custom_components.goalzero_ble.devices.alta80: debug
+```
+
+### Log Analysis
+
+Common log patterns:
+- `✓ Connected to device` - Successful connection
+- `✓ Discovered GATT services` - Service discovery complete
+- `✓ Status update successful` - Data retrieved successfully
+- `⚠ Connection retry` - Temporary connection issues
+- `✗ Failed to connect` - Persistent connection problems
+
+### Device-Specific Issues
+
+#### Alta 80
+- **Status byte filtering**: Bytes with value `0xFE` are filtered out as static
+- **Temperature decoding**: Bytes 18 and 35 use signed integer interpretation
+- **Connection stability**: May require 2-3 second stabilization after connection
+
+#### Yeti 500
+- **Limited implementation**: Framework present, needs sensor mapping
+- **Protocol differences**: May use different BLE command structure
+
+### Performance Optimization
+
+#### Update Intervals
+- **Frequent updates (10-20s)**: Real-time monitoring, higher battery drain
+- **Standard updates (30-60s)**: Balanced monitoring and efficiency  
+- **Conservation mode (120-300s)**: Minimal impact, slower updates
+
+#### Connection Efficiency
+- Avoid simultaneous BLE connections from multiple apps
+- Use longer intervals if experiencing frequent disconnections
+- Consider device placement for optimal Bluetooth signal
+
+## 🔬 Advanced Usage
+
+### Custom Sensor Creation
+
+Create additional sensors from raw status bytes:
+
+```yaml
+# configuration.yaml
+template:
+  - sensor:
+      - name: "Alta 80 Power Balance"
+        state: >
+          {{ (states('sensor.alta80_power_in') | float) - 
+             (states('sensor.alta80_power_out') | float) }}
+        unit_of_measurement: "W"
+        device_class: power
+```
+
+### Automation Examples
+
+#### Low Battery Alert
+```yaml
+automation:
+  - alias: "Alta 80 Low Battery"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.alta80_battery_level
+        below: 20
+    action:
+      - service: notify.mobile_app
+        data:
+          message: "Alta 80 battery level is {{ states('sensor.alta80_battery_level') }}%"
+```
+
+#### Power Monitoring
+```yaml
+automation:
+  - alias: "Alta 80 High Power Draw"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.alta80_power_out
+        above: 50
+        for: "00:05:00"
+    action:
+      - service: notify.home_assistant
+        data:
+          message: "Alta 80 has been drawing {{ states('sensor.alta80_power_out') }}W for 5 minutes"
+```
+
+### API Access
+
+Access device data programmatically:
+
+```python
+# Example: Get current status
+hass = get_hass()
+coordinator = hass.data[DOMAIN]["YOUR_DEVICE_ID"]
+device_data = coordinator.data
+
+# Access specific values
+battery_level = device_data.get("battery_level")
+power_out = device_data.get("power_out")
+```
+
+### Integration with Other Systems
+
+#### MQTT Bridge
+```yaml
+# Publish to MQTT
+automation:
+  - alias: "Publish Alta 80 to MQTT"
+    trigger:
+      - platform: state
+        entity_id: sensor.alta80_battery_level
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "goalzero/alta80/battery"
+          payload: "{{ states('sensor.alta80_battery_level') }}"
+```
+
+#### InfluxDB Export
+```yaml
+# configuration.yaml
+influxdb:
+  include:
+    entities:
+      - sensor.alta80_battery_level
+      - sensor.alta80_power_in
+      - sensor.alta80_power_out
+      - sensor.alta80_voltage
+```
+
+## 💻 Development
+
+### Development Environment Setup
+
+1. **Clone Repository**:
+   ```bash
+   git clone https://github.com/mattxcnm/goalzero_ble.git
+   cd goalzero_ble
+   ```
+
+2. **Create Virtual Environment**:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # Linux/Mac
+   # or
+   .venv\Scripts\activate     # Windows
+   ```
+
+3. **Install Dependencies**:
+   ```bash
+   pip install -r requirements-dev.txt
+   ```
+
+### Code Structure
+
+#### Adding New Device Support
+
+1. **Create Device Class** (`devices/new_device.py`):
+   ```python
+   from .base import BaseGoalZeroDevice
+   
+   class NewDevice(BaseGoalZeroDevice):
+       def parse_status_data(self, data: bytes) -> dict[str, Any]:
+           # Implement device-specific parsing
+           pass
+   ```
+
+2. **Register Device** (`device_registry.py`):
+   ```python
+   _DEVICE_PATTERNS = {
+       # Add pattern for new device
+       "new_device": re.compile(r"^pattern-regex$"),
+   }
+   
+   _DEVICE_CLASSES = {
+       # Map to device class
+       "new_device": NewDevice,
+   }
+   ```
+
+3. **Update Constants** (`const.py`):
+   ```python
+   DEVICE_TYPE_NEW = "new_device"
+   NEW_DEVICE_MODEL = "New Device Model"
+   ```
+
+#### Testing
+
+Run diagnostic tools:
+
+```bash
+# Test BLE connection and discovery
+python diagnostic_tool.py
+
+# Test data parsing
+python test_parsing.py
+
+# Test specific connection issues
+python connection_test.py
+```
+
+### Debugging Tools
+
+The repository includes several diagnostic scripts:
+
+#### `diagnostic_tool.py`
+- Comprehensive BLE scanning and testing
+- GATT service discovery and characteristic testing
+- Connection stability analysis
+
+#### `test_parsing.py`
+- Parse and analyze status data
+- Test sensor value extraction
+- Verify data interpretation
+
+#### `connection_test.py`
+- Test basic BLE connectivity
+- Verify device accessibility
+- Debug connection issues
+
+### Code Quality
+
+The project follows Home Assistant development standards:
+
+- **Type Hints**: Full type annotation
+- **Logging**: Comprehensive debug and error logging
+- **Error Handling**: Graceful failure recovery
+- **Documentation**: Inline comments and docstrings
+- **Testing**: Unit tests and integration tests
+
+### Contributing Guidelines
+
+1. **Fork and Clone**: Create your own fork of the repository
+2. **Create Branch**: Use descriptive branch names (`feature/yeti-500-support`)
+3. **Code Standards**: Follow existing code style and patterns
+4. **Test Changes**: Verify with real devices when possible
+5. **Documentation**: Update README and inline documentation
+6. **Pull Request**: Submit with clear description of changes
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+### Areas for Contribution
+
+1. **Device Support**: 
+   - Yeti 500 sensor mapping and testing
+   - Additional Goal Zero device models
+   - Enhanced device-specific features
+
+2. **Features**:
+   - Device control commands (where supported)
+   - Enhanced error recovery
+   - Performance optimizations
+   - Additional sensor calculations
+
+3. **Documentation**:
+   - Device-specific setup guides
+   - Troubleshooting scenarios
+   - Lovelace card examples
+   - Video tutorials
+
+4. **Testing**:
+   - Real device testing across different firmware versions
+   - Edge case scenario testing
+   - Performance benchmarking
+   - Automated testing framework
+
+### Development Process
+
+1. **Open an Issue**: Discuss your idea or bug report
+2. **Fork Repository**: Create your development environment
+3. **Implement Changes**: Follow coding standards and test thoroughly
+4. **Submit Pull Request**: Include tests and documentation updates
+5. **Code Review**: Collaborate on refinements
+6. **Merge**: Integration into main branch
+
+### Code of Conduct
+
+- Be respectful and constructive in all interactions
+- Focus on technical merit and user benefit
+- Help newcomers and answer questions
+- Report bugs and suggest improvements
+- Test changes with real hardware when possible
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Home Assistant Community**: For the excellent platform and development tools
+- **Goal Zero**: For creating innovative portable power solutions
+- **HACS**: For simplifying custom integration distribution
+- **Bleak**: For robust Python BLE communication capabilities
+- **Contributors**: Everyone who has tested, reported issues, and contributed code
+
+---
+
+**⭐ If this integration helps you monitor your Goal Zero devices, please give it a star!**
+
+For support, feature requests, or bug reports, please [open an issue](https://github.com/mattxcnm/goalzero_ble/issues) on GitHub.
