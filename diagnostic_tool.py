@@ -99,7 +99,7 @@ async def test_alta80_communication(client):
         _LOGGER.error("✗ No notify characteristic found")
         return
     
-    # Test command sending
+    # Test command sending with retry logic
     try:
         responses = []
         response_count = 0
@@ -115,13 +115,34 @@ async def test_alta80_communication(client):
         await client.start_notify(read_char, notification_handler)
         _LOGGER.info("✓ Started notifications")
         
-        # Send status command
-        command_bytes = bytes.fromhex("FEFE03010200")
-        await client.write_gatt_char(write_char, command_bytes)
-        _LOGGER.info("✓ Sent status command: FEFE03010200")
+        # Wait for notifications to be set up
+        await asyncio.sleep(0.5)
         
-        # Wait for responses
-        timeout_duration = 8
+        # Send status command with retry logic
+        command_bytes = bytes.fromhex("FEFE03010200")
+        
+        for attempt in range(2):
+            _LOGGER.info(f"✓ Sending status command attempt {attempt + 1}: FEFE03010200")
+            await client.write_gatt_char(write_char, command_bytes)
+            
+            # Wait for initial response
+            initial_wait = 3
+            elapsed = 0
+            initial_response_count = response_count
+            
+            while response_count == initial_response_count and elapsed < initial_wait:
+                await asyncio.sleep(0.1)
+                elapsed += 0.1
+            
+            if response_count > initial_response_count:
+                _LOGGER.info(f"✓ Got response on attempt {attempt + 1}")
+                break
+            elif attempt == 0:
+                _LOGGER.warning("⚠ No response to first command, retrying...")
+                await asyncio.sleep(1)
+        
+        # Wait for all responses
+        timeout_duration = 12
         elapsed = 0
         while response_count < 2 and elapsed < timeout_duration:
             await asyncio.sleep(0.1)

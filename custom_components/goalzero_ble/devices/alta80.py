@@ -140,133 +140,237 @@ class Alta80Device(GoalZeroDevice):
         ]
 
     async def update_data(self, ble_manager) -> dict[str, Any]:
-        """Update device data from BLE connection using GATT handles like goalzero_gatt.py."""
+        """Update device data from BLE connection with improved reliability."""
         try:
             _LOGGER.debug("Updating Alta 80 data via direct BLE connection")
             
             # Import here to avoid circular imports
             from bleak import BleakClient, BleakScanner
+            import bleak.exc
             
-            # Find device by name (use device name from self.name)
+            # Find device by name with longer scan time for reliability
             device_address = None
             _LOGGER.debug("Scanning for device: %s", self.name)
-            devices = await BleakScanner.discover(timeout=10.0)
             
-            for device in devices:
-                if device.name == self.name:
-                    device_address = device.address
-                    _LOGGER.debug("Found device: %s (%s)", device.name, device.address)
-                    break
+            # Try scanning twice if first attempt fails
+            for scan_attempt in range(2):
+                try:
+                    _LOGGER.debug("Scan attempt %d for device %s", scan_attempt + 1, self.name)
+                    
+                    # Use longer timeout for device discovery
+                    devices = await BleakScanner.discover(timeout=20.0)
+                    
+                    found_devices = []
+                    for device in devices:
+                        if device.name:
+                            found_devices.append(f"{device.name} ({device.address})")
+                            if device.name == self.name:
+                                device_address = device.address
+                                _LOGGER.info("✓ Found target device: %s (%s) on attempt %d", 
+                                           device.name, device.address, scan_attempt + 1)
+                                break
+                    
+                    if device_address:
+                        break
+                        
+                    if scan_attempt == 0:
+                        _LOGGER.warning("Device %s not found on first scan. Found devices: %s", 
+                                      self.name, ", ".join(found_devices[:5]))  # Show first 5
+                        _LOGGER.info("Retrying scan in 3 seconds...")
+                        await asyncio.sleep(3)  # Longer pause before retry
+                        
+                except Exception as e:
+                    _LOGGER.warning("Scan attempt %d failed: %s", scan_attempt + 1, e)
+                    if scan_attempt == 0:
+                        await asyncio.sleep(3)
             
             if not device_address:
-                _LOGGER.error("Device %s not found during scan", self.name)
+                _LOGGER.error("Device %s not found after scanning attempts", self.name)
                 return self._get_default_data()
             
-            # Connect and get status using same method as goalzero_gatt.py
-            responses = []
-            response_count = 0
+            # Attempt connection with retry logic
+            return await self._connect_and_read_data(device_address)
             
-            def notification_handler(sender, data):
-                nonlocal response_count, responses
-                response_count += 1
-                hex_data = data.hex().upper()
-                _LOGGER.debug("Alta 80 Response %d: %s", response_count, hex_data)
-                responses.append(hex_data)
-            
-            async with BleakClient(device_address, timeout=12.0) as client:
-                _LOGGER.info("Connected to Alta 80 device %s (%s)", self.name, device_address)
-                
-                # Find characteristics by handle (same as goalzero_gatt.py)
-                write_char = None
-                read_char = None
-                
-                # Find characteristics dynamically by properties instead of hardcoded handles
-                write_char = None
-                read_char = None
-                
-                services = client.services
-                available_handles = []
-                
-                _LOGGER.info("=== Alta 80 GATT Discovery ===")
-                for service in services.services.values():
-                    _LOGGER.info("Service: %s", service.uuid)
-                    for char in service.characteristics:
-                        available_handles.append(f"0x{char.handle:04X}")
-                        properties = char.properties
-                        _LOGGER.info(
-                            "  Characteristic: %s (Handle: 0x%04X, Properties: %s)", 
-                            char.uuid, char.handle, properties
-                        )
-                        
-                        # Look for write characteristic (typically has 'write' or 'write-without-response')
-                        if not write_char and ('write' in properties or 'write-without-response' in properties):
-                            write_char = char
-                            _LOGGER.info("✓ Selected write characteristic: 0x%04X", char.handle)
-                        
-                        # Look for read/notify characteristic (typically has 'notify' or 'read')
-                        if not read_char and ('notify' in properties or 'indicate' in properties):
-                            read_char = char
-                            _LOGGER.info("✓ Selected read/notify characteristic: 0x%04X", char.handle)
-                
-                _LOGGER.info("=== End GATT Discovery ===")
-                
-                if not write_char or not read_char:
-                    _LOGGER.error(
-                        "Required characteristics not found for Alta 80. "
-                        "Write char: %s (handle: %s), Read/notify char: %s (handle: %s). "
-                        "Available handles: %s",
-                        write_char is not None, 
-                        f"0x{write_char.handle:04X}" if write_char else "None",
-                        read_char is not None,
-                        f"0x{read_char.handle:04X}" if read_char else "None",
-                        ", ".join(available_handles)
-                    )
-                    return self._get_default_data()
-                
-                # Start notifications
-                await client.start_notify(read_char, notification_handler)
-                
-                # Send status request command (same as goalzero_gatt.py)
-                command_bytes = bytes.fromhex("FEFE03010200")
-                await client.write_gatt_char(write_char, command_bytes)
-                _LOGGER.debug("Sent status command: FEFE03010200")
-                
-                # Wait for responses (expecting 2 responses)
-                timeout_duration = 5
-                elapsed = 0
-                while response_count < 2 and elapsed < timeout_duration:
-                    await asyncio.sleep(0.1)
-                    elapsed += 0.1
-                
-                if response_count == 0:
-                    _LOGGER.warning("No responses received from Alta 80 within %ds", timeout_duration)
-                elif response_count < 2:
-                    _LOGGER.warning("Only received %d of 2 expected responses from Alta 80", response_count)
-                else:
-                    _LOGGER.debug("Received all %d expected responses from Alta 80", response_count)
-                
-                # Stop notifications
-                try:
-                    await client.stop_notify(read_char)
-                except Exception as e:
-                    _LOGGER.debug("Error stopping notifications: %s", e)
-                
-            # Parse responses if we got them
-            if responses:
-                self._data = self._parse_status_responses(responses)
-                _LOGGER.debug("Updated Alta 80 data with %d bytes", len(self._data))
-            else:
-                _LOGGER.warning("No responses received from Alta 80 device")
-                self._data = self._get_default_data()
-                
-        except asyncio.TimeoutError:
-            _LOGGER.error("Connection timeout for Alta 80 device %s", self.name)
-            self._data = self._get_default_data()
         except Exception as e:
             _LOGGER.error("Error updating Alta 80 data: %s (type: %s)", e, type(e).__name__)
             self._data = self._get_default_data()
+            return self._data
+
+    async def _connect_and_read_data(self, device_address: str, max_retries: int = 2) -> dict[str, Any]:
+        """Connect to device and read data with retry logic."""
+        from bleak import BleakClient
+        import bleak.exc
         
-        return self._data
+        last_error = None
+        
+        for attempt in range(max_retries):
+            try:
+                _LOGGER.info("Connection attempt %d/%d to %s (%s)", 
+                           attempt + 1, max_retries, self.name, device_address)
+                
+                # Use connection timeout and add disconnected_callback
+                async with BleakClient(
+                    device_address, 
+                    timeout=15.0,
+                    disconnected_callback=self._on_disconnect
+                ) as client:
+                    _LOGGER.info("✓ Connected to Alta 80 device %s (%s)", self.name, device_address)
+                    
+                    # Brief delay to ensure connection is stable and device is ready
+                    await asyncio.sleep(1.0)  # Increased from 0.5 to 1.0 seconds
+                    
+                    # Perform data read
+                    return await self._read_device_data(client)
+                    
+            except asyncio.TimeoutError as e:
+                last_error = e
+                _LOGGER.warning("Connection timeout on attempt %d/%d: %s", attempt + 1, max_retries, e)
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(3)  # Wait before retry
+                    
+            except bleak.exc.BleakError as e:
+                last_error = e
+                error_msg = str(e)
+                if "ESP_GATT_CONN_FAIL_ESTABLISH" in error_msg:
+                    _LOGGER.warning("BLE connection failed to establish on attempt %d/%d: %s", 
+                                  attempt + 1, max_retries, e)
+                    # Longer wait for connection establishment failures
+                    if attempt < max_retries - 1:
+                        await asyncio.sleep(5)
+                else:
+                    _LOGGER.warning("BLE error on attempt %d/%d: %s", attempt + 1, max_retries, e)
+                    if attempt < max_retries - 1:
+                        await asyncio.sleep(3)
+                        
+            except Exception as e:
+                last_error = e
+                _LOGGER.warning("Unexpected error on attempt %d/%d: %s", attempt + 1, max_retries, e)
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(3)
+        
+        # All attempts failed
+        _LOGGER.error("All connection attempts failed. Last error: %s", last_error)
+        return self._get_default_data()
+
+    def _on_disconnect(self, client):
+        """Callback for when device disconnects."""
+        _LOGGER.debug("Device %s disconnected", self.name)
+
+    async def _read_device_data(self, client) -> dict[str, Any]:
+        """Read data from connected device."""
+        responses = []
+        response_count = 0
+        
+        def notification_handler(sender, data):
+            nonlocal response_count, responses
+            response_count += 1
+            hex_data = data.hex().upper()
+            _LOGGER.debug("Alta 80 Response %d: %s", response_count, hex_data)
+        try:
+            # Find characteristics dynamically by properties instead of hardcoded handles
+            write_char = None
+            read_char = None
+            
+            services = client.services
+            available_handles = []
+            
+            _LOGGER.info("=== Alta 80 GATT Discovery ===")
+            for service in services.services.values():
+                _LOGGER.info("Service: %s", service.uuid)
+                for char in service.characteristics:
+                    available_handles.append(f"0x{char.handle:04X}")
+                    properties = char.properties
+                    _LOGGER.info(
+                        "  Characteristic: %s (Handle: 0x%04X, Properties: %s)", 
+                        char.uuid, char.handle, properties
+                    )
+                    
+                    # Look for write characteristic (typically has 'write' or 'write-without-response')
+                    if not write_char and ('write' in properties or 'write-without-response' in properties):
+                        write_char = char
+                        _LOGGER.info("✓ Selected write characteristic: 0x%04X", char.handle)
+                    
+                    # Look for read/notify characteristic (typically has 'notify' or 'read')
+                    if not read_char and ('notify' in properties or 'indicate' in properties):
+                        read_char = char
+                        _LOGGER.info("✓ Selected read/notify characteristic: 0x%04X", char.handle)
+            
+            _LOGGER.info("=== End GATT Discovery ===")
+            
+            if not write_char or not read_char:
+                _LOGGER.error(
+                    "Required characteristics not found for Alta 80. "
+                    "Write char: %s (handle: %s), Read/notify char: %s (handle: %s). "
+                    "Available handles: %s",
+                    write_char is not None, 
+                    f"0x{write_char.handle:04X}" if write_char else "None",
+                    read_char is not None,
+                    f"0x{read_char.handle:04X}" if read_char else "None",
+                    ", ".join(available_handles)
+                )
+                return self._get_default_data()
+            
+            # Start notifications
+            await client.start_notify(read_char, notification_handler)
+            
+            # Wait a moment for notifications to be set up
+            await asyncio.sleep(0.5)
+            
+            # Send status request command - try twice if no response
+            command_bytes = bytes.fromhex("FEFE03010200")
+            
+            for command_attempt in range(2):
+                _LOGGER.debug("Sending status command attempt %d: FEFE03010200", command_attempt + 1)
+                await client.write_gatt_char(write_char, command_bytes)
+                
+                # Wait for initial response
+                initial_wait = 3  # Wait 3 seconds for first response
+                elapsed = 0
+                initial_response_count = response_count
+                
+                while response_count == initial_response_count and elapsed < initial_wait:
+                    await asyncio.sleep(0.1)
+                    elapsed += 0.1
+                
+                if response_count > initial_response_count:
+                    _LOGGER.debug("Got response on command attempt %d", command_attempt + 1)
+                    break
+                elif command_attempt == 0:
+                    _LOGGER.warning("No response to first command, retrying...")
+                    await asyncio.sleep(1)  # Wait before retry
+            
+            # Wait for all expected responses (expecting 2 responses total)
+            timeout_duration = 12  # Increased timeout
+            elapsed = 0
+            while response_count < 2 and elapsed < timeout_duration:
+                await asyncio.sleep(0.1)
+                elapsed += 0.1
+            
+            if response_count == 0:
+                _LOGGER.warning("No responses received from Alta 80 within %ds", timeout_duration)
+            elif response_count < 2:
+                _LOGGER.warning("Only received %d of 2 expected responses from Alta 80", response_count)
+            else:
+                _LOGGER.debug("Received all %d expected responses from Alta 80", response_count)
+            
+            # Stop notifications
+            try:
+                await client.stop_notify(read_char)
+            except Exception as e:
+                _LOGGER.debug("Error stopping notifications: %s", e)
+            
+            # Parse responses if we got them
+            if responses:
+                parsed_data = self._parse_status_responses(responses)
+                _LOGGER.debug("Successfully parsed Alta 80 data with %d sensor values", len(parsed_data))
+                return parsed_data
+            else:
+                _LOGGER.warning("No responses received from Alta 80 device")
+                return self._get_default_data()
+                
+        except Exception as e:
+            _LOGGER.error("Error reading device data: %s", e)
+            return self._get_default_data()
 
     def _get_default_data(self) -> dict[str, Any]:
         """Return default data structure with None values."""
