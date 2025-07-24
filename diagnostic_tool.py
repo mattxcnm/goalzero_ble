@@ -71,29 +71,32 @@ async def test_alta80_communication(client):
     """Test specific Alta 80 communication."""
     _LOGGER.info("Testing Alta 80 specific communication...")
     
-    # Look for known handles
-    write_handle = 0x000A
-    read_handle = 0x000C
-    
+    # Find characteristics by properties instead of hardcoded handles
     write_char = None
     read_char = None
     
     services = client.services
+    _LOGGER.info("Discovering characteristics by properties...")
+    
     for service in services.services.values():
         for char in service.characteristics:
-            if char.handle == write_handle:
-                write_char = char
-                _LOGGER.info(f"✓ Found write characteristic at handle 0x{write_handle:04X}")
-            if char.handle == read_handle:
-                read_char = char
-                _LOGGER.info(f"✓ Found read characteristic at handle 0x{read_handle:04X}")
+            properties = char.properties
+            if 'write' in properties or 'write-without-response' in properties:
+                if not write_char:  # Take the first one found
+                    write_char = char
+                    _LOGGER.info(f"✓ Found write characteristic at handle 0x{char.handle:04X} with properties {properties}")
+            
+            if 'notify' in properties or 'indicate' in properties:
+                if not read_char:  # Take the first one found
+                    read_char = char
+                    _LOGGER.info(f"✓ Found notify characteristic at handle 0x{char.handle:04X} with properties {properties}")
     
     if not write_char:
-        _LOGGER.error(f"✗ Write characteristic not found at handle 0x{write_handle:04X}")
+        _LOGGER.error("✗ No write characteristic found")
         return
     
     if not read_char:
-        _LOGGER.error(f"✗ Read characteristic not found at handle 0x{read_handle:04X}")
+        _LOGGER.error("✗ No notify characteristic found")
         return
     
     # Test command sending

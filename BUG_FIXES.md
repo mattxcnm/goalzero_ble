@@ -43,19 +43,20 @@ This document summarizes the fixes applied to address the reported issues.
 
 ### 4. GATT Handle Errors ✅
 
-**Problem**: "Required GATT handles not found"
+**Problem**: "Required GATT handles not found" - The device uses dynamic GATT handles that change on each connection, but the code was using hardcoded handle values (0x000A, 0x000C).
 
 **Solutions**:
-1. **Enhanced GATT discovery**: Added comprehensive GATT service discovery with detailed logging
-2. **Better error reporting**: When handles aren't found, the system now logs all available handles for debugging
-3. **Diagnostic tools**: Added GATT discovery method to BLE manager for debugging connection issues
-4. **Automatic discovery**: When connection fails, the coordinator automatically performs GATT discovery for debugging
+1. **Dynamic GATT Discovery**: Completely replaced hardcoded handle lookup with dynamic characteristic discovery based on properties
+2. **Property-Based Selection**: Now searches for characteristics with `write`/`write-without-response` properties for writing and `notify`/`indicate` properties for notifications
+3. **Enhanced Error Reporting**: When characteristics aren't found, logs all available handles and properties for debugging
+4. **Robust Connection**: Works regardless of how the device assigns handle values
 
 **Files modified**:
-- ✅ `ble_manager.py` - Added `discover_gatt_services()` method and improved handle error reporting
-- ✅ `devices/alta80.py` - Added detailed GATT discovery logging when handles aren't found
+- ✅ `devices/alta80.py` - Replaced hardcoded handles (0x000A, 0x000C) with dynamic discovery
+- ✅ `ble_manager.py` - Added `_find_write_characteristic()` and `_find_notify_characteristic()` methods
 - ✅ `coordinator.py` - Added automatic GATT discovery on connection failures
-- ✅ `diagnostic_tool.py` - Created standalone diagnostic tool for debugging BLE issues
+- ✅ `diagnostic_tool.py` - Updated to use dynamic discovery
+- ✅ `testing/goalzero_gatt_dynamic.py` - New test script demonstrating dynamic discovery
 
 ## Additional Improvements
 

@@ -53,6 +53,9 @@ class GoalZeroCoordinator(DataUpdateCoordinator):
         # Initialize BLE manager
         self.ble_manager = GoalZeroBLEManager(self.address, self.device_type)
         
+        # Track GATT discovery for debugging
+        self._gatt_discovery_done = False
+        
         # Flag to track if we've done GATT discovery for debugging
         self._gatt_discovery_done = False
         

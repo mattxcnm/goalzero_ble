@@ -14,7 +14,6 @@ from .const import (
     BLE_SCAN_TIMEOUT,
     BLE_COMMAND_TIMEOUT,
 )
-from .device_registry import DeviceRegistry
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -26,7 +25,6 @@ class GoalZeroBLEManager:
         """Initialize the BLE manager."""
         self.address = address.upper()
         self.device_type = device_type
-        self.device_handles = DeviceRegistry.get_device_handles(device_type)
         
         self._client: Optional[BleakClient] = None
         self._device: Optional[BLEDevice] = None
@@ -34,8 +32,8 @@ class GoalZeroBLEManager:
         self._connection_lock = asyncio.Lock()
         
         _LOGGER.debug(
-            "Initialized BLE manager for %s (%s) with handles: %s",
-            self.address, self.device_type, self.device_handles
+            "Initialized BLE manager for %s (%s) with dynamic GATT discovery",
+            self.address, self.device_type
         )
 
     async def discover_device(self) -> bool:
@@ -132,33 +130,16 @@ class GoalZeroBLEManager:
                     _LOGGER.info("Disconnected from device %s", self.address)
 
     async def send_command(self, command_hex: str) -> bool:
-        """Send a command to the device using GATT handles."""
+        """Send a command to the device using dynamic GATT discovery."""
         if not self._connected or not self._client:
             _LOGGER.error("Not connected to device %s", self.address)
             return False
 
         try:
-            write_handle = self.device_handles.get("write")
-            if not write_handle:
-                _LOGGER.error("No write handle defined for device type %s", self.device_type)
-                return False
-
-            # Find write characteristic by handle
-            write_char = None
-            services = self._client.services
-            for service in services.services.values():
-                for char in service.characteristics:
-                    if char.handle == write_handle:
-                        write_char = char
-                        break
-                if write_char:
-                    break
-
+            # Discover write characteristic dynamically
+            write_char = await self._find_write_characteristic()
             if not write_char:
-                _LOGGER.error(
-                    "Write characteristic not found at handle 0x%04X for %s",
-                    write_handle, self.address
-                )
+                _LOGGER.error("No write characteristic found for device %s", self.address)
                 return False
 
             # Send command
@@ -171,25 +152,43 @@ class GoalZeroBLEManager:
             _LOGGER.error("Failed to send command to %s: %s", self.address, e)
             return False
 
+    async def _find_write_characteristic(self):
+        """Find a characteristic suitable for writing commands."""
+        if not self._client:
+            return None
+            
+        services = self._client.services
+        for service in services.services.values():
+            for char in service.characteristics:
+                properties = char.properties
+                if 'write' in properties or 'write-without-response' in properties:
+                    _LOGGER.debug("Found write characteristic: 0x%04X with properties %s", char.handle, properties)
+                    return char
+        return None
+
+    async def _find_notify_characteristic(self):
+        """Find a characteristic suitable for notifications."""
+        if not self._client:
+            return None
+            
+        services = self._client.services
+        for service in services.services.values():
+            for char in service.characteristics:
+                properties = char.properties
+                if 'notify' in properties or 'indicate' in properties:
+                    _LOGGER.debug("Found notify characteristic: 0x%04X with properties %s", char.handle, properties)
+                    return char
+        return None
+
     async def send_command_and_collect_responses(
         self, 
         command_hex: str,
         expected_responses: int = 2,
         timeout: int = BLE_COMMAND_TIMEOUT
     ) -> list[str]:
-        """Send a command and collect responses using GATT handles."""
+        """Send a command and collect responses using dynamic GATT discovery."""
         if not self._connected or not self._client:
             _LOGGER.error("Not connected to device %s", self.address)
-            return []
-
-        write_handle = self.device_handles.get("write")
-        read_handle = self.device_handles.get("read")
-        
-        if not write_handle or not read_handle:
-            _LOGGER.error(
-                "Missing GATT handles for device type %s (write: %s, read: %s)",
-                self.device_type, write_handle, read_handle
-            )
             return []
 
         responses = []
@@ -203,30 +202,19 @@ class GoalZeroBLEManager:
             responses.append(hex_data)
 
         try:
-            # Find characteristics by handle
-            write_char = None
-            read_char = None
+            # Find characteristics dynamically
+            write_char = await self._find_write_characteristic()
+            read_char = await self._find_notify_characteristic()
             
-            services = self._client.services
-            available_handles = []
-            
-            for service in services.services.values():
-                for char in service.characteristics:
-                    available_handles.append(f"0x{char.handle:04X}")
-                    if char.handle == write_handle:
-                        write_char = char
-                    if char.handle == read_handle:
-                        read_char = char
-
             if not write_char or not read_char:
                 _LOGGER.error(
                     "Required characteristics not found for %s. "
-                    "Write: 0x%04X (%s), Read: 0x%04X (%s). "
-                    "Available handles: %s",
-                    self.address, write_handle, write_char is not None, 
-                    read_handle, read_char is not None,
-                    ", ".join(available_handles)
+                    "Write char: %s, Notify char: %s",
+                    self.address, write_char is not None, read_char is not None
                 )
+                
+                # Log available characteristics for debugging
+                await self.discover_gatt_services()
                 return []
 
             # Start notifications

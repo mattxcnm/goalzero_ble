@@ -180,36 +180,47 @@ class Alta80Device(GoalZeroDevice):
                 write_char = None
                 read_char = None
                 
+                # Find characteristics dynamically by properties instead of hardcoded handles
+                write_char = None
+                read_char = None
+                
                 services = client.services
                 available_handles = []
+                
+                _LOGGER.info("=== Alta 80 GATT Discovery ===")
                 for service in services.services.values():
+                    _LOGGER.info("Service: %s", service.uuid)
                     for char in service.characteristics:
                         available_handles.append(f"0x{char.handle:04X}")
-                        if char.handle == 0x000A:  # WRITE_HANDLE
+                        properties = char.properties
+                        _LOGGER.info(
+                            "  Characteristic: %s (Handle: 0x%04X, Properties: %s)", 
+                            char.uuid, char.handle, properties
+                        )
+                        
+                        # Look for write characteristic (typically has 'write' or 'write-without-response')
+                        if not write_char and ('write' in properties or 'write-without-response' in properties):
                             write_char = char
-                        if char.handle == 0x000C:  # READ_HANDLE
+                            _LOGGER.info("✓ Selected write characteristic: 0x%04X", char.handle)
+                        
+                        # Look for read/notify characteristic (typically has 'notify' or 'read')
+                        if not read_char and ('notify' in properties or 'indicate' in properties):
                             read_char = char
+                            _LOGGER.info("✓ Selected read/notify characteristic: 0x%04X", char.handle)
+                
+                _LOGGER.info("=== End GATT Discovery ===")
                 
                 if not write_char or not read_char:
                     _LOGGER.error(
-                        "Required GATT handles not found for Alta 80. "
-                        "Write: 0x000A (%s), Read: 0x000C (%s). "
+                        "Required characteristics not found for Alta 80. "
+                        "Write char: %s (handle: %s), Read/notify char: %s (handle: %s). "
                         "Available handles: %s",
-                        write_char is not None, read_char is not None,
+                        write_char is not None, 
+                        f"0x{write_char.handle:04X}" if write_char else "None",
+                        read_char is not None,
+                        f"0x{read_char.handle:04X}" if read_char else "None",
                         ", ".join(available_handles)
                     )
-                    
-                    # Log all available characteristics for debugging
-                    _LOGGER.info("=== Alta 80 GATT Discovery ===")
-                    for service in services.services.values():
-                        _LOGGER.info("Service: %s", service.uuid)
-                        for char in service.characteristics:
-                            _LOGGER.info(
-                                "  Characteristic: %s (Handle: 0x%04X, Properties: %s)", 
-                                char.uuid, char.handle, char.properties
-                            )
-                    _LOGGER.info("=== End GATT Discovery ===")
-                    
                     return self._get_default_data()
                 
                 # Start notifications
