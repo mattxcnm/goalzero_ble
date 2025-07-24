@@ -77,10 +77,14 @@ class GoalZeroNumberEntity(GoalZeroEntity, NumberEntity):
     @property
     def native_value(self) -> float | None:
         """Return the current value."""
-        # Try to get current setpoint value from device data
-        # This should be updated when we parse setpoint responses
+        # Get current setpoint value from device data
         if self.coordinator.data:
-            return self.coordinator.data.get(self._key)
+            if self._key == "zone1_setpoint":
+                return self.coordinator.data.get("zone_1_setpoint")
+            elif self._key == "zone2_setpoint":
+                return self.coordinator.data.get("zone_2_setpoint")
+            else:
+                return self.coordinator.data.get(self._key)
         return None
 
     async def async_set_native_value(self, value: float) -> None:

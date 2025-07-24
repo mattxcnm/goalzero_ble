@@ -42,12 +42,38 @@ class Alta80Device(GoalZeroDevice):
             if i in fe_bytes:
                 continue
                 
-            # Special handling for temperature bytes (signed integers)
-            if i in {18, 35}:  # Temperature bytes
-                zone_num = 1 if i == 18 else 2
+            # Special handling for temperature and setpoint bytes (signed integers)
+            if i == 8:  # Zone 1 setpoint
                 sensors.append({
                     "key": f"status_byte_{i}",
-                    "name": f"Status Byte {i} (Zone {zone_num} Temp Raw)",
+                    "name": f"Status Byte {i} (Zone 1 Setpoint Raw)",
+                    "device_class": None,
+                    "state_class": SensorStateClass.MEASUREMENT,
+                    "unit": None,
+                    "icon": "mdi:thermometer-chevron-up",
+                })
+            elif i == 18:  # Zone 1 temperature
+                sensors.append({
+                    "key": f"status_byte_{i}",
+                    "name": f"Status Byte {i} (Zone 1 Temp Raw)",
+                    "device_class": None,
+                    "state_class": SensorStateClass.MEASUREMENT,
+                    "unit": None,
+                    "icon": "mdi:thermometer-lines",
+                })
+            elif i == 22:  # Zone 2 setpoint
+                sensors.append({
+                    "key": f"status_byte_{i}",
+                    "name": f"Status Byte {i} (Zone 2 Setpoint Raw)",
+                    "device_class": None,
+                    "state_class": SensorStateClass.MEASUREMENT,
+                    "unit": None,
+                    "icon": "mdi:thermometer-chevron-up",
+                })
+            elif i == 35:  # Zone 2 temperature
+                sensors.append({
+                    "key": f"status_byte_{i}",
+                    "name": f"Status Byte {i} (Zone 2 Temp Raw)",
                     "device_class": None,
                     "state_class": SensorStateClass.MEASUREMENT,
                     "unit": None,
@@ -81,6 +107,22 @@ class Alta80Device(GoalZeroDevice):
                 "state_class": SensorStateClass.MEASUREMENT,
                 "unit": UnitOfTemperature.CELSIUS,
                 "icon": "mdi:thermometer",
+            },
+            {
+                "key": "zone_1_setpoint",
+                "name": "Zone 1 Temperature Setpoint",
+                "device_class": SensorDeviceClass.TEMPERATURE,
+                "state_class": SensorStateClass.MEASUREMENT,
+                "unit": UnitOfTemperature.FAHRENHEIT,
+                "icon": "mdi:thermometer-chevron-up",
+            },
+            {
+                "key": "zone_2_setpoint",
+                "name": "Zone 2 Temperature Setpoint", 
+                "device_class": SensorDeviceClass.TEMPERATURE,
+                "state_class": SensorStateClass.MEASUREMENT,
+                "unit": UnitOfTemperature.FAHRENHEIT,
+                "icon": "mdi:thermometer-chevron-up",
             },
             {
                 "key": "zone_1_setpoint_exceeded",
@@ -512,6 +554,8 @@ class Alta80Device(GoalZeroDevice):
         data.update({
             "zone_1_temp": None,
             "zone_2_temp": None,
+            "zone_1_setpoint": None,
+            "zone_2_setpoint": None,
             "zone_1_setpoint_exceeded": None,
             "zone_2_temp_high_res": None,
             "compressor_state_a": None,
@@ -547,6 +591,14 @@ class Alta80Device(GoalZeroDevice):
                 _LOGGER.warning("Expected 36 bytes, got %d bytes in response", len(all_bytes))
             
             # Parse known decoded bytes
+            if len(all_bytes) > 8:
+                # Byte 8: Zone 1 temperature setpoint (signed integer, Fahrenheit)
+                zone_1_setpoint_raw = all_bytes[8]
+                if zone_1_setpoint_raw > 127:  # Convert to signed
+                    zone_1_setpoint_raw = zone_1_setpoint_raw - 256
+                parsed_data["zone_1_setpoint"] = zone_1_setpoint_raw
+                _LOGGER.debug("Zone 1 setpoint (byte 8): %d°F", zone_1_setpoint_raw)
+            
             if len(all_bytes) > 18:
                 # Byte 18: Zone 1 temp (signed integer)
                 zone_1_temp_raw = all_bytes[18]
@@ -554,6 +606,14 @@ class Alta80Device(GoalZeroDevice):
                     zone_1_temp_raw = zone_1_temp_raw - 256
                 parsed_data["zone_1_temp"] = zone_1_temp_raw
                 _LOGGER.debug("Zone 1 temp (byte 18): %d°C", zone_1_temp_raw)
+            
+            if len(all_bytes) > 22:
+                # Byte 22: Zone 2 temperature setpoint (signed integer, Fahrenheit)
+                zone_2_setpoint_raw = all_bytes[22]
+                if zone_2_setpoint_raw > 127:  # Convert to signed
+                    zone_2_setpoint_raw = zone_2_setpoint_raw - 256
+                parsed_data["zone_2_setpoint"] = zone_2_setpoint_raw
+                _LOGGER.debug("Zone 2 setpoint (byte 22): %d°F", zone_2_setpoint_raw)
             
             if len(all_bytes) > 35:
                 # Byte 35: Zone 2 temp (signed integer)

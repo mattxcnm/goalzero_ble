@@ -69,12 +69,20 @@ class GoalZeroButton(GoalZeroEntity, ButtonEntity):
             # Create command for the button
             device = self.coordinator.device
             if hasattr(device, 'create_button_command'):
-                command = device.create_button_command(
-                    self._key,
-                    current_temp=current_data.get("zone_1_temp", 32),  # Default to 32°F
-                    current_eco_mode=current_data.get("eco_mode", False),
-                    current_battery_protection=current_data.get("battery_protection", "low"),
-                )
+                # Get current setpoint values from sensors
+                kwargs = {}
+                if "zone1" in self._key and "temp" in self._key:
+                    current_setpoint = current_data.get("zone_1_setpoint", 32)  # Default to 32°F
+                    kwargs["current_temp"] = current_setpoint
+                elif "zone2" in self._key and "temp" in self._key:
+                    current_setpoint = current_data.get("zone_2_setpoint", 32)  # Default to 32°F
+                    kwargs["current_temp"] = current_setpoint
+                elif "eco" in self._key:
+                    kwargs["current_eco_mode"] = current_data.get("eco_mode", False)
+                elif "battery" in self._key:
+                    kwargs["current_battery_protection"] = current_data.get("battery_protection", "low")
+                
+                command = device.create_button_command(self._key, **kwargs)
                 
                 # Send command via BLE manager
                 ble_manager = self.coordinator.ble_manager
