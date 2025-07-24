@@ -15,6 +15,7 @@ from .const import (
     CONF_UPDATE_INTERVAL,
     DEFAULT_UPDATE_INTERVAL,
     BLE_COMMAND_TIMEOUT,
+    DEVICE_TYPE_ALTA80,
 )
 from .device_registry import DeviceRegistry
 from .ble_manager import GoalZeroBLEManager
@@ -65,22 +66,27 @@ class GoalZeroCoordinator(DataUpdateCoordinator):
         try:
             _LOGGER.debug("Updating data for %s", self.device_name)
             
-            # Ensure connection
-            if not await self.ble_manager.ensure_connected():
-                raise UpdateFailed(f"Failed to connect to {self.device_name}")
-            
-            # Request status update from device
-            data = await self.device.update_data(self.ble_manager)
+            # For Alta 80, we connect, get data, then disconnect each time
+            # This follows the pattern from goalzero_gatt.py
+            if self.device_type == DEVICE_TYPE_ALTA80:
+                # Direct device update - device handles its own connection
+                data = await self.device.update_data(None)
+            else:
+                # For other devices, use the BLE manager
+                if not await self.ble_manager.ensure_connected():
+                    raise UpdateFailed(f"Failed to connect to {self.device_name}")
+                
+                data = await self.device.update_data(self.ble_manager)
             
             if data is None:
                 raise UpdateFailed(f"No data received from {self.device_name}")
             
-            _LOGGER.debug("Successfully updated data for %s: %s", self.device_name, data)
+            _LOGGER.debug("Successfully updated data for %s: %d keys", self.device_name, len(data))
             return data
             
         except Exception as e:
             _LOGGER.error("Error updating data for %s: %s", self.device_name, e)
-            # Don't disconnect on temporary errors to avoid connection churn
+            # Don't disconnect on temporary errors to avoid connection churn for non-Alta80 devices
             raise UpdateFailed(f"Error updating {self.device_name}: {e}") from e
 
     async def send_command(self, command_key: str) -> bool:

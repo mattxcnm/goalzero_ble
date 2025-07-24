@@ -31,10 +31,19 @@ async def async_setup_entry(
     # Get sensor definitions from device
     sensor_definitions = coordinator.device.get_sensors()
     
-    # Create sensor entities
+    # Create sensor entities - filter out byte sensors that aren't being used
     entities = []
     for sensor_def in sensor_definitions:
-        entities.append(GoalZeroSensor(coordinator, sensor_def))
+        # For status byte sensors, only create them if they have data or are decoded sensors
+        sensor_key = sensor_def["key"]
+        if sensor_key.startswith("status_byte_"):
+            # Only create byte sensors for the 36 bytes (0-35) 
+            byte_num = int(sensor_key.split("_")[-1])
+            if byte_num < 36:  # Exactly 36 bytes (0-35) in Alta 80 response
+                entities.append(GoalZeroSensor(coordinator, sensor_def))
+        else:
+            # Always create non-byte sensors (decoded values, etc.)
+            entities.append(GoalZeroSensor(coordinator, sensor_def))
     
     _LOGGER.info("Setting up %d sensors for %s", len(entities), coordinator.device_name)
     async_add_entities(entities)
@@ -84,5 +93,14 @@ class GoalZeroSensor(CoordinatorEntity, SensorEntity):
         raw_value = self.coordinator.get_sensor_value(self._sensor_key)
         if raw_value is not None:
             attrs["raw_value"] = raw_value
+        
+        # For byte sensors, add hex representation
+        if self._sensor_key.startswith("status_byte_") and raw_value is not None:
+            attrs["hex_value"] = f"0x{raw_value:02X}"
+            
+        # For concatenated response, add length info
+        if self._sensor_key == "concatenated_response" and raw_value:
+            attrs["response_length_chars"] = len(str(raw_value))
+            attrs["response_length_bytes"] = len(str(raw_value)) // 2
             
         return attrs

@@ -28,48 +28,80 @@ class Alta80Device(GoalZeroDevice):
 
     def get_sensors(self) -> list[dict[str, Any]]:
         """Return list of sensor definitions for this device."""
-        return [
+        sensors = []
+        
+        # Raw status bytes (0-35, exactly 36 bytes total)
+        for i in range(36):  # Exactly 36 bytes in concatenated response
+            sensors.append({
+                "key": f"status_byte_{i}",
+                "name": f"Status Byte {i}",
+                "device_class": None,
+                "state_class": None,
+                "unit": None,
+                "icon": "mdi:hexadecimal",
+            })
+        
+        # Decoded sensors for known bytes
+        sensors.extend([
             {
-                "key": "battery_percentage",
-                "name": "Battery",
-                "device_class": SensorDeviceClass.BATTERY,
-                "state_class": SensorStateClass.MEASUREMENT,
-                "unit": PERCENTAGE,
-                "icon": "mdi:battery",
-            },
-            {
-                "key": "power_consumption",
-                "name": "Power Consumption",
-                "device_class": SensorDeviceClass.POWER,
-                "state_class": SensorStateClass.MEASUREMENT,
-                "unit": UnitOfPower.WATT,
-                "icon": "mdi:lightning-bolt",
-            },
-            {
-                "key": "fridge_temperature",
-                "name": "Fridge Temperature",
+                "key": "zone_1_temp",
+                "name": "Zone 1 Temperature",
                 "device_class": SensorDeviceClass.TEMPERATURE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "unit": UnitOfTemperature.CELSIUS,
                 "icon": "mdi:thermometer",
             },
             {
-                "key": "ambient_temperature",
-                "name": "Ambient Temperature",
+                "key": "zone_1_setpoint_exceeded",
+                "name": "Zone 1 Setpoint Exceeded",
+                "device_class": None,
+                "state_class": None,
+                "unit": None,
+                "icon": "mdi:alert-circle",
+            },
+            {
+                "key": "zone_2_temp_high_res",
+                "name": "Zone 2 Temperature (High Res)",
                 "device_class": SensorDeviceClass.TEMPERATURE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "unit": UnitOfTemperature.CELSIUS,
-                "icon": "mdi:thermometer-lines",
+                "icon": "mdi:thermometer",
             },
             {
-                "key": "compressor_status",
-                "name": "Compressor Status",
+                "key": "compressor_state_a",
+                "name": "Compressor State A",
                 "device_class": None,
                 "state_class": None,
                 "unit": None,
                 "icon": "mdi:hvac",
             },
-        ]
+            {
+                "key": "compressor_state_b",
+                "name": "Compressor State B",
+                "device_class": None,
+                "state_class": None,
+                "unit": None,
+                "icon": "mdi:hvac",
+            },
+            {
+                "key": "concatenated_response",
+                "name": "Full Status Response",
+                "device_class": None,
+                "state_class": None,
+                "unit": None,
+                "icon": "mdi:code-string",
+            },
+            {
+                "key": "response_length",
+                "name": "Response Length",
+                "device_class": None,
+                "state_class": SensorStateClass.MEASUREMENT,
+                "unit": "bytes",
+                "icon": "mdi:counter",
+            },
+        ])
+        
+        return sensors
 
     def get_buttons(self) -> list[dict[str, Any]]:
         """Return list of button definitions for this device."""
@@ -107,86 +139,176 @@ class Alta80Device(GoalZeroDevice):
         ]
 
     async def update_data(self, ble_manager) -> dict[str, Any]:
-        """Update device data from BLE connection using GATT handles."""
+        """Update device data from BLE connection using GATT handles like goalzero_gatt.py."""
         try:
-            _LOGGER.debug("Updating Alta 80 data via BLE manager")
+            _LOGGER.debug("Updating Alta 80 data via direct BLE connection")
             
-            # Request status from device
-            responses = await ble_manager.send_command_and_collect_responses(
-                "FEFE03010200",  # Status request command
-                expected_responses=2,
-                timeout=10
-            )
+            # Import here to avoid circular imports
+            from bleak import BleakClient, BleakScanner
             
+            # Find device by name (use device name from self.name)
+            device_address = None
+            _LOGGER.debug("Scanning for device: %s", self.name)
+            devices = await BleakScanner.discover(timeout=10.0)
+            
+            for device in devices:
+                if device.name == self.name:
+                    device_address = device.address
+                    _LOGGER.debug("Found device: %s (%s)", device.name, device.address)
+                    break
+            
+            if not device_address:
+                _LOGGER.error("Device %s not found during scan", self.name)
+                return self._get_default_data()
+            
+            # Connect and get status using same method as goalzero_gatt.py
+            responses = []
+            response_count = 0
+            
+            def notification_handler(sender, data):
+                nonlocal response_count, responses
+                response_count += 1
+                hex_data = data.hex().upper()
+                _LOGGER.debug("Alta 80 Response %d: %s", response_count, hex_data)
+                responses.append(hex_data)
+            
+            async with BleakClient(device_address) as client:
+                _LOGGER.debug("Connected to Alta 80 device")
+                
+                # Find characteristics by handle (same as goalzero_gatt.py)
+                write_char = None
+                read_char = None
+                
+                services = client.services
+                for service in services.services.values():
+                    for char in service.characteristics:
+                        if char.handle == 0x000A:  # WRITE_HANDLE
+                            write_char = char
+                        if char.handle == 0x000C:  # READ_HANDLE
+                            read_char = char
+                
+                if not write_char or not read_char:
+                    _LOGGER.error("Required GATT handles not found")
+                    return self._get_default_data()
+                
+                # Start notifications
+                await client.start_notify(read_char, notification_handler)
+                
+                # Send status request command (same as goalzero_gatt.py)
+                command_bytes = bytes.fromhex("FEFE03010200")
+                await client.write_gatt_char(write_char, command_bytes)
+                _LOGGER.debug("Sent status command: FEFE03010200")
+                
+                # Wait for responses (expecting 2 responses)
+                import asyncio
+                timeout = 5
+                elapsed = 0
+                while response_count < 2 and elapsed < timeout:
+                    await asyncio.sleep(0.1)
+                    elapsed += 0.1
+                
+                # Stop notifications
+                await client.stop_notify(read_char)
+                
+            # Parse responses if we got them
             if responses:
-                self._data = self._parse_gatt_responses(responses)
-                _LOGGER.debug("Updated Alta 80 data: %s", self._data)
+                self._data = self._parse_status_responses(responses)
+                _LOGGER.debug("Updated Alta 80 data with %d bytes", len(self._data))
             else:
                 _LOGGER.warning("No responses received from Alta 80 device")
-                # Return existing data if no new data received
-                if not self._data:
-                    self._data = self._get_default_data()
+                self._data = self._get_default_data()
                 
         except Exception as e:
             _LOGGER.error("Error updating Alta 80 data: %s", e)
-            if not self._data:
-                self._data = self._get_default_data()
+            self._data = self._get_default_data()
         
         return self._data
 
     def _get_default_data(self) -> dict[str, Any]:
         """Return default data structure with None values."""
-        return {
-            "battery_percentage": None,
-            "power_consumption": None,
-            "fridge_temperature": None,
-            "ambient_temperature": None,
-            "compressor_status": "unknown",
-        }
+        data = {}
+        
+        # Initialize all status bytes to None (exactly 36 bytes)
+        for i in range(36):
+            data[f"status_byte_{i}"] = None
+        
+        # Initialize decoded values
+        data.update({
+            "zone_1_temp": None,
+            "zone_1_setpoint_exceeded": None,
+            "zone_2_temp_high_res": None,
+            "compressor_state_a": None,
+            "compressor_state_b": None,
+            "concatenated_response": None,
+            "response_length": None,
+        })
+        
+        return data
 
-    def _parse_gatt_responses(self, responses: list[str]) -> dict[str, Any]:
-        """Parse GATT responses from Alta 80 device."""
+    def _parse_status_responses(self, responses: list[str]) -> dict[str, Any]:
+        """Parse GATT responses from Alta 80 device into individual bytes."""
         parsed_data = self._get_default_data()
         
         try:
-            for response in responses:
-                # Convert hex string to bytes for parsing
-                data = bytes.fromhex(response)
+            # Concatenate all responses
+            concatenated_response = "".join(responses)
+            parsed_data["concatenated_response"] = concatenated_response
+            
+            # Convert to bytes
+            all_bytes = bytes.fromhex(concatenated_response)
+            parsed_data["response_length"] = len(all_bytes)
+            
+            _LOGGER.debug("Parsing %d total bytes from concatenated response", len(all_bytes))
+            
+            # Parse each byte individually (exactly 36 bytes)
+            for i, byte_val in enumerate(all_bytes):
+                if i < 36:  # Exactly 36 bytes in response
+                    parsed_data[f"status_byte_{i}"] = byte_val
+            
+            # Validate expected response length
+            if len(all_bytes) != 36:
+                _LOGGER.warning("Expected 36 bytes, got %d bytes in response", len(all_bytes))
+            
+            # Parse known decoded bytes
+            if len(all_bytes) > 18:
+                # Byte 18: Zone 1 temp (signed integer)
+                zone_1_temp_raw = all_bytes[18]
+                if zone_1_temp_raw > 127:  # Convert to signed
+                    zone_1_temp_raw = zone_1_temp_raw - 256
+                parsed_data["zone_1_temp"] = zone_1_temp_raw
+                _LOGGER.debug("Zone 1 temp (byte 18): %d°C", zone_1_temp_raw)
+            
+            if len(all_bytes) > 34:
+                # Byte 34: Zone 1 setpoint exceeded (boolean-ish)
+                setpoint_exceeded = all_bytes[34]
+                parsed_data["zone_1_setpoint_exceeded"] = bool(setpoint_exceeded)
+                _LOGGER.debug("Zone 1 setpoint exceeded (byte 34): %s", setpoint_exceeded)
+            
+            if len(all_bytes) > 35:
+                # Byte 35: Zone 2 temp high resolution
+                zone_2_temp_high_res = all_bytes[35]
+                # This might be a high resolution value, possibly needs scaling
+                parsed_data["zone_2_temp_high_res"] = zone_2_temp_high_res / 10.0 if zone_2_temp_high_res != 0 else 0
+                _LOGGER.debug("Zone 2 temp high res (byte 35): %.1f", parsed_data["zone_2_temp_high_res"])
+            
+            # Note: You mentioned "compressor state a" and "compressor state b" but didn't specify
+            # which bytes they are. I'll add placeholders that can be updated when the byte positions are known
+            # Since we only have 36 bytes (0-35), these would need to be within that range
+            if len(all_bytes) >= 36:  # Check we have all 36 bytes
+                # Placeholder positions - update with actual byte positions when known
+                # These are just examples using the last few bytes
+                if len(all_bytes) > 34:  # Use byte 34 for compressor_state_a
+                    parsed_data["compressor_state_a"] = all_bytes[34]
+                    _LOGGER.debug("Compressor state A (byte 34): %d", all_bytes[34])
                 
-                # Parse based on response format (adjust based on actual Alta 80 protocol)
-                if len(data) >= 8:
-                    # Battery percentage (assuming byte 3)
-                    if len(data) > 3:
-                        battery_raw = data[3]
-                        if 0 <= battery_raw <= 100:
-                            parsed_data["battery_percentage"] = battery_raw
-                    
-                    # Temperatures (assuming 16-bit little endian values)
-                    if len(data) > 5:
-                        fridge_temp_raw = int.from_bytes(data[4:6], 'little', signed=True)
-                        parsed_data["fridge_temperature"] = fridge_temp_raw / 10.0
-                    
-                    if len(data) > 7:
-                        ambient_temp_raw = int.from_bytes(data[6:8], 'little', signed=True)
-                        parsed_data["ambient_temperature"] = ambient_temp_raw / 10.0
-                    
-                    # Power consumption (assuming bytes 8-9)
-                    if len(data) > 9:
-                        power_raw = int.from_bytes(data[8:10], 'little')
-                        parsed_data["power_consumption"] = power_raw
-                    
-                    # Compressor status (assuming bit flag in byte 10)
-                    if len(data) > 10:
-                        status_flags = data[10]
-                        if status_flags & 0x01:
-                            parsed_data["compressor_status"] = "running"
-                        elif status_flags & 0x02:
-                            parsed_data["compressor_status"] = "cooling"
-                        else:
-                            parsed_data["compressor_status"] = "off"
-                
+                if len(all_bytes) > 35:  # Use byte 35 for compressor_state_b
+                    parsed_data["compressor_state_b"] = all_bytes[35]
+                    _LOGGER.debug("Compressor state B (byte 35): %d", all_bytes[35])
+            
+            _LOGGER.debug("Successfully parsed Alta 80 status data")
+            
         except Exception as e:
-            _LOGGER.error("Error parsing GATT responses: %s", e)
+            _LOGGER.error("Error parsing Alta 80 status responses: %s", e)
         
         return parsed_data
 
@@ -194,4 +316,4 @@ class Alta80Device(GoalZeroDevice):
         """Parse BLE data specific to Alta 80 fridge system."""
         # Convert single data packet to hex string format for consistency
         hex_data = data.hex().upper()
-        return self._parse_gatt_responses([hex_data])
+        return self._parse_status_responses([hex_data])
