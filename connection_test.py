@@ -20,8 +20,8 @@ _LOGGER = logging.getLogger(__name__)
 DEVICE_NAME = "gzf1-80-F14D2A"  # Update this to your device name
 
 async def enhanced_device_scan(device_name: str, max_attempts: int = 2):
-    """Enhanced device scanning with retry logic."""
-    device_address = None
+    """Enhanced device scanning with retry logic - returns device object."""
+    device_obj = None
     
     for scan_attempt in range(max_attempts):
         try:
@@ -34,9 +34,9 @@ async def enhanced_device_scan(device_name: str, max_attempts: int = 2):
                 if device.name:
                     found_devices.append(f"{device.name} ({device.address})")
                     if device.name == device_name:
-                        device_address = device.address
+                        device_obj = device  # Return device object, not address
                         _LOGGER.info(f"✅ Found target device: {device.name} ({device.address})")
-                        return device_address
+                        return device_obj
             
             if scan_attempt == 0:
                 _LOGGER.warning(f"❌ Device {device_name} not found on attempt {scan_attempt + 1}")
@@ -52,20 +52,21 @@ async def enhanced_device_scan(device_name: str, max_attempts: int = 2):
     _LOGGER.error(f"❌ Device {device_name} not found after {max_attempts} attempts")
     return None
 
-async def enhanced_connection_test(device_address: str, max_retries: int = 2):
-    """Test connection with enhanced retry logic."""
+async def enhanced_connection_test(device_obj, max_retries: int = 2):
+    """Test connection with enhanced retry logic using device object."""
     
     def on_disconnect(client):
-        _LOGGER.info(f"🔌 Device {device_address} disconnected")
+        _LOGGER.info(f"🔌 Device {device_obj.name} ({device_obj.address}) disconnected")
     
     last_error = None
     
     for attempt in range(max_retries):
         try:
-            _LOGGER.info(f"🔗 Connection attempt {attempt + 1}/{max_retries} to {device_address}")
+            _LOGGER.info(f"🔗 Connection attempt {attempt + 1}/{max_retries} to {device_obj.name} ({device_obj.address})")
             
+            # Use device object for connection
             async with BleakClient(
-                device_address,
+                device_obj,  # Pass device object, not address string
                 timeout=15.0,
                 disconnected_callback=on_disconnect
             ) as client:
@@ -105,7 +106,7 @@ async def enhanced_connection_test(device_address: str, max_retries: int = 2):
             if attempt < max_retries - 1:
                 await asyncio.sleep(3)
     
-    _LOGGER.error(f"❌ All connection attempts failed. Last error: {last_error}")
+    _LOGGER.error(f"❌ All connection attempts failed for {device_obj.name} ({device_obj.address}). Last error: {last_error}")
     return False
 
 async def test_communication(client):
@@ -213,13 +214,13 @@ async def main():
     _LOGGER.info("=" * 60)
     
     # Step 1: Enhanced device scanning
-    device_address = await enhanced_device_scan(device_name)
-    if not device_address:
+    device_obj = await enhanced_device_scan(device_name)
+    if not device_obj:
         _LOGGER.error("💥 Test failed: Device not found")
         return
     
     # Step 2: Enhanced connection testing
-    success = await enhanced_connection_test(device_address)
+    success = await enhanced_connection_test(device_obj)
     
     if success:
         _LOGGER.info("🎉 Test completed successfully!")

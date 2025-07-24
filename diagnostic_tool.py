@@ -31,15 +31,36 @@ async def scan_for_devices():
     return goalzero_devices
 
 
-async def diagnose_device(device_address: str, device_name: str | None = None):
+async def diagnose_device(device_address: str | None = None, device_name: str | None = None):
     """Perform diagnostic tests on a specific device."""
     _LOGGER.info(f"Starting diagnostics for {device_name or device_address}")
     
     try:
-        # Test connection
+        # If we have device_name, scan for it; if we have address, find device by address
+        device_obj = None
+        
+        if device_name:
+            _LOGGER.info("Scanning for device by name...")
+            devices = await BleakScanner.discover(timeout=15.0)
+            for device in devices:
+                if device.name == device_name:
+                    device_obj = device
+                    _LOGGER.info(f"✓ Found device by name: {device.name} ({device.address})")
+                    break
+        elif device_address:
+            _LOGGER.info("Finding device by address...")
+            device_obj = await BleakScanner.find_device_by_address(device_address, timeout=15.0)
+            if device_obj:
+                _LOGGER.info(f"✓ Found device by address: {device_obj.name or 'Unknown'} ({device_obj.address})")
+        
+        if not device_obj:
+            _LOGGER.error(f"✗ Device not found")
+            return
+        
+        # Test connection using device object
         _LOGGER.info("Testing connection...")
-        async with BleakClient(device_address, timeout=12.0) as client:
-            _LOGGER.info(f"✓ Successfully connected to {device_address}")
+        async with BleakClient(device_obj, timeout=15.0) as client:
+            _LOGGER.info(f"✓ Successfully connected to {device_obj.address}")
             
             # Discover services
             _LOGGER.info("Discovering GATT services...")
@@ -56,7 +77,7 @@ async def diagnose_device(device_address: str, device_name: str | None = None):
                         _LOGGER.info(f"    Descriptor: {descriptor.uuid} (Handle: 0x{descriptor.handle:04X})")
             
             # Test Alta 80 specific handles if this looks like an Alta 80
-            if device_name and 'gzf1-80-' in device_name:
+            if device_obj.name and 'gzf1-80-' in device_obj.name:
                 await test_alta80_communication(client)
             
         _LOGGER.info("✓ Diagnostic completed successfully")
@@ -174,10 +195,17 @@ async def test_alta80_communication(client):
 async def main():
     """Main diagnostic function."""
     if len(sys.argv) > 1:
-        # Diagnose specific device by address
-        device_address = sys.argv[1]
-        device_name = sys.argv[2] if len(sys.argv) > 2 else None
-        await diagnose_device(device_address, device_name)
+        # First arg could be address or device name
+        first_arg = sys.argv[1]
+        second_arg = sys.argv[2] if len(sys.argv) > 2 else None
+        
+        # Try to determine if first arg is MAC address or device name
+        if ':' in first_arg or len(first_arg.replace('-', '').replace(':', '')) == 12:
+            # Looks like MAC address
+            await diagnose_device(device_address=first_arg, device_name=second_arg)
+        else:
+            # Looks like device name
+            await diagnose_device(device_name=first_arg)
     else:
         # Scan and diagnose all found devices
         devices = await scan_for_devices()
@@ -187,7 +215,7 @@ async def main():
             return
         
         for device in devices:
-            await diagnose_device(device.address, device.name)
+            await diagnose_device(device_name=device.name)
             print("-" * 50)
 
 

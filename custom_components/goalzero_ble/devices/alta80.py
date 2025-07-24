@@ -149,7 +149,7 @@ class Alta80Device(GoalZeroDevice):
             import bleak.exc
             
             # Find device by name with longer scan time for reliability
-            device_address = None
+            device_obj = None
             _LOGGER.debug("Scanning for device: %s", self.name)
             
             # Try scanning twice if first attempt fails
@@ -165,12 +165,12 @@ class Alta80Device(GoalZeroDevice):
                         if device.name:
                             found_devices.append(f"{device.name} ({device.address})")
                             if device.name == self.name:
-                                device_address = device.address
+                                device_obj = device  # Store the device object, not just address
                                 _LOGGER.info("✓ Found target device: %s (%s) on attempt %d", 
                                            device.name, device.address, scan_attempt + 1)
                                 break
                     
-                    if device_address:
+                    if device_obj:
                         break
                         
                     if scan_attempt == 0:
@@ -184,19 +184,19 @@ class Alta80Device(GoalZeroDevice):
                     if scan_attempt == 0:
                         await asyncio.sleep(3)
             
-            if not device_address:
+            if not device_obj:
                 _LOGGER.error("Device %s not found after scanning attempts", self.name)
                 return self._get_default_data()
             
             # Attempt connection with retry logic
-            return await self._connect_and_read_data(device_address)
+            return await self._connect_and_read_data(device_obj)
             
         except Exception as e:
             _LOGGER.error("Error updating Alta 80 data: %s (type: %s)", e, type(e).__name__)
             self._data = self._get_default_data()
             return self._data
 
-    async def _connect_and_read_data(self, device_address: str, max_retries: int = 2) -> dict[str, Any]:
+    async def _connect_and_read_data(self, device_obj, max_retries: int = 2) -> dict[str, Any]:
         """Connect to device and read data with retry logic."""
         from bleak import BleakClient
         import bleak.exc
@@ -206,15 +206,15 @@ class Alta80Device(GoalZeroDevice):
         for attempt in range(max_retries):
             try:
                 _LOGGER.info("Connection attempt %d/%d to %s (%s)", 
-                           attempt + 1, max_retries, self.name, device_address)
+                           attempt + 1, max_retries, device_obj.name, device_obj.address)
                 
-                # Use connection timeout and add disconnected_callback
+                # Use device object directly for connection
                 async with BleakClient(
-                    device_address, 
+                    device_obj,  # Pass device object, not address string
                     timeout=15.0,
                     disconnected_callback=self._on_disconnect
                 ) as client:
-                    _LOGGER.info("✓ Connected to Alta 80 device %s (%s)", self.name, device_address)
+                    _LOGGER.info("✓ Connected to Alta 80 device %s (%s)", device_obj.name, device_obj.address)
                     
                     # Brief delay to ensure connection is stable and device is ready
                     await asyncio.sleep(1.0)  # Increased from 0.5 to 1.0 seconds
@@ -249,7 +249,8 @@ class Alta80Device(GoalZeroDevice):
                     await asyncio.sleep(3)
         
         # All attempts failed
-        _LOGGER.error("All connection attempts failed. Last error: %s", last_error)
+        _LOGGER.error("All connection attempts failed for %s (%s). Last error: %s", 
+                     device_obj.name, device_obj.address, last_error)
         return self._get_default_data()
 
     def _on_disconnect(self, client):
