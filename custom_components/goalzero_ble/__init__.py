@@ -15,7 +15,13 @@ from .device_registry import DeviceRegistry
 
 _LOGGER = logging.getLogger(__name__)
 
-PLATFORMS: list[Platform] = [Platform.SENSOR, Platform.BUTTON, Platform.NUMBER]
+PLATFORMS: list[Platform] = [
+    Platform.SENSOR, 
+    Platform.BUTTON, 
+    Platform.NUMBER, 
+    Platform.SWITCH, 
+    Platform.SELECT
+]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

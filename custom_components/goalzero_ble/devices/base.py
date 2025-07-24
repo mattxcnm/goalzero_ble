@@ -51,6 +51,21 @@ class GoalZeroDevice(ABC):
     def get_buttons(self) -> list[dict[str, Any]]:
         """Return list of button definitions for this device."""
 
+    def get_switches(self) -> list[dict[str, Any]]:
+        """Return list of switch definitions for this device."""
+        # Default implementation - override in device classes that support switches
+        return []
+
+    def get_selects(self) -> list[dict[str, Any]]:
+        """Return list of select definitions for this device."""
+        # Default implementation - override in device classes that support selects
+        return []
+
+    def get_numbers(self) -> list[dict[str, Any]]:
+        """Return list of number entity definitions for this device."""
+        # Default implementation - override in device classes that support numbers
+        return []
+
     @abstractmethod
     async def update_data(self, ble_manager) -> dict[str, Any]:
         """Update device data from BLE connection."""

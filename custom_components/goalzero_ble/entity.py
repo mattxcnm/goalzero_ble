@@ -21,16 +21,16 @@ class GoalZeroEntity(CoordinatorEntity[GoalZeroCoordinator]):
         """Initialize the Goal Zero entity."""
         super().__init__(coordinator)
         self._key = key
-        self._attr_name = name
+        self._attr_name = f"{coordinator.device_name} {name}"
         self._attr_icon = icon
-        self._attr_unique_id = f"{coordinator.device.name}_{key}"
+        self._attr_unique_id = f"{coordinator.device.address}_{key}"
         
     @property
     def device_info(self) -> DeviceInfo:
         """Return device information about this Goal Zero device."""
         device = self.coordinator.device
         return DeviceInfo(
-            identifiers={(DOMAIN, device.name)},
+            identifiers={(DOMAIN, device.address)},
             name=device.name,
             manufacturer=MANUFACTURER,
             model=device.model,

@@ -172,6 +172,30 @@ class Alta80Device(GoalZeroDevice):
                 "unit": "bytes",
                 "icon": "mdi:counter",
             },
+            {
+                "key": "power_on",
+                "name": "Power State",
+                "device_class": None,
+                "state_class": None,
+                "unit": None,
+                "icon": "mdi:power",
+            },
+            {
+                "key": "eco_mode",
+                "name": "Eco Mode State",
+                "device_class": None,
+                "state_class": None,
+                "unit": None,
+                "icon": "mdi:leaf",
+            },
+            {
+                "key": "battery_protection",
+                "name": "Battery Protection Level",
+                "device_class": None,
+                "state_class": None,
+                "unit": None,
+                "icon": "mdi:battery-heart",
+            },
         ])
         
         return sensors
@@ -180,34 +204,35 @@ class Alta80Device(GoalZeroDevice):
         """Return list of button definitions for this device."""
         return [
             {
-                "key": "zone1_temp_up",
-                "name": "Zone 1 Temp Up",
-                "icon": "mdi:thermometer-plus",
+                "key": "refresh",
+                "name": "Refresh Data",
+                "icon": "mdi:refresh",
+            },
+        ]
+
+    def get_switches(self) -> list[dict[str, Any]]:
+        """Return list of switch definitions for this device."""
+        return [
+            {
+                "key": "power",
+                "name": "Power",
+                "icon": "mdi:power",
             },
             {
-                "key": "zone1_temp_down",
-                "name": "Zone 1 Temp Down",
-                "icon": "mdi:thermometer-minus",
-            },
-            {
-                "key": "zone2_temp_up",
-                "name": "Zone 2 Temp Up",
-                "icon": "mdi:thermometer-plus",
-            },
-            {
-                "key": "zone2_temp_down",
-                "name": "Zone 2 Temp Down",
-                "icon": "mdi:thermometer-minus",
-            },
-            {
-                "key": "toggle_eco_mode",
-                "name": "Toggle Eco Mode",
+                "key": "eco_mode",
+                "name": "Eco Mode",
                 "icon": "mdi:leaf",
             },
+        ]
+
+    def get_selects(self) -> list[dict[str, Any]]:
+        """Return list of select definitions for this device."""
+        return [
             {
-                "key": "cycle_battery_protection",
-                "name": "Cycle Battery Protection",
+                "key": "battery_protection",
+                "name": "Battery Protection",
                 "icon": "mdi:battery-heart",
+                "options": ["Low", "Medium", "High"],
             },
         ]
 
@@ -222,7 +247,7 @@ class Alta80Device(GoalZeroDevice):
                 "max_value": 68,
                 "step": 1,
                 "unit": UnitOfTemperature.FAHRENHEIT,
-                "mode": "box",
+                "mode": "slider",
             },
             {
                 "key": "zone2_setpoint", 
@@ -232,7 +257,7 @@ class Alta80Device(GoalZeroDevice):
                 "max_value": 35,
                 "step": 1,
                 "unit": UnitOfTemperature.FAHRENHEIT,
-                "mode": "box",
+                "mode": "slider",
             },
         ]
 
@@ -562,6 +587,9 @@ class Alta80Device(GoalZeroDevice):
             "compressor_state_b": None,
             "concatenated_response": None,
             "response_length": None,
+            "power_on": False,
+            "eco_mode": False,
+            "battery_protection": "low",
         })
         
         return data
@@ -636,18 +664,50 @@ class Alta80Device(GoalZeroDevice):
             # Note: You mentioned "compressor state a" and "compressor state b" but didn't specify
             # which bytes they are. I'll add placeholders that can be updated when the byte positions are known
             # Since we only have 36 bytes (0-35), these would need to be within that range
+            # Control state parsing - extract current state of switches and selects
+            # These byte positions need to be determined through protocol analysis
             if len(all_bytes) >= 36:  # Check we have all 36 bytes
-                # Placeholder positions - update with actual byte positions when known
-                # These are just examples using the last few bytes
+                
+                # Power state (placeholder - needs protocol analysis to identify correct byte)
+                # For now, using byte 4 as an example - replace with actual byte position
+                if len(all_bytes) > 4:
+                    power_byte = all_bytes[4]
+                    # Example logic: non-zero value might indicate power on
+                    parsed_data["power_on"] = bool(power_byte != 0)
+                    _LOGGER.debug("Power state (byte 4): %s (raw: %d)", parsed_data["power_on"], power_byte)
+                
+                # Eco mode state (placeholder - needs protocol analysis to identify correct byte)
+                # For now, using byte 5 as an example - replace with actual byte position
+                if len(all_bytes) > 5:
+                    eco_byte = all_bytes[5]
+                    # Example logic: specific bit or value might indicate eco mode
+                    parsed_data["eco_mode"] = bool(eco_byte & 0x01)  # Check lowest bit
+                    _LOGGER.debug("Eco mode state (byte 5): %s (raw: %d)", parsed_data["eco_mode"], eco_byte)
+                
+                # Battery protection level (placeholder - needs protocol analysis to identify correct byte)
+                # For now, using byte 6 as an example - replace with actual byte position
+                if len(all_bytes) > 6:
+                    protection_byte = all_bytes[6]
+                    # Example logic: different values might represent different protection levels
+                    if protection_byte <= 1:
+                        parsed_data["battery_protection"] = "low"
+                    elif protection_byte <= 2:
+                        parsed_data["battery_protection"] = "medium"
+                    else:
+                        parsed_data["battery_protection"] = "high"
+                    _LOGGER.debug("Battery protection (byte 6): %s (raw: %d)", 
+                                parsed_data["battery_protection"], protection_byte)
+                
+                # Compressor state tracking (keeping existing placeholders)
                 if len(all_bytes) > 34:  # Use byte 34 for compressor_state_a
                     parsed_data["compressor_state_a"] = all_bytes[34]
                     _LOGGER.debug("Compressor state A (byte 34): %d", all_bytes[34])
                 
-                if len(all_bytes) > 35:  # Use byte 35 for compressor_state_b
+                if len(all_bytes) > 35:  # Use byte 35 for compressor_state_b (but this is temperature)
                     parsed_data["compressor_state_b"] = all_bytes[35]
                     _LOGGER.debug("Compressor state B (byte 35): %d", all_bytes[35])
             
-            _LOGGER.debug("Successfully parsed Alta 80 status data")
+            _LOGGER.debug("Successfully parsed Alta 80 status data with control states")
             
         except Exception as e:
             _LOGGER.error("Error parsing Alta 80 status responses: %s", e)
@@ -792,6 +852,49 @@ class Alta80Device(GoalZeroDevice):
             return self.create_zone2_temp_command(int(value))
         else:
             raise ValueError(f"Unknown number key: {number_key}")
+
+    def create_switch_command(self, switch_key: str, state: bool) -> bytes:
+        """Create command for switch entity state change.
+        
+        Args:
+            switch_key: The switch entity key identifier
+            state: The new state (True for on, False for off)
+            
+        Returns:
+            Command bytes to send
+        """
+        if switch_key == "power":
+            # Create power on/off command
+            if state:
+                # Power on command - needs to be determined from device analysis
+                command = bytes([0xFE, 0xFE, 0x21, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x44,
+                               0xFC, 0x04, 0x00, 0x01, 0xFE, 0xFE, 0x02, 0x00, 0x03, 0x65])
+            else:
+                # Power off command - needs to be determined from device analysis
+                command = bytes([0xFE, 0xFE, 0x21, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x44,
+                               0xFC, 0x04, 0x00, 0x01, 0xFE, 0xFE, 0x02, 0x00, 0x03, 0x64])
+            _LOGGER.debug("Power command (%s): %s", "ON" if state else "OFF", command.hex(':'))
+            return command
+            
+        elif switch_key == "eco_mode":
+            return self.create_eco_mode_command(state)
+        else:
+            raise ValueError(f"Unknown switch key: {switch_key}")
+
+    def create_select_command(self, select_key: str, option: str) -> bytes:
+        """Create command for select entity option change.
+        
+        Args:
+            select_key: The select entity key identifier
+            option: The new option value
+            
+        Returns:
+            Command bytes to send
+        """
+        if select_key == "battery_protection":
+            return self.create_battery_protection_command(option)
+        else:
+            raise ValueError(f"Unknown select key: {select_key}")
 
     async def send_command(self, ble_manager, command: bytes) -> bool:
         """Send a command to the Alta 80 device.

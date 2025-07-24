@@ -148,18 +148,19 @@ The Alta 80 provides comprehensive monitoring through 36 status bytes:
 
 #### 🔘 Controls & Setpoints
 
-**Temperature Controls:**
-- **Zone 1 Temp Up/Down** (`button.alta80_zone1_temp_up/down`): Adjust Zone 1 setpoint by 1°F
-- **Zone 2 Temp Up/Down** (`button.alta80_zone2_temp_up/down`): Adjust Zone 2 setpoint by 1°F
-- **Zone 1 Setpoint** (`number.alta80_zone1_setpoint`): Direct temperature control (-5°F to 68°F)
-- **Zone 2 Setpoint** (`number.alta80_zone2_setpoint`): Direct temperature control (0°F to 35°F)
-
 **System Controls:**
-- **Toggle Eco Mode** (`button.alta80_toggle_eco_mode`): Switch eco mode on/off
-- **Cycle Battery Protection** (`button.alta80_cycle_battery_protection`): Cycle through Low→Med→High→Low
+- **Power** (`switch.alta80_power`): Turn device on/off
+- **Eco Mode** (`switch.alta80_eco_mode`): Enable/disable eco mode
+- **Battery Protection** (`select.alta80_battery_protection`): Set protection level (Low, Medium, High)
+
+**Temperature Controls:**
+- **Zone 1 Setpoint** (`number.alta80_zone1_setpoint`): Temperature slider control (-5°F to 68°F)
+- **Zone 2 Setpoint** (`number.alta80_zone2_setpoint`): Temperature slider control (0°F to 35°F)
 
 **Data Refresh:**
 - **Refresh Data** (`button.alta80_refresh`): Manually refresh device status
+
+**Note**: Control state parsing (power, eco mode, battery protection) currently uses placeholder byte positions in the status response. These need to be refined through protocol analysis to accurately reflect actual device states.
 
 ### Entity Properties
 
@@ -174,21 +175,31 @@ All sensors include:
 Sensors support rich Lovelace visualizations:
 
 ```yaml
-# Example: Power flow card
+# Example: Power and control card
 type: entities
-title: Alta 80 Power
+title: Alta 80 Control
 entities:
-  - sensor.alta80_battery_level
-  - sensor.alta80_power_in
-  - sensor.alta80_power_out
-  - sensor.alta80_voltage
+  - switch.alta80_power
+  - switch.alta80_eco_mode
+  - select.alta80_battery_protection
+  - number.alta80_zone1_setpoint
+  - number.alta80_zone2_setpoint
+
+# Example: Sensor monitoring card  
+type: entities
+title: Alta 80 Monitoring
+entities:
+  - sensor.alta80_zone_1_temperature
+  - sensor.alta80_zone_2_temperature
+  - sensor.alta80_zone_1_setpoint
+  - sensor.alta80_zone_2_setpoint
 
 # Example: Historical graph
 type: history-graph
-title: Power History
+title: Temperature History
 entities:
-  - sensor.alta80_power_in
-  - sensor.alta80_power_out
+  - sensor.alta80_zone_1_temperature
+  - sensor.alta80_zone_2_temperature
 hours_to_show: 24
 ```
 
@@ -595,7 +606,159 @@ We welcome contributions! Here's how you can help:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## � Status Response Protocol Details
+
+### Alta 80 Status Response Breakdown
+
+The Alta 80 device provides comprehensive status information through a 36-byte response that contains detailed sensor data and device state information. This section documents the current understanding of each byte position.
+
+#### Communication Protocol
+
+**Status Request Command**: `FEFE03010200` (6 bytes)  
+**Response Format**: Two 18-byte notifications (concatenated to 36 bytes total)  
+**GATT Handles**: Dynamically discovered via service properties
+
+- Write Handle: Characteristic with `write-without-response` property
+- Read Handle: Characteristic with `notify` or `indicate` property
+
+#### 36-Byte Status Response Structure
+
+| Byte | Hex Range | Data Type | Description | Current Understanding | Unit |
+|------|-----------|-----------|-------------|---------------------|------|
+| 0 | 0x00 | Static | Header/Protocol | Always `0xFE` (254) | - |
+| 1 | 0x01 | Static | Header/Protocol | Always `0xFE` (254) | - |
+| 2 | 0x02 | Unknown | Protocol/Status | Variable data | - |
+| 3 | 0x03 | Unknown | System Status | Variable data | - |
+| 4 | 0x04 | Unknown | Device State | Variable data, may contain power state | - |
+| 5 | 0x05 | Unknown | System Flag | Variable data, may contain eco mode flag | - |
+| 6 | 0x06 | Unknown | Control State | Variable data, may contain battery protection level | - |
+| 7 | 0x07 | Unknown | System Data | Variable data | - |
+| **8** | **0x08** | **Signed Int** | **Zone 1 Setpoint** | **Temperature setpoint in °F** | **°F** |
+| 9 | 0x09 | Unknown | System Data | Variable data | - |
+| 10 | 0x0A | Unknown | System Data | Variable data | - |
+| 11 | 0x0B | Unknown | System Data | Variable data | - |
+| 12 | 0x0C | Unknown | System Data | Variable data | - |
+| 13 | 0x0D | Static | Protocol | Often `0xFE` (254) | - |
+| 14 | 0x0E | Static | Protocol | Often `0xFE` (254) | - |
+| 15 | 0x0F | Unknown | System Data | Variable data | - |
+| 16 | 0x10 | Unknown | System Data | Variable data | - |
+| 17 | 0x11 | Unknown | System Data | Variable data | - |
+| **18** | **0x12** | **Signed Int** | **Zone 1 Temperature** | **Current temperature in °C** | **°C** |
+| 19 | 0x13 | Static | Protocol | Often `0xFE` (254) | - |
+| 20 | 0x14 | Static | Protocol | Often `0xFE` (254) | - |
+| 21 | 0x15 | Unknown | System Data | Variable data | - |
+| **22** | **0x16** | **Signed Int** | **Zone 2 Setpoint** | **Temperature setpoint in °F** | **°F** |
+| 23 | 0x17 | Unknown | System Data | Variable data | - |
+| 24 | 0x18 | Unknown | System Data | Variable data | - |
+| 25 | 0x19 | Static | Protocol | Often `0xFE` (254) | - |
+| 26 | 0x1A | Static | Protocol | Often `0xFE` (254) | - |
+| 27 | 0x1B | Unknown | System Data | Variable data | - |
+| 28 | 0x1C | Unknown | System Data | Variable data | - |
+| 29 | 0x1D | Unknown | System Data | Variable data | - |
+| 30 | 0x1E | Unknown | System Data | Variable data | - |
+| 31 | 0x1F | Unknown | System Data | Variable data | - |
+| 32 | 0x20 | Unknown | System Data | Variable data | - |
+| 33 | 0x21 | Unknown | System Data | Variable data | - |
+| **34** | **0x22** | **Boolean** | **Zone 1 Setpoint Exceeded** | **Temperature limit exceeded flag** | **-** |
+| **35** | **0x23** | **Signed Int** | **Zone 2 Temperature** | **Current temperature in °C** | **°C** |
+
+#### Known Decoded Values
+
+The integration automatically decodes several key values from the raw bytes:
+
+##### Temperature Data
+
+- **Zone 1 Temperature (Byte 18)**: Signed integer representing current temperature in Celsius
+- **Zone 2 Temperature (Byte 35)**: Signed integer representing current temperature in Celsius  
+- **Zone 1 Setpoint (Byte 8)**: Signed integer representing target temperature in Fahrenheit (-5°F to 68°F)
+- **Zone 2 Setpoint (Byte 22)**: Signed integer representing target temperature in Fahrenheit (0°F to 35°F)
+
+##### Status Indicators
+
+- **Zone 1 Setpoint Exceeded (Byte 34)**: Boolean flag indicating if Zone 1 temperature has exceeded setpoint
+- **Zone 2 High-Res Temperature**: Calculated as `Byte 35 / 10.0` for higher precision
+
+##### Control State Values (Under Research)
+
+The integration attempts to extract current control states from the status response:
+
+- **Power State (Byte 4)**: Currently uses non-zero value to indicate power on (needs verification)
+- **Eco Mode (Byte 5)**: Currently checks lowest bit for eco mode status (needs verification)  
+- **Battery Protection (Byte 6)**: Currently maps values 0-1→Low, 2→Medium, 3+→High (needs verification)
+
+**Note**: These control state interpretations are preliminary and may need adjustment based on actual device behavior and protocol analysis.
+
+##### Static Bytes (Filtered)
+
+The following bytes typically contain static values (`0xFE` = 254) and are filtered from sensor display:
+
+- Bytes 0, 1: Protocol header
+- Bytes 13, 14: Protocol markers  
+- Bytes 19, 20: Protocol markers
+- Bytes 25, 26: Protocol markers
+
+#### Signed Integer Interpretation
+
+Temperature-related bytes (8, 18, 22, 35) use signed 8-bit integer encoding:
+
+```python
+# Convert unsigned byte to signed integer
+if byte_value > 127:
+    signed_value = byte_value - 256
+else:
+    signed_value = byte_value
+```
+
+#### Control Commands
+
+The device accepts various control commands that modify setpoint values:
+
+##### Temperature Setpoint Commands
+
+- **Zone 1 Temp**: `FEFE04053502B7` (example for 53°F)
+- **Zone 2 Temp**: `FEFE04062802AC` (example for 40°F)
+- **Command Structure**: `FEFE 04 05/06 TEMP 02 CHECKSUM`
+
+##### System Control Commands
+
+- **Eco Mode Toggle**: `FEFE21...` (complex 20-byte command)
+- **Battery Protection**: `FEFE21...` (complex 20-byte command with level bytes)
+
+#### Research Status
+
+🟢 **Fully Decoded**: Bytes 8, 18, 22, 34, 35  
+🟡 **Partially Understood**: Bytes 0, 1, 13, 14, 19, 20, 25, 26 (static markers)  
+� **Control States (Under Research)**: Bytes 4, 5, 6 (power, eco mode, battery protection - preliminary interpretation)  
+�🔴 **Unknown**: Bytes 2-3, 7, 9-12, 15-17, 21, 23-24, 27-33  
+
+#### Future Research Areas
+
+1. **Control State Mapping**: Identifying exact bytes for power state, eco mode, and battery protection levels
+2. **Power Monitoring**: Locating bytes related to power consumption and battery status  
+3. **Compressor State**: Locating compressor operation indicators in remaining bytes
+4. **System Flags**: Understanding device mode and status indicators
+5. **Error Codes**: Identifying fault and diagnostic information
+
+#### Protocol Analysis Tools
+
+The repository includes a diagnostic script to help identify control state bytes:
+
+```bash
+# Run control state analyzer
+python analyze_control_states.py
+```
+
+**Usage**:
+1. Run the script and capture baseline status
+2. Change one control setting on the device (power, eco mode, or battery protection)  
+3. Capture status again to see which bytes changed
+4. Repeat for each control to map specific bytes to control states
+
+This analysis helps refine the control state parsing logic in the integration.
+
+This status response analysis is ongoing, and contributions from the community help improve the understanding of the protocol. If you have insights into any of the unknown bytes, please [contribute to the project](https://github.com/mattxcnm/goalzero_ble/issues).
+
+## �🙏 Acknowledgments
 
 - **Home Assistant Community**: For the excellent platform and development tools
 - **Goal Zero**: For creating innovative portable power solutions
