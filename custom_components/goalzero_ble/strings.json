@@ -1,0 +1,38 @@
+{
+  "config": {
+    "step": {
+      "bluetooth_confirm": {
+        "title": "Confirm Goal Zero Device",
+        "description": "Do you want to set up the Goal Zero device **{name}** ({model}) at address {address}?",
+        "data": {
+          "update_interval": "Update interval (seconds)"
+        }
+      },
+      "user": {
+        "title": "Add Goal Zero BLE Device",
+        "description": "Add a Goal Zero BLE device manually. Supported device name patterns:\n\n{patterns}\n\nUpdate interval must be between {min_interval} and {max_interval} seconds.",
+        "data": {
+          "device_name": "Device Name",
+          "update_interval": "Update interval (seconds)"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Goal Zero Device",
+        "description": "Update settings for {device_name}",
+        "data": {
+          "update_interval": "Update interval (seconds)"
+        }
+      }
+    },
+    "error": {
+      "invalid_device_name": "Device name does not match supported Goal Zero device patterns",
+      "device_not_found": "Device not found via Bluetooth. Make sure the device is nearby and in pairing mode.",
+      "cannot_connect": "Cannot connect to device"
+    },
+    "abort": {
+      "already_configured": "Device is already configured",
+      "no_name": "Device has no name",
+      "not_supported": "Device is not a supported Goal Zero device"
+    }
+  }
+}

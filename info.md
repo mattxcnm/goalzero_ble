@@ -5,7 +5,7 @@ Monitor your Goal Zero devices directly in Home Assistant via Bluetooth Low Ener
 ## Supported Devices
 
 - 🔋 **Yeti 500** - Portable power station
-- ☀️ **Alta 80** - Solar light tower
+- ☀️ **Alta 80** - Portable fridge/freezer
 - 🔧 **Extensible** - Built to support additional Goal Zero BLE devices
 
 ## Features

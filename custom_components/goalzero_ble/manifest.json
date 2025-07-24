@@ -3,11 +3,19 @@
   "name": "Goal Zero BLE",
   "codeowners": ["@mattxcnm"],
   "config_flow": true,
-  "dependencies": [],
+  "dependencies": ["bluetooth"],
   "documentation": "https://github.com/mattxcnm/goalzero_ble",
   "integration_type": "device",
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/mattxcnm/goalzero_ble/issues",
-  "requirements": ["bleak>=0.19.0"],
-  "version": "1.0.1"
+  "requirements": ["bleak>=0.21.0"],
+  "version": "2.0.0",
+  "bluetooth": [
+    {
+      "local_name": "gzf1-80-*"
+    },
+    {
+      "local_name": "gzy5c-*"
+    }
+  ]
 }

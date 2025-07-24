@@ -1,22 +1,16 @@
 """Goal Zero Alta 80 device implementation."""
 from __future__ import annotations
 
-import asyncio
 import logging
-from typing import Any, Dict, Optional
+from typing import Any
 
-from bleak import BleakClient
 from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.const import PERCENTAGE, UnitOfPower, UnitOfTemperature
 
 from .base import GoalZeroDevice
+from ..const import DEVICE_TYPE_ALTA80, ALTA_80_MODEL
 
 _LOGGER = logging.getLogger(__name__)
-
-# Alta 80 specific GATT handles (based on goalzero_gatt.py discovery)
-ALTA80_WRITE_HANDLE = 0x000A
-ALTA80_READ_HANDLE = 0x000C
-ALTA80_STATUS_COMMAND = "FEFE03010200"
 
 
 class Alta80Device(GoalZeroDevice):
@@ -25,12 +19,12 @@ class Alta80Device(GoalZeroDevice):
     @property
     def device_type(self) -> str:
         """Return the device type identifier."""
-        return "alta80"
+        return DEVICE_TYPE_ALTA80
 
     @property
     def model(self) -> str:
         """Return the device model name."""
-        return "Alta 80"
+        return ALTA_80_MODEL
 
     def get_sensors(self) -> list[dict[str, Any]]:
         """Return list of sensor definitions for this device."""
@@ -41,6 +35,7 @@ class Alta80Device(GoalZeroDevice):
                 "device_class": SensorDeviceClass.BATTERY,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "unit": PERCENTAGE,
+                "icon": "mdi:battery",
             },
             {
                 "key": "power_consumption",
@@ -48,6 +43,7 @@ class Alta80Device(GoalZeroDevice):
                 "device_class": SensorDeviceClass.POWER,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "unit": UnitOfPower.WATT,
+                "icon": "mdi:lightning-bolt",
             },
             {
                 "key": "fridge_temperature",
@@ -55,6 +51,7 @@ class Alta80Device(GoalZeroDevice):
                 "device_class": SensorDeviceClass.TEMPERATURE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "unit": UnitOfTemperature.CELSIUS,
+                "icon": "mdi:thermometer",
             },
             {
                 "key": "ambient_temperature",
@@ -62,6 +59,7 @@ class Alta80Device(GoalZeroDevice):
                 "device_class": SensorDeviceClass.TEMPERATURE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "unit": UnitOfTemperature.CELSIUS,
+                "icon": "mdi:thermometer-lines",
             },
             {
                 "key": "compressor_status",
@@ -69,127 +67,94 @@ class Alta80Device(GoalZeroDevice):
                 "device_class": None,
                 "state_class": None,
                 "unit": None,
+                "icon": "mdi:hvac",
             },
         ]
 
-    async def update_data(self, ble_device) -> Dict[str, Any]:
+    def get_buttons(self) -> list[dict[str, Any]]:
+        """Return list of button definitions for this device."""
+        return [
+            {
+                "key": "temp_up",
+                "name": "Temperature Up",
+                "icon": "mdi:thermometer-plus",
+            },
+            {
+                "key": "temp_down",
+                "name": "Temperature Down",
+                "icon": "mdi:thermometer-minus",
+            },
+            {
+                "key": "power_on",
+                "name": "Power On",
+                "icon": "mdi:power",
+            },
+            {
+                "key": "power_off",
+                "name": "Power Off",
+                "icon": "mdi:power-off",
+            },
+            {
+                "key": "eco_on",
+                "name": "Eco Mode On",
+                "icon": "mdi:leaf",
+            },
+            {
+                "key": "eco_off",
+                "name": "Eco Mode Off",
+                "icon": "mdi:leaf-off",
+            },
+        ]
+
+    async def update_data(self, ble_manager) -> dict[str, Any]:
         """Update device data from BLE connection using GATT handles."""
         try:
-            # Connect to the device using BleakClient
-            async with BleakClient(ble_device.address) as client:
-                _LOGGER.debug("Connected to Alta 80 device at %s", ble_device.address)
-                
-                # Find characteristics by handle
-                write_char = None
-                read_char = None
-                
-                services = client.services
-                for service in services.services.values():
-                    for char in service.characteristics:
-                        if char.handle == ALTA80_WRITE_HANDLE:
-                            write_char = char
-                        if char.handle == ALTA80_READ_HANDLE:
-                            read_char = char
-                
-                if not write_char or not read_char:
-                    _LOGGER.error(
-                        "Required characteristics not found. Write: %s, Read: %s",
-                        write_char is not None,
-                        read_char is not None
-                    )
-                    return self._data
-                
-                # Set up response collection
-                responses = []
-                response_count = 0
-                
-                def notification_handler(sender, data):
-                    nonlocal response_count, responses
-                    response_count += 1
-                    hex_data = data.hex().upper()
-                    _LOGGER.debug("Alta 80 Response %d: %s", response_count, hex_data)
-                    responses.append(hex_data)
-                
-                # Start notifications
-                await client.start_notify(read_char, notification_handler)
-                
-                # Send status request command
-                command_bytes = bytes.fromhex(ALTA80_STATUS_COMMAND)
-                await client.write_gatt_char(write_char, command_bytes)
-                _LOGGER.debug("Sent status command: %s", ALTA80_STATUS_COMMAND)
-                
-                # Wait for responses (expecting 2 responses based on template)
-                timeout = 10
-                elapsed = 0
-                while response_count < 2 and elapsed < timeout:
-                    await asyncio.sleep(0.1)
-                    elapsed += 0.1
-                
-                # Stop notifications
-                await client.stop_notify(read_char)
-                
-                # Parse responses and update data
-                if responses:
-                    self._data = self._parse_gatt_responses(responses)
-                    _LOGGER.debug("Updated Alta 80 data: %s", self._data)
-                else:
-                    _LOGGER.warning("No responses received from Alta 80 device")
+            _LOGGER.debug("Updating Alta 80 data via BLE manager")
+            
+            # Request status from device
+            responses = await ble_manager.send_command_and_collect_responses(
+                "FEFE03010200",  # Status request command
+                expected_responses=2,
+                timeout=10
+            )
+            
+            if responses:
+                self._data = self._parse_gatt_responses(responses)
+                _LOGGER.debug("Updated Alta 80 data: %s", self._data)
+            else:
+                _LOGGER.warning("No responses received from Alta 80 device")
+                # Return existing data if no new data received
+                if not self._data:
+                    self._data = self._get_default_data()
                 
         except Exception as e:
             _LOGGER.error("Error updating Alta 80 data: %s", e)
+            if not self._data:
+                self._data = self._get_default_data()
         
         return self._data
 
-    async def send_control_command(self, command_hex: str) -> bool:
-        """Send a control command to the Alta 80 device."""
-        try:
-            # This would be used by button entities for controlling the fridge
-            async with BleakClient(self.address) as client:
-                _LOGGER.debug("Sending control command to Alta 80: %s", command_hex)
-                
-                # Find write characteristic by handle
-                write_char = None
-                services = client.services
-                for service in services.services.values():
-                    for char in service.characteristics:
-                        if char.handle == ALTA80_WRITE_HANDLE:
-                            write_char = char
-                            break
-                
-                if not write_char:
-                    _LOGGER.error("Write characteristic not found for control command")
-                    return False
-                
-                # Send command
-                command_bytes = bytes.fromhex(command_hex)
-                await client.write_gatt_char(write_char, command_bytes)
-                _LOGGER.debug("Control command sent successfully")
-                return True
-                
-        except Exception as e:
-            _LOGGER.error("Error sending control command: %s", e)
-            return False
-
-    def _parse_gatt_responses(self, responses: list[str]) -> Dict[str, Any]:
-        """Parse GATT responses from Alta 80 device."""
-        parsed_data = {
+    def _get_default_data(self) -> dict[str, Any]:
+        """Return default data structure with None values."""
+        return {
             "battery_percentage": None,
             "power_consumption": None,
             "fridge_temperature": None,
             "ambient_temperature": None,
             "compressor_status": "unknown",
         }
+
+    def _parse_gatt_responses(self, responses: list[str]) -> dict[str, Any]:
+        """Parse GATT responses from Alta 80 device."""
+        parsed_data = self._get_default_data()
         
         try:
             for response in responses:
                 # Convert hex string to bytes for parsing
                 data = bytes.fromhex(response)
                 
-                # Parse based on response format (this will need adjustment based on actual protocol)
+                # Parse based on response format (adjust based on actual Alta 80 protocol)
                 if len(data) >= 8:
-                    # Example parsing - adjust based on actual Alta 80 protocol
-                    # Response format analysis needed from actual device testing
-                    
                     # Battery percentage (assuming byte 3)
                     if len(data) > 3:
                         battery_raw = data[3]
@@ -225,7 +190,7 @@ class Alta80Device(GoalZeroDevice):
         
         return parsed_data
 
-    def parse_ble_data(self, data: bytes) -> Dict[str, Any]:
+    def parse_ble_data(self, data: bytes) -> dict[str, Any]:
         """Parse BLE data specific to Alta 80 fridge system."""
         # Convert single data packet to hex string format for consistency
         hex_data = data.hex().upper()

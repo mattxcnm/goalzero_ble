@@ -3,53 +3,69 @@
 DOMAIN = "goalzero_ble"
 MANUFACTURER = "Goal Zero"
 
-# Device models
-ALTA_80 = "Alta 80"
+# Configuration keys
+CONF_DEVICE_NAME = "device_name"
+CONF_UPDATE_INTERVAL = "update_interval"
 
-# GATT Handles (discovered via goalzero_gatt.py)
-ALTA80_WRITE_HANDLE = 0x000A
-ALTA80_READ_HANDLE = 0x000C
+# Default values
+DEFAULT_UPDATE_INTERVAL = 30  # seconds
+MIN_UPDATE_INTERVAL = 10
+MAX_UPDATE_INTERVAL = 300
+
+# Device name patterns
+ALTA_PATTERN = "gzf1-80-"
+YETI500_PATTERN = "gzy5c-"
+
+# Device types
+DEVICE_TYPE_ALTA80 = "alta80"
+DEVICE_TYPE_YETI500 = "yeti500"
+
+# Device models
+ALTA_80_MODEL = "Alta 80"
+YETI_500_MODEL = "Yeti 500"
 
 # BLE Configuration
 BLE_SCAN_TIMEOUT = 30
-BLE_CONNECT_TIMEOUT = 10
-BLE_DISCONNECT_TIMEOUT = 5
+BLE_CONNECT_TIMEOUT = 15
+BLE_DISCONNECT_TIMEOUT = 10
+BLE_COMMAND_TIMEOUT = 5
 
-# Command payloads
-COMMANDS = {
-    "status_request": "FEFE03010200",
-    "left_setpoint_down": "FEFE040501020600", 
-    "left_setpoint_up": "FEFE040500020500",
-    "right_setpoint_down": "FEFE040624022A00",
-    "right_setpoint_up": "FEFE040623022900",
+# Alta 80 GATT Configuration
+ALTA80_WRITE_HANDLE = 0x000A
+ALTA80_READ_HANDLE = 0x000C
+ALTA80_STATUS_COMMAND = "FEFE03010200"
+
+# Yeti 500 GATT Configuration (to be discovered)
+YETI500_WRITE_HANDLE = 0x000A  # Placeholder
+YETI500_READ_HANDLE = 0x000C   # Placeholder
+YETI500_STATUS_COMMAND = "FEFE03010200"  # Placeholder
+
+# Command definitions for each device type
+DEVICE_COMMANDS = {
+    DEVICE_TYPE_ALTA80: {
+        "status_request": "FEFE03010200",
+        "temp_down": "FEFE040501020600",
+        "temp_up": "FEFE040500020500",
+        "power_on": "FEFE050100000000",   # To be verified
+        "power_off": "FEFE050101000000",  # To be verified
+        "eco_on": "FEFE060100000000",     # To be verified
+        "eco_off": "FEFE060101000000",    # To be verified
+    },
+    DEVICE_TYPE_YETI500: {
+        "status_request": "FEFE03010200",  # To be verified
+        "power_on": "FEFE050100000000",    # To be verified
+        "power_off": "FEFE050101000000",   # To be verified
+    }
 }
 
-# Alta 80 specific commands (based on goalzero_gatt.py testing)
-ALTA80_COMMANDS = {
-    "status_request": "FEFE03010200",
-    "temp_down": "FEFE040501020600",
-    "temp_up": "FEFE040500020500", 
-    "power_on": "FEFE050100000000",  # To be verified with actual device
-    "power_off": "FEFE050101000000",  # To be verified with actual device
+# Device GATT handles
+DEVICE_HANDLES = {
+    DEVICE_TYPE_ALTA80: {
+        "write": ALTA80_WRITE_HANDLE,
+        "read": ALTA80_READ_HANDLE,
+    },
+    DEVICE_TYPE_YETI500: {
+        "write": YETI500_WRITE_HANDLE,
+        "read": YETI500_READ_HANDLE,
+    }
 }
-
-# Eco mode commands (placeholder - will need actual values)
-ECO_COMMANDS = {
-    "eco_on": "FEFE050100000000",  # Placeholder
-    "eco_off": "FEFE050101000000",  # Placeholder
-}
-
-# Battery protection commands (placeholder - will need actual values)  
-BATTERY_PROTECTION_COMMANDS = {
-    "high": "FEFE060100000000",  # Placeholder
-    "med": "FEFE060101000000",   # Placeholder
-    "low": "FEFE060102000000",   # Placeholder
-}
-
-# BLE Service and Characteristic UUIDs (will need to be discovered)
-SERVICE_UUID = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"  # Placeholder
-WRITE_CHAR_UUID = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"  # Placeholder
-NOTIFY_CHAR_UUID = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"  # Placeholder
-
-# Update intervals
-UPDATE_INTERVAL = 30  # seconds
