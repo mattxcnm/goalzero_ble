@@ -266,6 +266,7 @@ class Alta80Device(GoalZeroDevice):
             nonlocal response_count, responses
             response_count += 1
             hex_data = data.hex().upper()
+            responses.append(hex_data)  # CRITICAL FIX: Actually store the response!
             _LOGGER.debug("Alta 80 Response %d: %s", response_count, hex_data)
         try:
             # Find characteristics dynamically by properties instead of hardcoded handles
@@ -362,6 +363,9 @@ class Alta80Device(GoalZeroDevice):
             
             # Parse responses if we got them
             if responses:
+                _LOGGER.info("Successfully captured %d responses from Alta 80", len(responses))
+                for i, response in enumerate(responses):
+                    _LOGGER.debug("Response %d: %s (%d bytes)", i+1, response, len(response)//2)
                 parsed_data = self._parse_status_responses(responses)
                 _LOGGER.debug("Successfully parsed Alta 80 data with %d sensor values", len(parsed_data))
                 return parsed_data
