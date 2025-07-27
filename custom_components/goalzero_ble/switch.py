@@ -72,40 +72,60 @@ class GoalZeroSwitch(GoalZeroEntity, SwitchEntity):
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn the entity on."""
+        _LOGGER.info("[SWITCH] User turning ON switch '%s'", self._key)
         try:
             device = self.coordinator.device
+            _LOGGER.info("[SWITCH] Device type: %s", type(device).__name__)
+            
             if hasattr(device, 'create_switch_command'):
+                _LOGGER.info("[SWITCH] Device has create_switch_command method")
                 command = device.create_switch_command(self._key, True)
+                _LOGGER.info("[SWITCH] Generated command: %s (%d bytes)", command.hex(':'), len(command))
+                
                 ble_manager = self.coordinator.ble_manager
+                _LOGGER.info("[SWITCH] BLE manager type: %s", type(ble_manager).__name__)
+                
                 success = await device.send_command(ble_manager, command)
                 
                 if success:
+                    _LOGGER.info("[SWITCH] Successfully turned on %s", self._key)
                     await self.coordinator.async_request_refresh()
-                    _LOGGER.info("Successfully turned on %s", self._key)
                 else:
-                    _LOGGER.error("Failed to turn on %s", self._key)
+                    _LOGGER.error("[SWITCH] Failed to turn on %s", self._key)
             else:
-                _LOGGER.error("Device does not support switch commands")
+                _LOGGER.error("[SWITCH] Device does not support switch commands")
                 
         except Exception as e:
-            _LOGGER.error("Error turning on switch %s: %s", self._key, e)
+            _LOGGER.error("[SWITCH] Error turning on switch %s: %s", self._key, e)
+            import traceback
+            _LOGGER.error("[SWITCH] Traceback: %s", traceback.format_exc())
 
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Turn the entity off."""
+        _LOGGER.info("[SWITCH] User turning OFF switch '%s'", self._key)
         try:
             device = self.coordinator.device
+            _LOGGER.info("[SWITCH] Device type: %s", type(device).__name__)
+            
             if hasattr(device, 'create_switch_command'):
+                _LOGGER.info("[SWITCH] Device has create_switch_command method")
                 command = device.create_switch_command(self._key, False)
+                _LOGGER.info("[SWITCH] Generated command: %s (%d bytes)", command.hex(':'), len(command))
+                
                 ble_manager = self.coordinator.ble_manager
+                _LOGGER.info("[SWITCH] BLE manager type: %s", type(ble_manager).__name__)
+                
                 success = await device.send_command(ble_manager, command)
                 
                 if success:
+                    _LOGGER.info("[SWITCH] Successfully turned off %s", self._key)
                     await self.coordinator.async_request_refresh()
-                    _LOGGER.info("Successfully turned off %s", self._key)
                 else:
-                    _LOGGER.error("Failed to turn off %s", self._key)
+                    _LOGGER.error("[SWITCH] Failed to turn off %s", self._key)
             else:
-                _LOGGER.error("Device does not support switch commands")
+                _LOGGER.error("[SWITCH] Device does not support switch commands")
                 
         except Exception as e:
-            _LOGGER.error("Error turning off switch %s: %s", self._key, e)
+            _LOGGER.error("[SWITCH] Error turning off switch %s: %s", self._key, e)
+            import traceback
+            _LOGGER.error("[SWITCH] Traceback: %s", traceback.format_exc())

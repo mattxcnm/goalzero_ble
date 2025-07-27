@@ -80,13 +80,13 @@ class GoalZeroSelect(GoalZeroEntity, SelectEntity):
 
     async def async_select_option(self, option: str) -> None:
         """Change the selected option."""
-        _LOGGER.info("[SELECT] User selected option '%s' for select '%s'", option, self._key)
+        _LOGGER.info("🔽 SELECT OPTION: User selected option '%s' for select '%s'", option, self._key)
         try:
             device = self.coordinator.device
-            _LOGGER.info("[SELECT] Device type: %s", type(device).__name__)
+            _LOGGER.info("📝 Device type: %s", type(device).__name__)
             
             if hasattr(device, 'create_select_command'):
-                _LOGGER.info("[SELECT] Device has create_select_command method")
+                _LOGGER.info("✅ Device has create_select_command method")
                 
                 # Map display value to internal value
                 if self._key == "battery_protection":
@@ -96,32 +96,59 @@ class GoalZeroSelect(GoalZeroEntity, SelectEntity):
                         "High": "high"
                     }
                     internal_value = option_map.get(option, "low")
-                    _LOGGER.debug("[SELECT] Mapped option '%s' to internal value '%s'", option, internal_value)
+                    _LOGGER.debug("🔧 Mapped option '%s' to internal value '%s'", option, internal_value)
                 else:
                     internal_value = option.lower()
-                    _LOGGER.debug("[SELECT] Using lowercase option: '%s'", internal_value)
+                    _LOGGER.debug("🔧 Using lowercase option: '%s'", internal_value)
                 
-                _LOGGER.debug("[SELECT] Creating select command for key '%s' with value '%s'", self._key, internal_value)
+                _LOGGER.debug("🔧 Creating select command for key '%s' with value '%s'", self._key, internal_value)
                 command = device.create_select_command(self._key, internal_value)
-                _LOGGER.info("[SELECT] Generated command: %s (%d bytes)", command.hex(':'), len(command))
+                _LOGGER.info("📡 Generated command: %s (%d bytes)", command.hex(':'), len(command))
                 
                 ble_manager = self.coordinator.ble_manager
-                _LOGGER.info("[SELECT] BLE manager type: %s", type(ble_manager).__name__)
+                _LOGGER.info("📱 BLE manager type: %s", type(ble_manager).__name__)
                 
-                _LOGGER.debug("[SELECT] Sending command via device.send_command...")
+                _LOGGER.debug("🚀 Sending command via device.send_command...")
                 success = await device.send_command(ble_manager, command)
                 
                 if success:
-                    _LOGGER.info("[SELECT] Command sent successfully for %s", self._key)
+                    _LOGGER.info("✅ SELECT SUCCESS: Command sent successfully for %s", self._key)
                     await self.coordinator.async_request_refresh()
-                    _LOGGER.debug("[SELECT] Requested coordinator refresh after successful command")
+                    _LOGGER.debug("🔄 Requested coordinator refresh after successful command")
                 else:
-                    _LOGGER.error("[SELECT] Command send failed for %s", self._key)
+                    _LOGGER.error("❌ SELECT FAILED: Command send failed for %s", self._key)
             else:
-                _LOGGER.error("[SELECT] Device does not support select commands (missing create_select_command)")
+                _LOGGER.error("❌ Device does not support select commands (missing create_select_command)")
                 
         except Exception as e:
-            _LOGGER.error("[SELECT] Exception setting select %s to %s: %s", self._key, option, e)
-            _LOGGER.error("[SELECT] Exception type: %s", type(e).__name__)
+            _LOGGER.error("💥 SELECT EXCEPTION: Error setting select %s to %s: %s", self._key, option, e)
+            _LOGGER.error("🔍 Exception type: %s", type(e).__name__)
             import traceback
-            _LOGGER.error("[SELECT] Full traceback: %s", traceback.format_exc())
+            _LOGGER.error("� Full traceback: %s", traceback.format_exc())
+                    internal_value = option.lower()
+                    _LOGGER.debug("🔧 Using lowercase option: '%s'", internal_value)
+                
+                _LOGGER.debug("� Creating select command for key '%s' with value '%s'", self._key, internal_value)
+                command = device.create_select_command(self._key, internal_value)
+                _LOGGER.info("📡 Generated command: %s (%d bytes)", command.hex(':'), len(command))
+                
+                ble_manager = self.coordinator.ble_manager
+                _LOGGER.info("📱 BLE manager type: %s", type(ble_manager).__name__)
+                
+                _LOGGER.debug("� Sending command via device.send_command...")
+                success = await device.send_command(ble_manager, command)
+                
+                if success:
+                    _LOGGER.info("✅ SELECT SUCCESS: Command sent successfully for %s", self._key)
+                    await self.coordinator.async_request_refresh()
+                    _LOGGER.debug("🔄 Requested coordinator refresh after successful command")
+                else:
+                    _LOGGER.error("❌ SELECT FAILED: Command send failed for %s", self._key)
+            else:
+                _LOGGER.error("❌ Device does not support select commands (missing create_select_command)")
+                
+        except Exception as e:
+            _LOGGER.error("💥 SELECT EXCEPTION: Error setting select %s to %s: %s", self._key, option, e)
+            _LOGGER.error("🔍 Exception type: %s", type(e).__name__)
+            import traceback
+            _LOGGER.error("📚 Full traceback: %s", traceback.format_exc())

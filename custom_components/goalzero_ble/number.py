@@ -89,30 +89,35 @@ class GoalZeroNumberEntity(GoalZeroEntity, NumberEntity):
 
     async def async_set_native_value(self, value: float) -> None:
         """Set the number value."""
+        _LOGGER.info("[NUMBER] User setting value '%.1f' for number '%s'", value, self._key)
         try:
             # Create command for the number entity
             device = self.coordinator.device
+            _LOGGER.info("[NUMBER] Device type: %s", type(device).__name__)
+            
             if hasattr(device, 'create_number_set_command'):
+                _LOGGER.info("[NUMBER] Device has create_number_set_command method")
                 command = device.create_number_set_command(self._key, value)
+                _LOGGER.info("[NUMBER] Generated command: %s (%d bytes)", command.hex(':'), len(command))
                 
                 # Send command via BLE manager
                 ble_manager = self.coordinator.ble_manager
+                _LOGGER.info("[NUMBER] BLE manager type: %s", type(ble_manager).__name__)
+                
                 success = await device.send_command(ble_manager, command)
                 
                 if success:
-                    # Update the coordinator data optimistically
-                    if self.coordinator.data:
-                        self.coordinator.data[self._key] = value
-                    
-                    # Request a data refresh to get updated device state
+                    _LOGGER.info("[NUMBER] Successfully set %s to %.1f", self._key, value)
                     await self.coordinator.async_request_refresh()
-                    
-                    _LOGGER.info("Successfully set %s to %s", self.name, value)
                 else:
-                    _LOGGER.error("Failed to set %s to %s", self.name, value)
-                    
+                    _LOGGER.error("[NUMBER] Failed to set %s to %.1f", self._key, value)
+            else:
+                _LOGGER.error("[NUMBER] Device does not support number commands")
+                
         except Exception as e:
-            _LOGGER.error("Error setting %s to %s: %s", self.name, value, e)
+            _LOGGER.error("[NUMBER] Error setting number %s to %.1f: %s", self._key, value, e)
+            import traceback
+            _LOGGER.error("[NUMBER] Traceback: %s", traceback.format_exc())
 
     @property
     def available(self) -> bool:

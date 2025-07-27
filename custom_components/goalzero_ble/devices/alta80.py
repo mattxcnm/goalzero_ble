@@ -32,9 +32,8 @@ class Alta80Device(GoalZeroDevice):
         sensors = []
         
         # Raw status bytes (0-35, exactly 36 bytes total)
+        # Create two entities for each byte: one for line graphs, one for discrete values
         # Skip bytes that are always 0xFE (254) as they don't change
-        # These are common positions for 0xFE based on typical BLE protocols
-        # You can adjust this list based on your actual data observations
         fe_bytes = {0, 1, 13, 14, 19, 20, 25, 26}  # Adjust based on your observations
         
         for i in range(36):  # Exactly 36 bytes in concatenated response
@@ -44,6 +43,7 @@ class Alta80Device(GoalZeroDevice):
                 
             # Special handling for temperature and setpoint bytes (signed integers)
             if i == 8:  # Zone 1 setpoint
+                # Line graph version
                 sensors.append({
                     "key": f"status_byte_{i}",
                     "name": f"Status Byte {i} (Zone 1 Setpoint Raw)",
@@ -52,7 +52,17 @@ class Alta80Device(GoalZeroDevice):
                     "unit": None,
                     "icon": "mdi:thermometer-chevron-up",
                 })
+                # Discrete values version
+                sensors.append({
+                    "key": f"status_byte_{i}_discrete",
+                    "name": f"Status Byte {i} (Zone 1 Setpoint Raw) - Discrete",
+                    "device_class": None,
+                    "state_class": None,
+                    "unit": None,
+                    "icon": "mdi:thermometer-chevron-up",
+                })
             elif i == 18:  # Zone 1 temperature
+                # Line graph version
                 sensors.append({
                     "key": f"status_byte_{i}",
                     "name": f"Status Byte {i} (Zone 1 Temp Raw)",
@@ -61,7 +71,17 @@ class Alta80Device(GoalZeroDevice):
                     "unit": None,
                     "icon": "mdi:thermometer-lines",
                 })
+                # Discrete values version
+                sensors.append({
+                    "key": f"status_byte_{i}_discrete",
+                    "name": f"Status Byte {i} (Zone 1 Temp Raw) - Discrete",
+                    "device_class": None,
+                    "state_class": None,
+                    "unit": None,
+                    "icon": "mdi:thermometer-lines",
+                })
             elif i == 22:  # Zone 2 setpoint
+                # Line graph version
                 sensors.append({
                     "key": f"status_byte_{i}",
                     "name": f"Status Byte {i} (Zone 2 Setpoint Raw)",
@@ -70,7 +90,17 @@ class Alta80Device(GoalZeroDevice):
                     "unit": None,
                     "icon": "mdi:thermometer-chevron-up",
                 })
+                # Discrete values version
+                sensors.append({
+                    "key": f"status_byte_{i}_discrete",
+                    "name": f"Status Byte {i} (Zone 2 Setpoint Raw) - Discrete",
+                    "device_class": None,
+                    "state_class": None,
+                    "unit": None,
+                    "icon": "mdi:thermometer-chevron-up",
+                })
             elif i == 35:  # Zone 2 temperature
+                # Line graph version
                 sensors.append({
                     "key": f"status_byte_{i}",
                     "name": f"Status Byte {i} (Zone 2 Temp Raw)",
@@ -79,13 +109,31 @@ class Alta80Device(GoalZeroDevice):
                     "unit": None,
                     "icon": "mdi:thermometer-lines",
                 })
+                # Discrete values version
+                sensors.append({
+                    "key": f"status_byte_{i}_discrete",
+                    "name": f"Status Byte {i} (Zone 2 Temp Raw) - Discrete",
+                    "device_class": None,
+                    "state_class": None,
+                    "unit": None,
+                    "icon": "mdi:thermometer-lines",
+                })
             else:
-                # Regular numeric bytes
+                # Regular numeric bytes - line graph version
                 sensors.append({
                     "key": f"status_byte_{i}",
                     "name": f"Status Byte {i}",
                     "device_class": None,
                     "state_class": SensorStateClass.MEASUREMENT,  # Enable line graphs
+                    "unit": None,
+                    "icon": "mdi:hexadecimal",
+                })
+                # Regular numeric bytes - discrete version
+                sensors.append({
+                    "key": f"status_byte_{i}_discrete",
+                    "name": f"Status Byte {i} - Discrete",
+                    "device_class": None,
+                    "state_class": None,  # No state class for discrete values
                     "unit": None,
                     "icon": "mdi:hexadecimal",
                 })
@@ -243,7 +291,7 @@ class Alta80Device(GoalZeroDevice):
                 "key": "zone1_setpoint",
                 "name": "Zone 1 Temperature Setpoint",
                 "icon": "mdi:thermometer",
-                "min_value": -5,
+                "min_value": -4,
                 "max_value": 68,
                 "step": 1,
                 "unit": UnitOfTemperature.FAHRENHEIT,
@@ -253,8 +301,8 @@ class Alta80Device(GoalZeroDevice):
                 "key": "zone2_setpoint", 
                 "name": "Zone 2 Temperature Setpoint",
                 "icon": "mdi:thermometer",
-                "min_value": 0,
-                "max_value": 35,
+                "min_value": -4,
+                "max_value": 68,
                 "step": 1,
                 "unit": UnitOfTemperature.FAHRENHEIT,
                 "mode": "slider",
@@ -572,8 +620,10 @@ class Alta80Device(GoalZeroDevice):
         data = {}
         
         # Initialize all status bytes to None (exactly 36 bytes)
+        # Create both regular and discrete versions for each byte
         for i in range(36):
             data[f"status_byte_{i}"] = None
+            data[f"status_byte_{i}_discrete"] = None
         
         # Initialize decoded values
         data.update({
@@ -612,7 +662,9 @@ class Alta80Device(GoalZeroDevice):
             # Parse each byte individually (exactly 36 bytes)
             for i, byte_val in enumerate(all_bytes):
                 if i < 36:  # Exactly 36 bytes in response
+                    # Store both versions: one for line graphs, one for discrete values
                     parsed_data[f"status_byte_{i}"] = byte_val
+                    parsed_data[f"status_byte_{i}_discrete"] = byte_val
             
             # Validate expected response length
             if len(all_bytes) != 36:
@@ -726,12 +778,12 @@ class Alta80Device(GoalZeroDevice):
         """Create Zone 1 temperature setpoint command.
         
         Args:
-            temp_f: Temperature in Fahrenheit (-5 to 68)
+            temp_f: Temperature in Fahrenheit (-4 to 68)
             
         Returns:
             Command bytes to send
         """
-        temp_f = max(-5, min(68, temp_f))  # Clamp to valid range
+        temp_f = max(-4, min(68, temp_f))  # Clamp to valid range
         temp_hex = temp_f & 0xFF  # Handle negative temps with 2's complement
         checksum = (0x04 + 0x05 + temp_hex + 0x02) & 0xFF
         
@@ -743,12 +795,12 @@ class Alta80Device(GoalZeroDevice):
         """Create Zone 2 temperature setpoint command.
         
         Args:
-            temp_f: Temperature in Fahrenheit (0 to 35)
+            temp_f: Temperature in Fahrenheit (-4 to 68)
             
         Returns:
             Command bytes to send
         """
-        temp_f = max(0, min(35, temp_f))  # Clamp to valid range
+        temp_f = max(-4, min(68, temp_f))  # Clamp to valid range
         temp_hex = temp_f & 0xFF
         checksum = (0x04 + 0x06 + temp_hex + 0x02) & 0xFF
         
@@ -897,23 +949,35 @@ class Alta80Device(GoalZeroDevice):
             raise ValueError(f"Unknown select key: {select_key}")
 
     async def send_command(self, ble_manager, command: bytes) -> bool:
-        """Send a command to the Alta 80 device.
-        
-        Args:
-            ble_manager: The BLE manager instance
-            command: Command bytes to send
-            
-        Returns:
-            True if command was sent successfully
-        """
+        """Send a command to the Alta 80 device with extra debug logging."""
         try:
-            _LOGGER.info("Sending Alta 80 command: %s", command.hex(':'))
-            success = await ble_manager.send_command(self.name, command)
-            if success:
-                _LOGGER.info("✓ Command sent successfully")
+            command_hex = command.hex(':')
+            _LOGGER.info("[Alta80] Attempting to send command: %s (%d bytes)", command_hex, len(command))
+            _LOGGER.info("[Alta80] Device name: %s, address: %s", self.name, self.address)
+            _LOGGER.info("[Alta80] BLE manager type: %s", type(ble_manager).__name__)
+            if hasattr(ble_manager, 'is_connected'):
+                _LOGGER.info("[Alta80] BLE manager connection status: %s", ble_manager.is_connected)
             else:
-                _LOGGER.warning("⚠ Command send failed")
+                _LOGGER.warning("[Alta80] BLE manager missing is_connected property")
+            available_methods = [method for method in dir(ble_manager) if not method.startswith('_')]
+            _LOGGER.debug("[Alta80] BLE manager available methods: %s", available_methods)
+            # Use the correct method name for sending commands
+            if hasattr(ble_manager, 'send_command_to_device'):
+                _LOGGER.info("[Alta80] Using send_command_to_device method")
+                success = await ble_manager.send_command_to_device(self.name, command)
+            elif hasattr(ble_manager, 'send_command'):
+                _LOGGER.info("[Alta80] Using send_command method")
+                success = await ble_manager.send_command(command)
+            else:
+                _LOGGER.error("[Alta80] No suitable send command method found on BLE manager")
+                return False
+            if success:
+                _LOGGER.info("[Alta80] Command sent successfully!")
+            else:
+                _LOGGER.error("[Alta80] Command send failed!")
             return success
         except Exception as e:
-            _LOGGER.error("Error sending command: %s", e)
+            _LOGGER.error("[Alta80] Exception sending command: %s", e)
+            import traceback
+            _LOGGER.error("[Alta80] Traceback: %s", traceback.format_exc())
             return False

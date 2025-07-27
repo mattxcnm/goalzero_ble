@@ -138,47 +138,78 @@ class GoalZeroBLEManager:
         Returns:
             True if command was sent successfully
         """
+        _LOGGER.info("[BLEManager] send_command: Connected=%s, Client=%s", self._connected, self._client is not None)
+        _LOGGER.info("[BLEManager] Command data type: %s", type(command_data).__name__)
         if not self._connected or not self._client:
-            _LOGGER.error("Not connected to device %s", self.address)
+            _LOGGER.error("[BLEManager] Not connected to device %s (connected: %s, client: %s)", self.address, self._connected, self._client is not None)
             return False
-
         try:
-            # Discover write characteristic dynamically
-            write_char = await self._find_write_characteristic()
-            if not write_char:
-                _LOGGER.error("No write characteristic found for device %s", self.address)
-                return False
-
-            # Convert command to bytes if it's a hex string
             if isinstance(command_data, str):
                 command_bytes = bytes.fromhex(command_data)
                 command_hex = command_data
             else:
                 command_bytes = command_data
-                command_hex = command_data.hex()
-
-            # Send command
-            await self._client.write_gatt_char(write_char, command_bytes)
-            _LOGGER.debug("Sent command to %s: %s", self.address, command_hex)
+                command_hex = command_data.hex().upper()
+            _LOGGER.info("[BLEManager] Command to send: %s (%d bytes)", command_hex, len(command_bytes))
+            write_char = await self._find_write_characteristic()
+            if not write_char:
+                _LOGGER.error("[BLEManager] No write characteristic found for device %s", self.address)
+                if self._client:
+                    _LOGGER.error("[BLEManager] Available characteristics:")
+                    services = self._client.services
+                    for service in services.services.values():
+                        _LOGGER.error("  Service: %s", service.uuid)
+                        for char in service.characteristics:
+                            _LOGGER.error("    Char: %s (Handle: 0x%04X, Properties: %s)", char.uuid, char.handle, char.properties)
+                return False
+            _LOGGER.info("[BLEManager] Using write characteristic: %s (Handle: 0x%04X, Properties: %s)", write_char.uuid, write_char.handle, write_char.properties)
+            if 'write-without-response' in write_char.properties:
+                _LOGGER.info("[BLEManager] Using write-without-response")
+                await self._client.write_gatt_char(write_char, command_bytes, response=False)
+            elif 'write' in write_char.properties:
+                _LOGGER.info("[BLEManager] Using write-with-response")
+                await self._client.write_gatt_char(write_char, command_bytes, response=True)
+            else:
+                _LOGGER.error("[BLEManager] Characteristic doesn't support writing")
+                return False
+            _LOGGER.info("[BLEManager] Command sent successfully to %s: %s", self.address, command_hex)
             return True
-            
         except Exception as e:
-            _LOGGER.error("Failed to send command to %s: %s", self.address, e)
+            _LOGGER.error("[BLEManager] Failed to send command to %s: %s", self.address, e)
+            import traceback
+            _LOGGER.error("[BLEManager] Traceback: %s", traceback.format_exc())
             return False
 
     async def _find_write_characteristic(self):
-        """Find a characteristic suitable for writing commands."""
+        """Find a characteristic suitable for writing commands, with debug logging."""
         if not self._client:
+            _LOGGER.error("_find_write_characteristic: No BLE client available!")
             return None
-            
+
         services = self._client.services
+        found_chars = []
         for service in services.services.values():
+            _LOGGER.debug("Scanning service: %s", service.uuid)
             for char in service.characteristics:
+                _LOGGER.debug("Characteristic: %s (Handle: 0x%04X, Properties: %s)", char.uuid, char.handle, char.properties)
                 properties = char.properties
                 if 'write' in properties or 'write-without-response' in properties:
-                    _LOGGER.debug("Found write characteristic: 0x%04X with properties %s", char.handle, properties)
-                    return char
-        return None
+                    _LOGGER.info("Found write characteristic: %s (Handle: 0x%04X, Properties: %s)", char.uuid, char.handle, properties)
+                    found_chars.append(char)
+        if not found_chars:
+            _LOGGER.error("No write characteristic found! Available characteristics:")
+            for service in services.services.values():
+                for char in service.characteristics:
+                    _LOGGER.error("  Char: %s (Handle: 0x%04X, Properties: %s)", char.uuid, char.handle, char.properties)
+            return None
+        # Prefer write-without-response if available
+        for char in found_chars:
+            if 'write-without-response' in char.properties:
+                _LOGGER.info("Using write-without-response characteristic: %s (Handle: 0x%04X)", char.uuid, char.handle)
+                return char
+        # Otherwise, use first found
+        _LOGGER.info("Using first found write characteristic: %s (Handle: 0x%04X)", found_chars[0].uuid, found_chars[0].handle)
+        return found_chars[0]
 
     async def _find_notify_characteristic(self):
         """Find a characteristic suitable for notifications."""
@@ -314,19 +345,27 @@ class GoalZeroBLEManager:
         Returns:
             True if command was sent successfully
         """
+        _LOGGER.info("[BLEManager] send_command_to_device: Target device name: %s, Manager address: %s", device_name, self.address)
         try:
-            # Connect to device if not already connected
             if not self._connected:
+                _LOGGER.warning("[BLEManager] Device not connected, attempting connection...")
                 success = await self.ensure_connected()
                 if not success:
-                    _LOGGER.error("Failed to connect to device %s for command", device_name)
+                    _LOGGER.error("[BLEManager] Failed to connect to device %s for command", device_name)
                     return False
-            
-            # Send the command
-            return await self.send_command(command_data)
-            
+                _LOGGER.info("[BLEManager] Successfully connected for command send")
+            else:
+                _LOGGER.info("[BLEManager] Device already connected")
+            result = await self.send_command(command_data)
+            if result:
+                _LOGGER.info("[BLEManager] Command sent to %s successfully!", device_name)
+            else:
+                _LOGGER.error("[BLEManager] Command send failed for %s!", device_name)
+            return result
         except Exception as e:
-            _LOGGER.error("Error sending command to device %s: %s", device_name, e)
+            _LOGGER.error("[BLEManager] Exception sending command to device %s: %s", device_name, e)
+            import traceback
+            _LOGGER.error("[BLEManager] Traceback: %s", traceback.format_exc())
             return False
 
     @property

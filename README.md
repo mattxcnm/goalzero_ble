@@ -141,10 +141,14 @@ The Alta 80 provides comprehensive monitoring through 36 status bytes:
 - **External Temperature** (`sensor.alta80_temp_external`): External temperature sensor (°C)
 
 #### 📈 Raw Data Sensors
-- **Status Byte 0-35** (`sensor.alta80_byte_0` to `sensor.alta80_byte_35`): Raw status bytes
+- **Status Byte 0-35** (`sensor.alta80_byte_0` to `sensor.alta80_byte_35`): Raw status bytes for line graphs
   - State class: `measurement` (enables line graphs in Lovelace)
   - Filters out static `0xFE` bytes
   - Includes signed integer decoding for temperature bytes
+- **Status Byte 0-35 Discrete** (`sensor.alta80_byte_0_discrete` to `sensor.alta80_byte_35_discrete`): Raw status bytes for discrete visualization
+  - No state class (enables horizontal bar chart history)
+  - Same data as line graph version but optimized for discrete value visualization
+  - Ideal for history cards showing state changes over time
 
 #### 🔘 Controls & Setpoints
 
@@ -154,8 +158,8 @@ The Alta 80 provides comprehensive monitoring through 36 status bytes:
 - **Battery Protection** (`select.alta80_battery_protection`): Set protection level (Low, Medium, High)
 
 **Temperature Controls:**
-- **Zone 1 Setpoint** (`number.alta80_zone1_setpoint`): Temperature slider control (-5°F to 68°F)
-- **Zone 2 Setpoint** (`number.alta80_zone2_setpoint`): Temperature slider control (0°F to 35°F)
+- **Zone 1 Setpoint** (`number.alta80_zone1_setpoint`): Temperature slider control (-4°F to 68°F)
+- **Zone 2 Setpoint** (`number.alta80_zone2_setpoint`): Temperature slider control (-4°F to 68°F)
 
 **Data Refresh:**
 - **Refresh Data** (`button.alta80_refresh`): Manually refresh device status
@@ -670,8 +674,8 @@ The integration automatically decodes several key values from the raw bytes:
 
 - **Zone 1 Temperature (Byte 18)**: Signed integer representing current temperature in Celsius
 - **Zone 2 Temperature (Byte 35)**: Signed integer representing current temperature in Celsius  
-- **Zone 1 Setpoint (Byte 8)**: Signed integer representing target temperature in Fahrenheit (-5°F to 68°F)
-- **Zone 2 Setpoint (Byte 22)**: Signed integer representing target temperature in Fahrenheit (0°F to 35°F)
+- **Zone 1 Setpoint (Byte 8)**: Signed integer representing target temperature in Fahrenheit (-4°F to 68°F)
+- **Zone 2 Setpoint (Byte 22)**: Signed integer representing target temperature in Fahrenheit (-4°F to 68°F)
 
 ##### Status Indicators
 
