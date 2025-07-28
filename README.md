@@ -8,17 +8,19 @@ A Home Assistant HACS integration for Goal Zero BLE devices, providing wireless 
 > [!IMPORTANT]
 > Review Legal Disclaimer prior to use of this integration.
 
-
 ## 📋 Table of Contents
 
-- [Features](#-features)
-- [Supported Devices](#-supported-devices)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Sensors and Entities](#-sensors-and-entities)
-- [Architecture](#-architecture)
-- [Development](#-development)
-- [Contributing](#-contributing)
+- [Features](#✨-features)
+- [Supported Devices](#🔌-supported-devices)
+- [Installation](#📦-installation)
+- [Configuration](#⚙️-configuration)
+- [Sensors and Entities](#📊-sensors-and-entities)
+- [Architecture](#🏗️-architecture)
+- [Development](#💻-development)
+- [Contributing](#🤝-contributing)
+- [Status Response Protocol Details](#status-response-protocol-details)
+- [Acknowledgments](#🙏-acknowledgments)
+- [License](#📄-license)
 - [Legal Disclaimer](#-legal-disclaimer)
 
 ## ✨ Features
@@ -423,9 +425,7 @@ Contributions are greatly appreciated! Here's how you can help:
    - Performance benchmarking
    - Automated testing framework
 
-## 📄 License
 
-This project is licensed under the CC BY-NC-SA 4.0 [Attribution-NonCommercial-ShareAlike](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
 
 ## Status Response Protocol Details
 
@@ -547,7 +547,7 @@ The device accepts various control commands that modify setpoint values:
 
 1. **Error Codes**: Identifying fault and diagnostic information
 
-## �🙏 Acknowledgments
+## 🙏 Acknowledgments
 
 - **Home Assistant Community**: For the excellent platform and development tools
 - **Goal Zero**: For creating innovative portable power solutions
@@ -560,6 +560,10 @@ The device accepts various control commands that modify setpoint values:
 **⭐ If this integration helps you monitor your Goal Zero devices, please give it a star!**
 
 For support, feature requests, or bug reports, please [open an issue](https://github.com/mattxcnm/goalzero_ble/issues) on GitHub.
+
+## 📄 License
+
+This project is licensed under the CC BY-NC-SA 4.0 [Attribution-NonCommercial-ShareAlike](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
 
 ## ⚖️ Legal Disclaimer
 
