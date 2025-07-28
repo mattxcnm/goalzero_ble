@@ -3,7 +3,7 @@
 ## What Has Been Implemented
 
 ### ✅ Device Detection & Auto-Discovery
-- **Pattern Recognition**: Yeti 500 devices are automatically detected by name pattern `gzy5c-[A-F0-9]{12}`
+- **Pattern Recognition**: Yeti 500 devices are automatically detected by name pattern `gzy5c-[A-F0-9]{6}`
 - **Case Insensitive**: Works with any case combination (e.g., `GZY5C-AABBCCDDEEFF`, `gzy5c-aabbccddeeff`)
 - **Validation**: Invalid device names are properly rejected
 - **Registry Integration**: Fully integrated with the existing device registry system

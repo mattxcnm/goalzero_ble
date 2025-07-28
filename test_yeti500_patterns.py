@@ -7,7 +7,7 @@ Tests only the device name pattern matching without Home Assistant dependencies.
 import re
 
 # Yeti 500 pattern from const.py
-YETI500_PATTERN = re.compile(r"^gzy5c-[A-F0-9]{12}$", re.IGNORECASE)
+YETI500_PATTERN = re.compile(r"^gzy5c-[A-F0-9]{6}$", re.IGNORECASE)
 
 def test_yeti500_patterns():
     """Test Yeti 500 device name pattern detection."""
@@ -15,25 +15,26 @@ def test_yeti500_patterns():
     
     # Test valid Yeti 500 device names
     valid_names = [
-        "gzy5c-1A2B3C4D5E6F",
-        "gzy5c-AABBCCDDEEFF", 
-        "gzy5c-123456789ABC",
-        "GZY5C-1A2B3C4D5E6F",  # Test case insensitive
-        "gzy5c-000000000000",  # All zeros
-        "gzy5c-FFFFFFFFFFFF",  # All F's
-        "gzy5c-1A2B3C4D5E6f",  # Mixed case hex
+        "gzy5c-74dbb4",  # Real device example
+        "gzy5c-1A2B3C",
+        "gzy5c-AABBCC", 
+        "gzy5c-123456",
+        "GZY5C-1A2B3C",  # Test case insensitive
+        "gzy5c-000000",  # All zeros
+        "gzy5c-FFFFFF",  # All F's
+        "gzy5c-1A2b3c",  # Mixed case hex
     ]
     
     # Test invalid device names
     invalid_names = [
-        "gzy5c-123",  # Too short (3 chars instead of 12)
-        "gzy5c-1A2B3C4D5E6FG",  # Too long (13 chars instead of 12)
-        "gzy5c-1A2B3C4D5E6",  # Too short (11 chars)
-        "gzy5d-1A2B3C4D5E6F",  # Wrong prefix (gzy5d instead of gzy5c)
+        "gzy5c-123",  # Too short (3 chars instead of 6)
+        "gzy5c-1A2B3C4",  # Too long (7 chars instead of 6)
+        "gzy5c-1A2B3",  # Too short (5 chars)
+        "gzy5d-74dbb4",  # Wrong prefix (gzy5d instead of gzy5c)
         "gzf1-80-1A2B3C",  # Alta 80 pattern
         "random-device-name",
         "gzy5c-",  # Missing hex part
-        "gzy5c-GGGGGGGGGGGG",  # Invalid hex characters
+        "gzy5c-GGGGGG",  # Invalid hex characters
     ]
     
     print("Testing VALID device names:")
@@ -69,7 +70,7 @@ def test_config_flow_preview():
     """Test how the device would appear in the Home Assistant config flow."""
     print("\n=== Testing Config Flow Preview ===")
     
-    device_name = "gzy5c-AABBCCDDEEFF"
+    device_name = "gzy5c-74dbb4"  # Real device example
     model = "Yeti 500"  # From YETI_500_MODEL constant
     address = "AA:BB:CC:DD:EE:FF"
     
@@ -104,7 +105,7 @@ def main():
             print("Yeti 500 device pattern detection is working correctly!")
             print("\nWhat this means:")
             print("1. ✅ Auto-discovery will correctly identify Yeti 500 devices")
-            print("2. ✅ Device names matching 'gzy5c-XXXXXXXXXXXX' will be detected")
+            print("2. ✅ Device names matching 'gzy5c-XXXXXX' will be detected")
             print("3. ✅ The Home Assistant config flow will show 'Yeti 500 (gzy5c-...)' ")
             print("4. ✅ Invalid device names will be properly rejected")
             print("\nNext steps:")

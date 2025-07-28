@@ -26,7 +26,7 @@ class DeviceRegistry:
 
     _DEVICE_PATTERNS = {
         DEVICE_TYPE_ALTA80: re.compile(r"^gzf1-80-[A-F0-9]{6}$", re.IGNORECASE),
-        DEVICE_TYPE_YETI500: re.compile(r"^gzy5c-[A-F0-9]{12}$", re.IGNORECASE),
+        DEVICE_TYPE_YETI500: re.compile(r"^gzy5c-[A-F0-9]{6}$", re.IGNORECASE),
     }
 
     _DEVICE_CLASSES = {

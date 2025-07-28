@@ -9,7 +9,7 @@
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/mattxcnm/goalzero_ble/issues",
   "requirements": ["bleak>=0.21.0"],
-  "version": "1.0.17",
+  "version": "1.0.18",
   "bluetooth": [
     {
       "local_name": "gzf1-80-*"

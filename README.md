@@ -42,7 +42,7 @@ A Home Assistant HACS integration for Goal Zero BLE devices, providing wireless 
 ### Device Detection Patterns
 
 - **Alta 80**: Devices with names matching `gzf1-80-[A-F0-9]{6}` (e.g., `gzf1-80-1A2B3C`)
-- **Yeti 500**: Devices with names matching `gzy5c-[A-F0-9]{12}` (e.g., `gzy5c-1A2B3C4D5E6F`)
+- **Yeti 500**: Devices with names matching `gzy5c-[A-F0-9]{6}` (e.g., `gzy5c-74dbb4`)
 
 
 ## 📦 Installation
