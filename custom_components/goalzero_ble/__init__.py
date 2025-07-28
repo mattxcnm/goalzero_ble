@@ -16,11 +16,11 @@ from .device_registry import DeviceRegistry
 _LOGGER = logging.getLogger(__name__)
 
 PLATFORMS: list[Platform] = [
-    Platform.SENSOR, 
-    Platform.BUTTON, 
-    Platform.NUMBER, 
-    Platform.SWITCH, 
-    Platform.SELECT
+    Platform.SENSOR,
+    Platform.BUTTON,
+    Platform.SWITCH,
+    Platform.SELECT,
+    Platform.NUMBER
 ]
 
 

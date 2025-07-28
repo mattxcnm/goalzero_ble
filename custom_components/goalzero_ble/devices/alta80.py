@@ -31,220 +31,28 @@ class Alta80Device(GoalZeroDevice):
         """Return list of sensor definitions for this device."""
         sensors = []
         
-        # Raw status bytes (0-35, exactly 36 bytes total)
-        # Create two entities for each byte: one for line graphs, one for discrete values
-        # Skip bytes that are always 0xFE (254) as they don't change
-        fe_bytes = {0, 1, 13, 14, 19, 20, 25, 26}  # Adjust based on your observations
-        
-        for i in range(36):  # Exactly 36 bytes in concatenated response
-            # Skip 0xFE bytes that don't change
-            if i in fe_bytes:
-                continue
-                
-            # Special handling for temperature and setpoint bytes (signed integers)
-            if i == 8:  # Zone 1 setpoint
-                # Line graph version
-                sensors.append({
-                    "key": f"status_byte_{i}",
-                    "name": f"Status Byte {i} (Zone 1 Setpoint Raw)",
-                    "device_class": None,
-                    "state_class": SensorStateClass.MEASUREMENT,
-                    "unit": None,
-                    "icon": "mdi:thermometer-chevron-up",
-                })
-                # Discrete values version
-                sensors.append({
-                    "key": f"status_byte_{i}_discrete",
-                    "name": f"Status Byte {i} (Zone 1 Setpoint Raw) - Discrete",
-                    "device_class": None,
-                    "state_class": None,
-                    "unit": None,
-                    "icon": "mdi:thermometer-chevron-up",
-                })
-            elif i == 18:  # Zone 1 temperature
-                # Line graph version
-                sensors.append({
-                    "key": f"status_byte_{i}",
-                    "name": f"Status Byte {i} (Zone 1 Temp Raw)",
-                    "device_class": None,
-                    "state_class": SensorStateClass.MEASUREMENT,
-                    "unit": None,
-                    "icon": "mdi:thermometer-lines",
-                })
-                # Discrete values version
-                sensors.append({
-                    "key": f"status_byte_{i}_discrete",
-                    "name": f"Status Byte {i} (Zone 1 Temp Raw) - Discrete",
-                    "device_class": None,
-                    "state_class": None,
-                    "unit": None,
-                    "icon": "mdi:thermometer-lines",
-                })
-            elif i == 22:  # Zone 2 setpoint
-                # Line graph version
-                sensors.append({
-                    "key": f"status_byte_{i}",
-                    "name": f"Status Byte {i} (Zone 2 Setpoint Raw)",
-                    "device_class": None,
-                    "state_class": SensorStateClass.MEASUREMENT,
-                    "unit": None,
-                    "icon": "mdi:thermometer-chevron-up",
-                })
-                # Discrete values version
-                sensors.append({
-                    "key": f"status_byte_{i}_discrete",
-                    "name": f"Status Byte {i} (Zone 2 Setpoint Raw) - Discrete",
-                    "device_class": None,
-                    "state_class": None,
-                    "unit": None,
-                    "icon": "mdi:thermometer-chevron-up",
-                })
-            elif i == 35:  # Zone 2 temperature
-                # Line graph version
-                sensors.append({
-                    "key": f"status_byte_{i}",
-                    "name": f"Status Byte {i} (Zone 2 Temp Raw)",
-                    "device_class": None,
-                    "state_class": SensorStateClass.MEASUREMENT,
-                    "unit": None,
-                    "icon": "mdi:thermometer-lines",
-                })
-                # Discrete values version
-                sensors.append({
-                    "key": f"status_byte_{i}_discrete",
-                    "name": f"Status Byte {i} (Zone 2 Temp Raw) - Discrete",
-                    "device_class": None,
-                    "state_class": None,
-                    "unit": None,
-                    "icon": "mdi:thermometer-lines",
-                })
-            else:
-                # Regular numeric bytes - line graph version
-                sensors.append({
-                    "key": f"status_byte_{i}",
-                    "name": f"Status Byte {i}",
-                    "device_class": None,
-                    "state_class": SensorStateClass.MEASUREMENT,  # Enable line graphs
-                    "unit": None,
-                    "icon": "mdi:hexadecimal",
-                })
-                # Regular numeric bytes - discrete version
-                sensors.append({
-                    "key": f"status_byte_{i}_discrete",
-                    "name": f"Status Byte {i} - Discrete",
-                    "device_class": None,
-                    "state_class": None,  # No state class for discrete values
-                    "unit": None,
-                    "icon": "mdi:hexadecimal",
-                })
-        
-        # Decoded sensors for known bytes
-        sensors.extend([
-            {
-                "key": "zone_1_temp",
-                "name": "Zone 1 Temperature",
-                "device_class": SensorDeviceClass.TEMPERATURE,
-                "state_class": SensorStateClass.MEASUREMENT,
-                "unit": UnitOfTemperature.CELSIUS,
-                "icon": "mdi:thermometer",
-            },
-            {
-                "key": "zone_2_temp", 
-                "name": "Zone 2 Temperature",
-                "device_class": SensorDeviceClass.TEMPERATURE,
-                "state_class": SensorStateClass.MEASUREMENT,
-                "unit": UnitOfTemperature.CELSIUS,
-                "icon": "mdi:thermometer",
-            },
-            {
-                "key": "zone_1_setpoint",
-                "name": "Zone 1 Temperature Setpoint",
-                "device_class": SensorDeviceClass.TEMPERATURE,
-                "state_class": SensorStateClass.MEASUREMENT,
-                "unit": UnitOfTemperature.FAHRENHEIT,
-                "icon": "mdi:thermometer-chevron-up",
-            },
-            {
-                "key": "zone_2_setpoint",
-                "name": "Zone 2 Temperature Setpoint", 
-                "device_class": SensorDeviceClass.TEMPERATURE,
-                "state_class": SensorStateClass.MEASUREMENT,
-                "unit": UnitOfTemperature.FAHRENHEIT,
-                "icon": "mdi:thermometer-chevron-up",
-            },
-            {
-                "key": "zone_1_setpoint_exceeded",
-                "name": "Zone 1 Setpoint Exceeded",
-                "device_class": None,
-                "state_class": None,
-                "unit": None,
-                "icon": "mdi:alert-circle",
-            },
-            {
-                "key": "zone_2_temp_high_res",
-                "name": "Zone 2 Temperature (High Res)",
-                "device_class": SensorDeviceClass.TEMPERATURE,
-                "state_class": SensorStateClass.MEASUREMENT,
-                "unit": UnitOfTemperature.CELSIUS,
-                "icon": "mdi:thermometer",
-            },
-            {
-                "key": "compressor_state_a",
-                "name": "Compressor State A",
-                "device_class": None,
-                "state_class": None,
-                "unit": None,
-                "icon": "mdi:hvac",
-            },
-            {
-                "key": "compressor_state_b",
-                "name": "Compressor State B",
-                "device_class": None,
-                "state_class": None,
-                "unit": None,
-                "icon": "mdi:hvac",
-            },
-            {
-                "key": "concatenated_response",
-                "name": "Full Status Response",
-                "device_class": None,
-                "state_class": None,
-                "unit": None,
-                "icon": "mdi:code-string",
-            },
-            {
-                "key": "response_length",
-                "name": "Response Length",
+        # Create dual entities for each byte (0-35) - measurement and discrete versions
+        # Based on updated byte mapping from protocol analysis
+        for i in range(36):
+            # Regular entity for line graphs
+            sensors.append({
+                "key": f"status_byte_{i}",
+                "name": f"Status Byte {i}",
                 "device_class": None,
                 "state_class": SensorStateClass.MEASUREMENT,
-                "unit": "bytes",
-                "icon": "mdi:counter",
-            },
-            {
-                "key": "power_on",
-                "name": "Power State",
+                "unit": None,
+                "icon": "mdi:database"
+            })
+            
+            # Discrete entity for bar charts
+            sensors.append({
+                "key": f"status_byte_{i}_discrete",
+                "name": f"Status Byte {i} (Discrete)",
                 "device_class": None,
                 "state_class": None,
                 "unit": None,
-                "icon": "mdi:power",
-            },
-            {
-                "key": "eco_mode",
-                "name": "Eco Mode State",
-                "device_class": None,
-                "state_class": None,
-                "unit": None,
-                "icon": "mdi:leaf",
-            },
-            {
-                "key": "battery_protection",
-                "name": "Battery Protection Level",
-                "device_class": None,
-                "state_class": None,
-                "unit": None,
-                "icon": "mdi:battery-heart",
-            },
-        ])
+                "icon": "mdi:chart-bar"
+            })
         
         return sensors
 
@@ -255,6 +63,7 @@ class Alta80Device(GoalZeroDevice):
                 "key": "refresh",
                 "name": "Refresh Data",
                 "icon": "mdi:refresh",
+                "command": self._generate_refresh_command,
             },
         ]
 
@@ -262,14 +71,10 @@ class Alta80Device(GoalZeroDevice):
         """Return list of switch definitions for this device."""
         return [
             {
-                "key": "power",
-                "name": "Power",
-                "icon": "mdi:power",
-            },
-            {
                 "key": "eco_mode",
                 "name": "Eco Mode",
                 "icon": "mdi:leaf",
+                "command": self._generate_eco_mode_command,
             },
         ]
 
@@ -281,6 +86,7 @@ class Alta80Device(GoalZeroDevice):
                 "name": "Battery Protection",
                 "icon": "mdi:battery-heart",
                 "options": ["Low", "Medium", "High"],
+                "command": self._generate_battery_protection_command,
             },
         ]
 
@@ -296,9 +102,10 @@ class Alta80Device(GoalZeroDevice):
                 "step": 1,
                 "unit": UnitOfTemperature.FAHRENHEIT,
                 "mode": "slider",
+                "command": self._generate_zone1_setpoint_command,
             },
             {
-                "key": "zone2_setpoint", 
+                "key": "zone2_setpoint",
                 "name": "Zone 2 Temperature Setpoint",
                 "icon": "mdi:thermometer",
                 "min_value": -4,
@@ -306,6 +113,7 @@ class Alta80Device(GoalZeroDevice):
                 "step": 1,
                 "unit": UnitOfTemperature.FAHRENHEIT,
                 "mode": "slider",
+                "command": self._generate_zone2_setpoint_command,
             },
         ]
 
@@ -625,21 +433,12 @@ class Alta80Device(GoalZeroDevice):
             data[f"status_byte_{i}"] = None
             data[f"status_byte_{i}_discrete"] = None
         
-        # Initialize decoded values
+        # Initialize control state values based on byte mappings
         data.update({
-            "zone_1_temp": None,
-            "zone_2_temp": None,
-            "zone_1_setpoint": None,
-            "zone_2_setpoint": None,
-            "zone_1_setpoint_exceeded": None,
-            "zone_2_temp_high_res": None,
-            "compressor_state_a": None,
-            "compressor_state_b": None,
-            "concatenated_response": None,
-            "response_length": None,
-            "power_on": False,
-            "eco_mode": False,
-            "battery_protection": "low",
+            "eco_mode": False,  # From byte 6
+            "battery_protection": "Low",  # From byte 7
+            "zone1_setpoint": None,  # From byte 8 (signed)
+            "zone2_setpoint": None,  # From byte 22 (signed)
         })
         
         return data
@@ -651,11 +450,9 @@ class Alta80Device(GoalZeroDevice):
         try:
             # Concatenate all responses
             concatenated_response = "".join(responses)
-            parsed_data["concatenated_response"] = concatenated_response
             
             # Convert to bytes
             all_bytes = bytes.fromhex(concatenated_response)
-            parsed_data["response_length"] = len(all_bytes)
             
             _LOGGER.debug("Parsing %d total bytes from concatenated response", len(all_bytes))
             
@@ -665,101 +462,51 @@ class Alta80Device(GoalZeroDevice):
                     # Store both versions: one for line graphs, one for discrete values
                     parsed_data[f"status_byte_{i}"] = byte_val
                     parsed_data[f"status_byte_{i}_discrete"] = byte_val
+                    
+                    # Log known byte meanings based on updated protocol table
+                    if i == 6:
+                        # Byte 6: Eco Mode (1 = on, 0 = off)
+                        parsed_data["eco_mode"] = bool(byte_val == 1)
+                        _LOGGER.debug("Byte 6 (Eco Mode): %s (raw: %d)", parsed_data["eco_mode"], byte_val)
+                    elif i == 7:
+                        # Byte 7: Battery Protection (0 = low, 1 = medium, 2 = high)
+                        if byte_val == 0:
+                            parsed_data["battery_protection"] = "Low"
+                        elif byte_val == 1:
+                            parsed_data["battery_protection"] = "Medium"
+                        else:
+                            parsed_data["battery_protection"] = "High"
+                        _LOGGER.debug("Byte 7 (Battery Protection): %s (raw: %d)", parsed_data["battery_protection"], byte_val)
+                    elif i == 8:
+                        # Zone 1 setpoint (signed int, °F)
+                        signed_val = byte_val if byte_val <= 127 else byte_val - 256
+                        parsed_data["zone1_setpoint"] = signed_val
+                        _LOGGER.debug("Byte 8 (Zone 1 Setpoint): %d°F (raw: %d)", signed_val, byte_val)
+                    elif i == 9:
+                        # Max setpoint (signed int, °F)
+                        signed_val = byte_val if byte_val <= 127 else byte_val - 256
+                        _LOGGER.debug("Byte 9 (Max Setpoint): %d°F (raw: %d)", signed_val, byte_val)
+                    elif i == 18:
+                        # Zone 1 temperature (signed int, °C)
+                        signed_val = byte_val if byte_val <= 127 else byte_val - 256
+                        _LOGGER.debug("Byte 18 (Zone 1 Temperature): %d°C (raw: %d)", signed_val, byte_val)
+                    elif i == 22:
+                        # Zone 2 setpoint (signed int, °F)
+                        signed_val = byte_val if byte_val <= 127 else byte_val - 256
+                        parsed_data["zone2_setpoint"] = signed_val
+                        _LOGGER.debug("Byte 22 (Zone 2 Setpoint): %d°F (raw: %d)", signed_val, byte_val)
+                    elif i == 34:
+                        _LOGGER.debug("Byte 34 (Zone 1 Setpoint Exceeded): %d", byte_val)
+                    elif i == 35:
+                        # Zone 2 temperature (signed int, °C)
+                        signed_val = byte_val if byte_val <= 127 else byte_val - 256
+                        _LOGGER.debug("Byte 35 (Zone 2 Temperature): %d°C (raw: %d)", signed_val, byte_val)
             
             # Validate expected response length
             if len(all_bytes) != 36:
                 _LOGGER.warning("Expected 36 bytes, got %d bytes in response", len(all_bytes))
             
-            # Parse known decoded bytes
-            if len(all_bytes) > 8:
-                # Byte 8: Zone 1 temperature setpoint (signed integer, Fahrenheit)
-                zone_1_setpoint_raw = all_bytes[8]
-                if zone_1_setpoint_raw > 127:  # Convert to signed
-                    zone_1_setpoint_raw = zone_1_setpoint_raw - 256
-                parsed_data["zone_1_setpoint"] = zone_1_setpoint_raw
-                _LOGGER.debug("Zone 1 setpoint (byte 8): %d°F", zone_1_setpoint_raw)
-            
-            if len(all_bytes) > 18:
-                # Byte 18: Zone 1 temp (signed integer)
-                zone_1_temp_raw = all_bytes[18]
-                if zone_1_temp_raw > 127:  # Convert to signed
-                    zone_1_temp_raw = zone_1_temp_raw - 256
-                parsed_data["zone_1_temp"] = zone_1_temp_raw
-                _LOGGER.debug("Zone 1 temp (byte 18): %d°C", zone_1_temp_raw)
-            
-            if len(all_bytes) > 22:
-                # Byte 22: Zone 2 temperature setpoint (signed integer, Fahrenheit)
-                zone_2_setpoint_raw = all_bytes[22]
-                if zone_2_setpoint_raw > 127:  # Convert to signed
-                    zone_2_setpoint_raw = zone_2_setpoint_raw - 256
-                parsed_data["zone_2_setpoint"] = zone_2_setpoint_raw
-                _LOGGER.debug("Zone 2 setpoint (byte 22): %d°F", zone_2_setpoint_raw)
-            
-            if len(all_bytes) > 35:
-                # Byte 35: Zone 2 temp (signed integer)
-                zone_2_temp_raw = all_bytes[35]
-                if zone_2_temp_raw > 127:  # Convert to signed
-                    zone_2_temp_raw = zone_2_temp_raw - 256
-                parsed_data["zone_2_temp"] = zone_2_temp_raw
-                _LOGGER.debug("Zone 2 temp (byte 35): %d°C", zone_2_temp_raw)
-                
-                # Keep the high-res version for compatibility 
-                parsed_data["zone_2_temp_high_res"] = zone_2_temp_raw / 10.0 if zone_2_temp_raw != 0 else 0
-                _LOGGER.debug("Zone 2 temp high res (byte 35): %.1f", parsed_data["zone_2_temp_high_res"])
-            
-            if len(all_bytes) > 34:
-                # Byte 34: Zone 1 setpoint exceeded (boolean-ish)
-                setpoint_exceeded = all_bytes[34]
-                parsed_data["zone_1_setpoint_exceeded"] = bool(setpoint_exceeded)
-                _LOGGER.debug("Zone 1 setpoint exceeded (byte 34): %s", setpoint_exceeded)
-            
-            # Note: You mentioned "compressor state a" and "compressor state b" but didn't specify
-            # which bytes they are. I'll add placeholders that can be updated when the byte positions are known
-            # Since we only have 36 bytes (0-35), these would need to be within that range
-            # Control state parsing - extract current state of switches and selects
-            # These byte positions need to be determined through protocol analysis
-            if len(all_bytes) >= 36:  # Check we have all 36 bytes
-                
-                # Power state (placeholder - needs protocol analysis to identify correct byte)
-                # For now, using byte 4 as an example - replace with actual byte position
-                if len(all_bytes) > 4:
-                    power_byte = all_bytes[4]
-                    # Example logic: non-zero value might indicate power on
-                    parsed_data["power_on"] = bool(power_byte != 0)
-                    _LOGGER.debug("Power state (byte 4): %s (raw: %d)", parsed_data["power_on"], power_byte)
-                
-                # Eco mode state (placeholder - needs protocol analysis to identify correct byte)
-                # For now, using byte 5 as an example - replace with actual byte position
-                if len(all_bytes) > 5:
-                    eco_byte = all_bytes[5]
-                    # Example logic: specific bit or value might indicate eco mode
-                    parsed_data["eco_mode"] = bool(eco_byte & 0x01)  # Check lowest bit
-                    _LOGGER.debug("Eco mode state (byte 5): %s (raw: %d)", parsed_data["eco_mode"], eco_byte)
-                
-                # Battery protection level (placeholder - needs protocol analysis to identify correct byte)
-                # For now, using byte 6 as an example - replace with actual byte position
-                if len(all_bytes) > 6:
-                    protection_byte = all_bytes[6]
-                    # Example logic: different values might represent different protection levels
-                    if protection_byte <= 1:
-                        parsed_data["battery_protection"] = "low"
-                    elif protection_byte <= 2:
-                        parsed_data["battery_protection"] = "medium"
-                    else:
-                        parsed_data["battery_protection"] = "high"
-                    _LOGGER.debug("Battery protection (byte 6): %s (raw: %d)", 
-                                parsed_data["battery_protection"], protection_byte)
-                
-                # Compressor state tracking (keeping existing placeholders)
-                if len(all_bytes) > 34:  # Use byte 34 for compressor_state_a
-                    parsed_data["compressor_state_a"] = all_bytes[34]
-                    _LOGGER.debug("Compressor state A (byte 34): %d", all_bytes[34])
-                
-                if len(all_bytes) > 35:  # Use byte 35 for compressor_state_b (but this is temperature)
-                    parsed_data["compressor_state_b"] = all_bytes[35]
-                    _LOGGER.debug("Compressor state B (byte 35): %d", all_bytes[35])
-            
-            _LOGGER.debug("Successfully parsed Alta 80 status data with control states")
+            _LOGGER.debug("Successfully parsed all 36 status bytes")
             
         except Exception as e:
             _LOGGER.error("Error parsing Alta 80 status responses: %s", e)
@@ -981,3 +728,33 @@ class Alta80Device(GoalZeroDevice):
             import traceback
             _LOGGER.error("[Alta80] Traceback: %s", traceback.format_exc())
             return False
+    
+    # Command generation methods for entity platforms
+    
+    def _generate_eco_mode_command(self, enabled: bool) -> bytes:
+        """Generate eco mode command for switch entity."""
+        return self.create_eco_mode_command(enabled)
+    
+    def _generate_battery_protection_command(self, level: str) -> bytes:
+        """Generate battery protection command for select entity."""
+        # Map Home Assistant option names to command values
+        level_map = {
+            "Low": "low",
+            "Medium": "med", 
+            "High": "high"
+        }
+        command_level = level_map.get(level, "low")
+        return self.create_battery_protection_command(command_level)
+    
+    def _generate_zone1_setpoint_command(self, temp_f: float) -> bytes:
+        """Generate Zone 1 setpoint command for number entity."""
+        return self.create_zone1_temp_command(int(temp_f))
+    
+    def _generate_zone2_setpoint_command(self, temp_f: float) -> bytes:
+        """Generate Zone 2 setpoint command for number entity."""
+        return self.create_zone2_temp_command(int(temp_f))
+    
+    def _generate_refresh_command(self) -> bytes:
+        """Generate refresh command for button entity."""
+        # Return status request command
+        return bytes([0xFE, 0xFE, 0x03, 0x01, 0x02, 0x00])

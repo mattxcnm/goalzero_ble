@@ -93,49 +93,52 @@ The integration is configured through Home Assistant's UI:
 
 ### Alta 80 Sensors
 
-The Alta 80 provides comprehensive monitoring through 36 status bytes over BLE GATT:
-
-#### 🌡️ Temperature
-
-- Zone 1 & 2 set point temperature
-- Zone 1 & 2 actual temperature
+The Alta 80 provides comprehensive monitoring through 36 status bytes over BLE GATT, with both raw data and control entities available.
 
 #### 📈 Raw Data Sensors
 
 - **Status Byte 0-35** (`sensor.alta80_byte_0` to `sensor.alta80_byte_35`): Raw status bytes for line graphs
   - State class: `measurement` (enables line graphs in Lovelace)
-  - Filters out static `0xFE` bytes
-  - Includes signed integer decoding for temperature bytes
+  - Shows all 36 bytes including static protocol bytes
+  - Includes signed integer interpretation for temperature-related bytes
 - **Status Byte 0-35 Discrete** (`sensor.alta80_byte_0_discrete` to `sensor.alta80_byte_35_discrete`): Raw status bytes for discrete visualization
   - No state class (enables horizontal bar chart history)
   - Same data as line graph version but optimized for discrete value visualization
   - Ideal for history cards showing state changes over time
 
-#### 🔘 Controls & Set Points
+**Total: 72 entities** (36 measurement + 36 discrete)
 
-> [!WARNING]  
-> Currently, these controls are not functioning reliably. The current state of the device for some controls are also not available, so they will not update correctly in the UI.
+#### 🔘 Controls & Setpoints
 
 **System Controls:**
-
-- **Power** (`switch.alta80_power`): Turn device on/off
-- **Eco Mode** (`switch.alta80_eco_mode`): Enable/disable eco-mode
-- **Battery Protection** (`select.alta80_battery_protection`): Set protection level (Low, Medium, High)
+- **Eco Mode** (`switch.alta80_eco_mode`): Enable/disable eco mode (reads from byte 6)
+- **Battery Protection** (`select.alta80_battery_protection`): Set protection level (Low, Medium, High) (reads from byte 7)
 
 **Temperature Controls:**
-
-- **Zone 1 Set Point** (`number.alta80_zone1_setpoint`): Temperature slider control (-4 °F to 68 °F)
-- **Zone 2 Set Point** (`number.alta80_zone2_setpoint`): Temperature slider control (-4 °F to 68 °F)
+- **Zone 1 Setpoint** (`number.alta80_zone1_setpoint`): Temperature slider control (-4°F to 68°F) (reads from byte 8)
+- **Zone 2 Setpoint** (`number.alta80_zone2_setpoint`): Temperature slider control (-4°F to 68°F) (reads from byte 22)
 
 **Data Refresh:**
-
 - **Refresh Data** (`button.alta80_refresh`): Manually refresh device status
 
-**Note**: Control state parsing (power, eco mode, battery protection) currently uses placeholder byte positions in the status response. These need to be refined through protocol analysis to accurately reflect actual device states.
+#### Known Byte Meanings (Based on Protocol Analysis)
+
+- **Byte 6**: Eco Mode control state (1 = on, 0 = off)
+- **Byte 7**: Battery protection mode (0 = low, 1 = medium, 2 = high)
+- **Byte 8**: Left zone temperature setpoint (signed integer, °F)
+- **Byte 9**: Maximum temperature setpoint (signed integer, °F)
+- **Byte 18**: Left zone current temperature (signed integer, °C)
+- **Byte 22**: Right zone temperature setpoint (signed integer, °F)
+- **Byte 34**: Left zone setpoint exceeded flag (boolean)
+- **Byte 35**: Right zone current temperature (signed integer, °C)
+
+> [!NOTE]  
+> Control entities now read their current state from the correct bytes and can send commands to change device settings. The current state is extracted from the status response using the verified byte mappings.
 
 ### Entity Properties
 
 All sensors include:
+
 - **Device Info**: Manufacturer, model, firmware version, identifiers
 - **State Classes**: Proper classification for Lovelace graphs and statistics
 - **Units of Measurement**: Where applicable (%, W, V, °C)
@@ -143,10 +146,7 @@ All sensors include:
 
 ### Lovelace Cards
 
-Sensors support rich Lovelace visualizations:
-
 ```yaml
-# Example: Power and control card
 type: history-graph
 entities:
   - entity: sensor.gzf1_80_<serial number>_status_byte_2
@@ -446,42 +446,42 @@ The Alta 80 device provides comprehensive status information through a 36-byte r
 
 | Byte | Hex Range | Data Type | Description | Current Understanding | Unit |
 |------|-----------|-----------|-------------|---------------------|------|
-| 0 | 0x00 | Static | Header/Protocol | Always `0xFE` (254) | - |
-| 1 | 0x01 | Static | Header/Protocol | Always `0xFE` (254) | - |
+| 0 | 0x00 | Static | Protocol | Always `0xFE` (254) | - |
+| 1 | 0x01 | Static | Protocol | Always `0xFE` (254) | - |
 | 2 | 0x02 | Unknown | Protocol/Status | Variable data | - |
 | 3 | 0x03 | Unknown | System Status | Variable data | - |
-| 4 | 0x04 | Unknown | Device State | Variable data, may contain power state | - |
-| 5 | 0x05 | Unknown | System Flag | Variable data, may contain eco mode flag | - |
-| 6 | 0x06 | Unknown | Control State | Variable data, may contain battery protection level | - |
-| 7 | 0x07 | Unknown | System Data | Variable data | - |
-| **8** | **0x08** | **Signed Int** | **Zone 1 Setpoint** | **Temperature setpoint in °F** | **°F** |
-| 9 | 0x09 | Unknown | System Data | Variable data | - |
+| 4 | 0x04 | Unknown | Device State | Variable data | - |
+| 5 | 0x05 | Unknown | System Flag | Variable data | - |
+| 6 | 0x06 | Boolean | Control State | Eco-Mode on (1) / off (0) | N/A |
+| 7 | 0x07 | Binary | Control State | Battery protection mode low (0) / med (1) / high (2)| N/A |
+| 8 | 0x08 | Signed Int | Left Zone Set Point | Temperature set point | °F / °C |
+| 9 | 0x09 | Signed Int | System Data | Max temperature set point | °F / °C |
 | 10 | 0x0A | Unknown | System Data | Variable data | - |
 | 11 | 0x0B | Unknown | System Data | Variable data | - |
 | 12 | 0x0C | Unknown | System Data | Variable data | - |
-| 13 | 0x0D | Static | Protocol | Often `0xFE` (254) | - |
+| 13 | 0x0D | Unknown | System Data | Variable data | - |
 | 14 | 0x0E | Static | Protocol | Often `0xFE` (254) | - |
-| 15 | 0x0F | Unknown | System Data | Variable data | - |
+| 15 | 0x0F | Static | Protocol | Often `0xFE` (254) | - |
 | 16 | 0x10 | Unknown | System Data | Variable data | - |
 | 17 | 0x11 | Unknown | System Data | Variable data | - |
-| **18** | **0x12** | **Signed Int** | **Zone 1 Temperature** | **Current temperature in °C** | **°C** |
-| 19 | 0x13 | Static | Protocol | Often `0xFE` (254) | - |
-| 20 | 0x14 | Static | Protocol | Often `0xFE` (254) | - |
+| 18 | 0x12 | Signed Int | Left Zone Temperature | Current temperature | °F / °C |
+| 19 | 0x13 | Unknown | System Data | Variable data | - |
+| 20 | 0x14 | Unknown | System Data | Variable data | - |
 | 21 | 0x15 | Unknown | System Data | Variable data | - |
-| **22** | **0x16** | **Signed Int** | **Zone 2 Setpoint** | **Temperature setpoint in °F** | **°F** |
+| 22 | 0x16 | Signed Int | Right Zone Set Point| Temperature set point | °F / °C |
 | 23 | 0x17 | Unknown | System Data | Variable data | - |
 | 24 | 0x18 | Unknown | System Data | Variable data | - |
-| 25 | 0x19 | Static | Protocol | Often `0xFE` (254) | - |
+| 25 | 0x19 | Unknown | System Data | Variable data | - |
 | 26 | 0x1A | Static | Protocol | Often `0xFE` (254) | - |
-| 27 | 0x1B | Unknown | System Data | Variable data | - |
+| 27 | 0x1B | Static | Protocol | Often `0xFE` (254) | - |
 | 28 | 0x1C | Unknown | System Data | Variable data | - |
 | 29 | 0x1D | Unknown | System Data | Variable data | - |
 | 30 | 0x1E | Unknown | System Data | Variable data | - |
 | 31 | 0x1F | Unknown | System Data | Variable data | - |
 | 32 | 0x20 | Unknown | System Data | Variable data | - |
 | 33 | 0x21 | Unknown | System Data | Variable data | - |
-| **34** | **0x22** | **Boolean** | **Zone 1 Setpoint Exceeded** | **Temperature limit exceeded flag** | **-** |
-| **35** | **0x23** | **Signed Int** | **Zone 2 Temperature** | **Current temperature in °C** | **°C** |
+| 34 | 0x22 | Boolean | ? Left Zone Set Point Exceeded | ? Temperature limit exceeded flag | - |
+| 35 | 0x23 | Signed Int | Zone 2 Temperature | Current temperature | °F / °C |
 
 #### Known Decoded Values
 
