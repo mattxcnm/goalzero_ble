@@ -37,10 +37,20 @@ async def async_setup_entry(
         # For status byte sensors, only create them if they have data or are decoded sensors
         sensor_key = sensor_def["key"]
         if sensor_key.startswith("status_byte_"):
-            # Only create byte sensors for the 36 bytes (0-35) 
-            byte_num = int(sensor_key.split("_")[-1])
-            if byte_num < 36:  # Exactly 36 bytes (0-35) in Alta 80 response
-                entities.append(GoalZeroSensor(coordinator, sensor_def))
+            # Handle both regular and discrete byte sensors
+            if "_discrete" in sensor_key:
+                # Extract byte number from "status_byte_X_discrete"
+                byte_num_str = sensor_key.split("_")[2]  # Get the X from status_byte_X_discrete
+            else:
+                # Extract byte number from "status_byte_X"
+                byte_num_str = sensor_key.split("_")[-1]  # Get the X from status_byte_X
+                
+            try:
+                byte_num = int(byte_num_str)
+                if byte_num < 36:  # Exactly 36 bytes (0-35) in Alta 80 response
+                    entities.append(GoalZeroSensor(coordinator, sensor_def))
+            except ValueError:
+                _LOGGER.error("Could not parse byte number from sensor key: %s", sensor_key)
         else:
             # Always create non-byte sensors (decoded values, etc.)
             entities.append(GoalZeroSensor(coordinator, sensor_def))

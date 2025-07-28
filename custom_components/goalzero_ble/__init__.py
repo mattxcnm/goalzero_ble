@@ -46,8 +46,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         # Create coordinator
         coordinator = GoalZeroCoordinator(hass, entry)
         
-        # Perform first refresh
-        await coordinator.async_config_entry_first_refresh()
+        # Set up persistent connection and perform first refresh
+        await coordinator.async_setup()
         
         # Store coordinator
         hass.data.setdefault(DOMAIN, {})[entry.entry_id] = coordinator

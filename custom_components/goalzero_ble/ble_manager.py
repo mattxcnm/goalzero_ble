@@ -30,9 +30,12 @@ class GoalZeroBLEManager:
         self._device: Optional[BLEDevice] = None
         self._connected = False
         self._connection_lock = asyncio.Lock()
+        self._reconnect_task: Optional[asyncio.Task] = None
+        self._should_maintain_connection = True
+        self._connection_lost_callback = None
         
         _LOGGER.debug(
-            "Initialized BLE manager for %s (%s) with dynamic GATT discovery",
+            "Initialized BLE manager for %s (%s) with persistent connection support",
             self.address, self.device_type
         )
 
@@ -86,7 +89,7 @@ class GoalZeroBLEManager:
                 return False
                 
             _LOGGER.debug("Attempting to connect to %s (%s)", self._device.name, self.address)
-            self._client = BleakClient(self._device)
+            self._client = BleakClient(self._device, disconnected_callback=self._on_disconnect)
             
             # Use asyncio.wait_for with proper timeout handling
             await asyncio.wait_for(
@@ -367,6 +370,64 @@ class GoalZeroBLEManager:
             import traceback
             _LOGGER.error("[BLEManager] Traceback: %s", traceback.format_exc())
             return False
+
+    async def start_persistent_connection(self) -> bool:
+        """Start and maintain a persistent BLE connection."""
+        _LOGGER.info("[BLEManager] Starting persistent connection to %s", self.address)
+        self._should_maintain_connection = True
+        
+        # Start the reconnection task
+        if self._reconnect_task is None or self._reconnect_task.done():
+            self._reconnect_task = asyncio.create_task(self._maintain_connection())
+            
+        return await self.ensure_connected()
+    
+    async def stop_persistent_connection(self) -> None:
+        """Stop the persistent connection and cancel reconnection."""
+        _LOGGER.info("[BLEManager] Stopping persistent connection to %s", self.address)
+        self._should_maintain_connection = False
+        
+        # Cancel reconnection task
+        if self._reconnect_task and not self._reconnect_task.done():
+            self._reconnect_task.cancel()
+            try:
+                await self._reconnect_task
+            except asyncio.CancelledError:
+                pass
+                
+        # Disconnect if connected
+        await self.disconnect()
+    
+    async def _maintain_connection(self) -> None:
+        """Background task to maintain persistent connection."""
+        while self._should_maintain_connection:
+            try:
+                if not self.is_connected:
+                    _LOGGER.info("[BLEManager] Connection lost, attempting reconnection...")
+                    await self.ensure_connected()
+                    
+                # Check connection every 30 seconds
+                await asyncio.sleep(30)
+                
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                _LOGGER.error("[BLEManager] Error in connection maintenance: %s", e)
+                await asyncio.sleep(10)  # Wait before retrying
+    
+    def _on_disconnect(self, client: BleakClient) -> None:
+        """Handle BLE disconnection."""
+        _LOGGER.warning("[BLEManager] Device %s disconnected", self.address)
+        self._connected = False
+        
+        # Trigger reconnection if we should maintain connection
+        if self._should_maintain_connection and self._reconnect_task:
+            if not self._reconnect_task.done():
+                # Connection maintenance task will handle reconnection
+                pass
+            else:
+                # Restart maintenance task
+                self._reconnect_task = asyncio.create_task(self._maintain_connection())
 
     @property
     def is_connected(self) -> bool:

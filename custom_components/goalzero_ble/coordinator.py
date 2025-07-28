@@ -148,9 +148,15 @@ class GoalZeroCoordinator(DataUpdateCoordinator):
         return None
 
     async def async_shutdown(self) -> None:
-        """Clean shutdown of the coordinator."""
-        _LOGGER.debug("Shutting down coordinator for %s", self.device_name)
-        if self.ble_manager:
+        """Shutdown the coordinator and stop persistent connection."""
+        _LOGGER.info("Shutting down coordinator for %s", self.device_name)
+        
+        # Stop persistent connection
+        if hasattr(self.ble_manager, 'stop_persistent_connection'):
+            await self.ble_manager.stop_persistent_connection()
+        
+        # Disconnect BLE if connected
+        if self.ble_manager and hasattr(self.ble_manager, 'disconnect'):
             await self.ble_manager.disconnect()
 
     @property
@@ -164,3 +170,13 @@ class GoalZeroCoordinator(DataUpdateCoordinator):
     def is_connected(self) -> bool:
         """Return connection status."""
         return self.ble_manager.is_connected if self.ble_manager else False
+
+    async def async_setup(self) -> None:
+        """Set up the coordinator and start persistent connection."""
+        # Start persistent BLE connection
+        if hasattr(self.ble_manager, 'start_persistent_connection'):
+            _LOGGER.info("Starting persistent BLE connection for %s", self.device_name)
+            await self.ble_manager.start_persistent_connection()
+        
+        # Perform first data update
+        await self.async_refresh()
