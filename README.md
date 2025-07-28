@@ -37,7 +37,7 @@ A Home Assistant HACS integration for Goal Zero BLE devices, providing wireless 
 | Device | Model Pattern | Status | Notes |
 |--------|---------------|--------|-------|
 | **Alta 80** | `gzf1-80-XXXXXX` | ⚠️ Partial Support | All 36 status bytes exposed, decoded basic metrics |
-| **Yeti 500** | `gzy5c-XXXXXXXXXXXX` | 🚧 Pending Development | Basic framework ready, needs device testing |
+| **Yeti 500** | `gzy5c-XXXXXXXXXXXX` | � Discovery Phase | Auto-discovery enabled, GATT services mapped, no entities yet |
 
 ### Device Detection Patterns
 
@@ -53,7 +53,7 @@ A Home Assistant HACS integration for Goal Zero BLE devices, providing wireless 
 - HACS (Home Assistant Community Store) installed
 - Goal Zero device
   - Alta 80: Ready out-of-the-box and powered-on.
-  - Yeti 500: Needs BLE enabled
+  - Yeti 500: Power on device and ensure BLE is enabled (if available)
 
 ### Option 1: HACS (Recommended)
 
@@ -134,6 +134,34 @@ The Alta 80 provides comprehensive monitoring through 36 status bytes over BLE G
 
 > [!NOTE]  
 > Control entities now read their current state from the correct bytes and can send commands to change device settings. The current state is extracted from the status response using the verified byte mappings.
+
+### Yeti 500 Status
+
+The Yeti 500 is currently in the **discovery phase**. When you connect a Yeti 500 device:
+
+#### 🔍 What Happens Now
+
+- **Auto-Discovery**: Device is automatically detected by the `gzy5c-XXXXXXXXXXXX` name pattern
+- **Connection Established**: BLE connection is established and maintained
+- **GATT Discovery**: All GATT services and characteristics are discovered and logged
+- **Debug Logging**: Complete service map is printed to debug logs for analysis
+
+#### 📊 Current Status
+
+- **Entities**: No sensor or control entities are created yet
+- **Device Entry**: Appears in Home Assistant as "Yeti 500 (gzy5c-...)"
+- **Connection**: Shows as connected with discovery complete
+- **Logs**: Comprehensive GATT information logged for protocol development
+
+#### 🛠️ Next Development Steps
+
+1. **Protocol Analysis**: Review discovered GATT characteristics to identify command/response patterns
+2. **Entity Development**: Create appropriate sensors and controls based on device capabilities  
+3. **Testing**: Validate entity functionality with real device interaction
+4. **Documentation**: Update integration with Yeti 500 specific features
+
+> [!TIP]
+> Enable debug logging (`custom_components.goalzero_ble: debug`) to see detailed GATT discovery information for your Yeti 500 device.
 
 ### Entity Properties
 
@@ -448,7 +476,7 @@ The Alta 80 device provides comprehensive status information through a 36-byte r
 |------|-----------|-----------|-------------|---------------------|------|
 | 0 | 0x00 | Static | Protocol | Always `0xFE` (254) | - |
 | 1 | 0x01 | Static | Protocol | Always `0xFE` (254) | - |
-| 2 | 0x02 | Unknown | Protocol/Status | Variable data | - |
+| 2 | 0x02 | Unknown | Protocol/Status | Variable data (33) | - |
 | 3 | 0x03 | Unknown | System Status | Variable data | - |
 | 4 | 0x04 | Unknown | Device State | Variable data | - |
 | 5 | 0x05 | Unknown | System Flag | Variable data | - |
@@ -456,32 +484,48 @@ The Alta 80 device provides comprehensive status information through a 36-byte r
 | 7 | 0x07 | Binary | Control State | Battery protection mode low (0) / med (1) / high (2)| N/A |
 | 8 | 0x08 | Signed Int | Left Zone Set Point | Temperature set point | °F / °C |
 | 9 | 0x09 | Signed Int | System Data | Max temperature set point | °F / °C |
-| 10 | 0x0A | Unknown | System Data | Variable data | - |
+| 10 | 0x0A | Signed Int | System Data | Min temperature set point | °F / °C |
 | 11 | 0x0B | Unknown | System Data | Variable data | - |
 | 12 | 0x0C | Unknown | System Data | Variable data | - |
 | 13 | 0x0D | Unknown | System Data | Variable data | - |
-| 14 | 0x0E | Static | Protocol | Often `0xFE` (254) | - |
-| 15 | 0x0F | Static | Protocol | Often `0xFE` (254) | - |
+| 14 | 0x0E | Static | Protocol | `0xFE` (254) °F / `0xFF` (255) °C| - |
+| 15 | 0x0F | Static | Protocol | `0xFE` (254) °F / `0xFF` (255) °C| - |
 | 16 | 0x10 | Unknown | System Data | Variable data | - |
 | 17 | 0x11 | Unknown | System Data | Variable data | - |
 | 18 | 0x12 | Signed Int | Left Zone Temperature | Current temperature | °F / °C |
 | 19 | 0x13 | Unknown | System Data | Variable data | - |
 | 20 | 0x14 | Unknown | System Data | Variable data | - |
 | 21 | 0x15 | Unknown | System Data | Variable data | - |
-| 22 | 0x16 | Signed Int | Right Zone Set Point| Temperature set point | °F / °C |
+| 22 | 0x16 | Unknown | System Data | Variable data | °F / °C |
 | 23 | 0x17 | Unknown | System Data | Variable data | - |
 | 24 | 0x18 | Unknown | System Data | Variable data | - |
 | 25 | 0x19 | Unknown | System Data | Variable data | - |
-| 26 | 0x1A | Static | Protocol | Often `0xFE` (254) | - |
-| 27 | 0x1B | Static | Protocol | Often `0xFE` (254) | - |
+| 26 | 0x1A | Static | Protocol | `0xFE` (254) °F / `0xFF` (255) °C| - |
+| 27 | 0x1B | Static | Protocol | `0xFE` (254) °F / `0xFF` (255) °C| - |
 | 28 | 0x1C | Unknown | System Data | Variable data | - |
 | 29 | 0x1D | Unknown | System Data | Variable data | - |
-| 30 | 0x1E | Unknown | System Data | Variable data | - |
+| 30 | 0x1E | Unknown | System Data | Variable data | °F / °C |
 | 31 | 0x1F | Unknown | System Data | Variable data | - |
 | 32 | 0x20 | Unknown | System Data | Variable data | - |
 | 33 | 0x21 | Unknown | System Data | Variable data | - |
-| 34 | 0x22 | Boolean | ? Left Zone Set Point Exceeded | ? Temperature limit exceeded flag | - |
-| 35 | 0x23 | Signed Int | Zone 2 Temperature | Current temperature | °F / °C |
+| 34 | 0x22 | Unknown | System Data | Variable data | - |
+| 35 | 0x23 | Signed Int | Right Zone Temperature | Current temperature | °F / °C |
+
+Changed on C/F:
+11(4/2)
+13(1,0)
+16(2,1)
+22(36/2)
+25(4/2)
+28(2/1)
+30(36/3)
+
+Similar number patterns:
+11,25
+16,28
+
+Audible vibration:
+21 (3 -> 4),31 (0) Before: 21 (6) & 31 (2)
 
 #### Known Decoded Values
 
