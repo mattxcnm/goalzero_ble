@@ -447,3 +447,88 @@ class GoalZeroBLEManager:
     def client(self) -> BleakClient | None:
         """Return the BLE client for direct access if needed."""
         return self._client if self._connected else None
+
+    async def write_characteristic(self, handle: int, data: bytes) -> bool:
+        """Write data to a specific characteristic handle.
+        
+        Args:
+            handle: The characteristic handle (e.g., 0x0008, 0x0003)
+            data: The data to write
+            
+        Returns:
+            True if write was successful
+        """
+        if not self._connected or not self._client:
+            _LOGGER.error("Not connected to device %s", self.address)
+            return False
+            
+        try:
+            # Find characteristic by handle
+            char = None
+            for service in self._client.services.services.values():
+                for characteristic in service.characteristics:
+                    if characteristic.handle == handle:
+                        char = characteristic
+                        break
+                if char:
+                    break
+                    
+            if not char:
+                _LOGGER.error("Characteristic with handle 0x%04X not found", handle)
+                return False
+                
+            # Write to the characteristic
+            if 'write-without-response' in char.properties:
+                await self._client.write_gatt_char(char, data, response=False)
+            elif 'write' in char.properties:
+                await self._client.write_gatt_char(char, data, response=True)
+            else:
+                _LOGGER.error("Characteristic 0x%04X doesn't support writing", handle)
+                return False
+                
+            _LOGGER.debug("Successfully wrote %d bytes to handle 0x%04X", len(data), handle)
+            return True
+            
+        except Exception as e:
+            _LOGGER.error("Failed to write to handle 0x%04X: %s", handle, e)
+            return False
+    
+    async def read_characteristic(self, handle: int) -> bytes | None:
+        """Read data from a specific characteristic handle.
+        
+        Args:
+            handle: The characteristic handle
+            
+        Returns:
+            The data read, or None if failed
+        """
+        if not self._connected or not self._client:
+            _LOGGER.error("Not connected to device %s", self.address)
+            return None
+            
+        try:
+            # Find characteristic by handle
+            char = None
+            for service in self._client.services.services.values():
+                for characteristic in service.characteristics:
+                    if characteristic.handle == handle:
+                        char = characteristic
+                        break
+                if char:
+                    break
+                    
+            if not char:
+                _LOGGER.error("Characteristic with handle 0x%04X not found", handle)
+                return None
+                
+            if 'read' not in char.properties:
+                _LOGGER.error("Characteristic 0x%04X doesn't support reading", handle)
+                return None
+                
+            data = await self._client.read_gatt_char(char)
+            _LOGGER.debug("Successfully read %d bytes from handle 0x%04X", len(data), handle)
+            return data
+            
+        except Exception as e:
+            _LOGGER.error("Failed to read from handle 0x%04X: %s", handle, e)
+            return None
