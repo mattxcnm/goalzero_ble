@@ -108,6 +108,13 @@ class Yeti500Device(GoalZeroDevice):
                 "display_brightness": display.get("brightness", 50),
             })
             
+            # Control entity states (switches) - map device status to switch states
+            combined_data.update({
+                "acOut_switch": bool(combined_data.get("acOut_status", 0)),
+                "v12Out_switch": bool(combined_data.get("v12Out_status", 0)),
+                "usbOut_switch": bool(combined_data.get("usbOut_status", 0)),
+            })
+            
             self._data = combined_data
             return combined_data
             
@@ -384,13 +391,8 @@ class Yeti500Device(GoalZeroDevice):
         
         response = await self._send_json_message(ble_manager, message)
         if response:
-            # Update local state optimistically
-            if "ports" not in self._last_status:
-                self._last_status["ports"] = {}
-            if port_name not in self._last_status["ports"]:
-                self._last_status["ports"][port_name] = {}
-            
-            self._last_status["ports"][port_name]["s"] = state
+            # Don't update local state optimistically - let regular status polling handle it
+            _LOGGER.debug(f"Port control command sent for {port_name}, state will be updated on next status poll")
             return True
         
         return False
@@ -414,15 +416,8 @@ class Yeti500Device(GoalZeroDevice):
         
         response = await self._send_json_message(ble_manager, message)
         if response:
-            # Update local config
-            if "charge_profile" not in self._last_config:
-                self._last_config["charge_profile"] = {}
-            
-            self._last_config["charge_profile"].update({
-                "min": min_soc,
-                "max": max_soc, 
-                "rchg": recharge_soc
-            })
+            # Don't update local config optimistically - let regular status polling handle it
+            _LOGGER.debug(f"Charge profile command sent, config will be updated on next status poll")
             return True
         
         return False
@@ -445,13 +440,8 @@ class Yeti500Device(GoalZeroDevice):
         
         response = await self._send_json_message(ble_manager, message)
         if response:
-            if "display" not in self._last_config:
-                self._last_config["display"] = {}
-            
-            self._last_config["display"].update({
-                "blackout_time": blackout_time,
-                "brightness": brightness
-            })
+            # Don't update local config optimistically - let regular status polling handle it  
+            _LOGGER.debug(f"Display settings command sent, config will be updated on next status poll")
             return True
         
         return False

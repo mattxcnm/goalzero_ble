@@ -62,9 +62,13 @@ class GoalZeroSwitch(GoalZeroEntity, SwitchEntity):
     def is_on(self) -> bool | None:
         """Return True if entity is on."""
         if self.coordinator.data:
+            # Check if there's a direct mapping for this switch key
+            switch_value = self.coordinator.data.get(self._key)
+            if switch_value is not None:
+                return bool(switch_value)
+            
+            # Legacy mappings for backward compatibility
             if self._key == "power":
-                # Determine power state from device data
-                # This might need to be adjusted based on actual device behavior
                 return self.coordinator.data.get("power_on", False)
             elif self._key == "eco_mode":
                 return self.coordinator.data.get("eco_mode", False)
@@ -75,25 +79,32 @@ class GoalZeroSwitch(GoalZeroEntity, SwitchEntity):
         _LOGGER.info("[SWITCH] User turning ON switch '%s'", self._key)
         try:
             device = self.coordinator.device
+            ble_manager = self.coordinator.ble_manager
             _LOGGER.info("[SWITCH] Device type: %s", type(device).__name__)
             
-            if hasattr(device, 'create_switch_command'):
+            success = False
+            
+            # Check if device has set_switch_state method (for Yeti 500)
+            if hasattr(device, 'set_switch_state'):
+                _LOGGER.info("[SWITCH] Using set_switch_state method")
+                success = await device.set_switch_state(ble_manager, self._key, True)
+            
+            # Fallback to create_switch_command method (for other devices)
+            elif hasattr(device, 'create_switch_command'):
                 _LOGGER.info("[SWITCH] Device has create_switch_command method")
                 command = device.create_switch_command(self._key, True)
                 _LOGGER.info("[SWITCH] Generated command: %s (%d bytes)", command.hex(':'), len(command))
-                
-                ble_manager = self.coordinator.ble_manager
-                _LOGGER.info("[SWITCH] BLE manager type: %s", type(ble_manager).__name__)
-                
                 success = await device.send_command(ble_manager, command)
-                
-                if success:
-                    _LOGGER.info("[SWITCH] Successfully turned on %s", self._key)
-                    await self.coordinator.async_request_refresh()
-                else:
-                    _LOGGER.error("[SWITCH] Failed to turn on %s", self._key)
             else:
                 _LOGGER.error("[SWITCH] Device does not support switch commands")
+                return
+                
+            if success:
+                _LOGGER.info("[SWITCH] Successfully turned on %s", self._key)
+                # Request immediate refresh to update the state
+                await self.coordinator.async_request_refresh()
+            else:
+                _LOGGER.error("[SWITCH] Failed to turn on %s", self._key)
                 
         except Exception as e:
             _LOGGER.error("[SWITCH] Error turning on switch %s: %s", self._key, e)
@@ -105,25 +116,32 @@ class GoalZeroSwitch(GoalZeroEntity, SwitchEntity):
         _LOGGER.info("[SWITCH] User turning OFF switch '%s'", self._key)
         try:
             device = self.coordinator.device
+            ble_manager = self.coordinator.ble_manager
             _LOGGER.info("[SWITCH] Device type: %s", type(device).__name__)
             
-            if hasattr(device, 'create_switch_command'):
+            success = False
+            
+            # Check if device has set_switch_state method (for Yeti 500)
+            if hasattr(device, 'set_switch_state'):
+                _LOGGER.info("[SWITCH] Using set_switch_state method")
+                success = await device.set_switch_state(ble_manager, self._key, False)
+            
+            # Fallback to create_switch_command method (for other devices)
+            elif hasattr(device, 'create_switch_command'):
                 _LOGGER.info("[SWITCH] Device has create_switch_command method")
                 command = device.create_switch_command(self._key, False)
                 _LOGGER.info("[SWITCH] Generated command: %s (%d bytes)", command.hex(':'), len(command))
-                
-                ble_manager = self.coordinator.ble_manager
-                _LOGGER.info("[SWITCH] BLE manager type: %s", type(ble_manager).__name__)
-                
                 success = await device.send_command(ble_manager, command)
-                
-                if success:
-                    _LOGGER.info("[SWITCH] Successfully turned off %s", self._key)
-                    await self.coordinator.async_request_refresh()
-                else:
-                    _LOGGER.error("[SWITCH] Failed to turn off %s", self._key)
             else:
                 _LOGGER.error("[SWITCH] Device does not support switch commands")
+                return
+                
+            if success:
+                _LOGGER.info("[SWITCH] Successfully turned off %s", self._key)
+                # Request immediate refresh to update the state
+                await self.coordinator.async_request_refresh()
+            else:
+                _LOGGER.error("[SWITCH] Failed to turn off %s", self._key)
                 
         except Exception as e:
             _LOGGER.error("[SWITCH] Error turning off switch %s: %s", self._key, e)

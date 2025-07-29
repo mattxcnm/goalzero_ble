@@ -1,537 +1,687 @@
-2025-07-29 11:18:29.000 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration goalzero_ble which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2025-07-29 11:19:17.332 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 2: {'petlibro', 'matter', 'rpi_power', 'timer', 'lg_thinq', 'local_fcsp', 'scrape', 'tuya_local', 'go2rtc', 'input_text', 'input_number', 'fordpass', 'govee_ble', 'icloud', 'thermal_comfort', 'homekit', 'analytics', 'esphome', 'switchbot', 'automation', 'pirateweather', 'co2signal', 'sensi', 'shopping_list', 'moon', 'homekit_controller', 'private_ble_device', 'script', 'input_boolean', 'cloudflare', 'llama_conversation', 'zone', 'my', 'lunar_phase', 'scene', 'homeassistant_sky_connect', 'filter', 'accuweather', 'mobile_app', 'apple_tv', 'statistics', 'forecast_solar', 'ipp', 'schedule', 'hacs', 'notify', 'person', 'wemo', 'goalzero_ble', 'radio_browser', 'default_config', 'withings', 'input_datetime', 'tag', 'application_credentials', 'rest_command', 'otbr', 'hardware', 'input_button', 'wyoming', 'input_select', 'chime_tts', 'unifi', 'nws', 'system_health', 'blitzortung', 'bermuda', 'thread', 'vivint', 'integration', 'ibeacon', 'roomba', 'utility_meter', 'sun'} | {'recorder', 'logger', 'counter', 'frontend', 'sensor', 'template', 'hassio', 'zeroconf', 'group', 'bluetooth', 'backup', 'http', 'cloud', 'network'}
-2025-07-29 11:19:35.015 INFO (MainThread) [homeassistant.setup] Setting up goalzero_ble
-2025-07-29 11:19:35.015 INFO (MainThread) [homeassistant.setup] Setup of domain goalzero_ble took 0.00 seconds
-2025-07-29 11:19:35.016 INFO (MainThread) [custom_components.goalzero_ble] Setting up Goal Zero BLE integration for gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:19:35.016 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Creating device instance for type alta80
-2025-07-29 11:19:35.016 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Initialized BLE manager for FD:06:22:F1:4D:2A (alta80) with persistent connection support
-2025-07-29 11:19:35.016 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Initialized coordinator for gzf1-80-F14D2A (alta80) at FD:06:22:F1:4D:2A with 30s update interval
-2025-07-29 11:19:35.016 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Starting persistent BLE connection for gzf1-80-F14D2A
-2025-07-29 11:19:35.016 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Starting persistent connection to FD:06:22:F1:4D:2A
-2025-07-29 11:19:35.016 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Scanning for device FD:06:22:F1:4D:2A
-2025-07-29 11:19:35.016 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Found device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:19:35.016 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:19:35.204 INFO (MainThread) [custom_components.goalzero_ble] Setting up Goal Zero BLE integration for gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
-2025-07-29 11:19:35.205 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Creating device instance for type yeti500
-2025-07-29 11:19:35.205 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Initialized BLE manager for D8:13:2A:74:DB:B6 (yeti500) with persistent connection support
-2025-07-29 11:19:35.205 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Initialized coordinator for gzy5c-74dbb4 (yeti500) at D8:13:2A:74:DB:B6 with 30s update interval
-2025-07-29 11:19:35.205 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Starting persistent BLE connection for gzy5c-74dbb4
-2025-07-29 11:19:35.205 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Starting persistent connection to D8:13:2A:74:DB:B6
-2025-07-29 11:19:35.205 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Scanning for device D8:13:2A:74:DB:B6
-2025-07-29 11:19:35.205 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Found device: gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
-2025-07-29 11:19:35.205 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
-2025-07-29 11:19:35.205 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Failed to connect to D8:13:2A:74:DB:B6: No backend with an available connection slot that can reach address D8:13:2A:74:DB:B6 was found (type: BleakError)
-2025-07-29 11:19:35.205 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:19:35.205 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
-2025-07-29 11:19:35.205 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Failed to connect to D8:13:2A:74:DB:B6: No backend with an available connection slot that can reach address D8:13:2A:74:DB:B6 was found (type: BleakError)
-2025-07-29 11:19:35.206 ERROR (MainThread) [custom_components.goalzero_ble.coordinator] Error updating data for gzy5c-74dbb4: Failed to connect to gzy5c-74dbb4
-2025-07-29 11:19:35.206 ERROR (MainThread) [custom_components.goalzero_ble.coordinator] Error fetching goalzero_ble_gzy5c-74dbb4 data: Error updating gzy5c-74dbb4: Failed to connect to gzy5c-74dbb4
-2025-07-29 11:19:35.206 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.000 seconds (success: False)
-2025-07-29 11:19:35.206 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:19:35.206 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:19:35.206 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
-2025-07-29 11:19:35.206 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Failed to connect to D8:13:2A:74:DB:B6: No backend with an available connection slot that can reach address D8:13:2A:74:DB:B6 was found (type: BleakError)
-2025-07-29 11:19:36.211 WARNING (MainThread) [homeassistant.bootstrap] Waiting on integrations to complete setup: {('statistics', '01JWVDPSSPJKMSQN10KYQVD4R4'): 223540.20210964, ('petlibro', '01JZ9ETENM99D338AQWHZP33AF'): 223542.23197519, ('rpi_power', '01JJTJ5BXYA28PW4QPJZGF2M41'): 223542.693291037, ('lg_thinq', '01JY7PEJD49WVEYV8ZDV1X5MNV'): 223543.164172653, ('local_fcsp', '01K0PKXNMXWVY3VMWR7JCVB9GZ'): 223543.256310448, ('scrape', '01JKA22MXY1X68BD8M6D15R46G'): 223544.295790262, ('tuya_local', '01JX6QVPCRF84G30B0WC2YQH2A'): 223545.558343997, ('tuya_local', '01JX6R4KV7S9XY25M2E97VRKPV'): 223545.558487481, ('tuya_local', '01JX6RX6QA98KF34S947PTJVWJ'): 223545.558617156, ('co2signal', '01JJZ2MFTW4ZE81K89YGEW1VZ3'): 223546.302780616, ('moon', '01JJZSWXZ8PJCWHNYAMDQWCB0N'): 223546.444791102, ('lunar_phase', '01JTDVWCBTRXKWB1Z3MAZYR05K'): 223547.701832712, ('filter', '01JX1ENHXXBCW41XA772ZPQCE5'): 223547.903787431, ('accuweather', '01JV0V1F90CRDSKTJ261CMMAAY'): 223548.105783297, ('apple_tv', '01JJTMZCH1DN47E8YAGT3W70AW'): 223554.847891779, ('apple_tv', '01JJTMZNPTSMRK3X0GJMGNT393'): 223554.852937959, ('apple_tv', '01JJTN01S49A8Q3RPBMR2CH8CF'): 223554.855358869, ('apple_tv', '01JJTN380B3D0M05AZPKQWS8SV'): 223554.864072437, ('apple_tv', '01JJTN3DJVFMCPC7HHY5WR64KD'): 223554.86593713, ('apple_tv', '01JJTN9Z2T5VJHA82TFZPWPHK4'): 223554.867635083, ('apple_tv', '01JJTNBH9CMJDKQ8ZXSJJDDRBV'): 223554.869778195, ('forecast_solar', '01JVD1YRHNXMYK3RDRA888151H'): 223555.42039367, ('ipp', '01JK9KK7CRPRXAX07T4WW61X3X'): 223555.729854924, ('hacs', '01K0AJSMR60MQFN5667CVWKPS0'): 223556.885864751, ('goalzero_ble', '01K19GMV6VVEMC4CE5AP30SHYB'): 223557.839805139, ('goalzero_ble', '01K19PJME0JAAMP0KMZF99SZVA'): 223558.028692642, ('wemo', '01JX6ECJ1522V8AV6TVXED0REE'): 223558.03493702}
-2025-07-29 11:19:41.886 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
-2025-07-29 11:19:41.887 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Failed to connect to FD:06:22:F1:4D:2A: failed to discover services, device disconnected (type: BleakError)
-2025-07-29 11:19:41.887 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
-2025-07-29 11:19:41.887 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
-2025-07-29 11:19:41.887 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
-2025-07-29 11:19:41.887 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
-2025-07-29 11:19:41.887 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
-2025-07-29 11:19:41.887 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:19:41.888 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:19:43.248 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] BLE error on attempt 1/2: [org.bluez.Error.Failed] Operation already in progress
-2025-07-29 11:19:46.250 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 2/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:19:46.639 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Failed to connect to FD:06:22:F1:4D:2A: [org.bluez.Error.Failed] br-connection-canceled (type: BleakDBusError)
-2025-07-29 11:19:46.644 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] BLE error on attempt 2/2: Device with address FD:06:22:F1:4D:2A was not found. It may have been removed from BlueZ when scanning stopped.
-2025-07-29 11:19:46.644 ERROR (MainThread) [custom_components.goalzero_ble.devices.alta80] All connection attempts failed for gzf1-80-F14D2A (FD:06:22:F1:4D:2A). Last error: Device with address FD:06:22:F1:4D:2A was not found. It may have been removed from BlueZ when scanning stopped.
-2025-07-29 11:19:46.644 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
-2025-07-29 11:19:46.644 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 4.758 seconds (success: True)
-2025-07-29 11:20:07.843 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:20:07.843 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
-2025-07-29 11:20:07.843 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Failed to connect to D8:13:2A:74:DB:B6: No backend with an available connection slot that can reach address D8:13:2A:74:DB:B6 was found (type: BleakError)
-2025-07-29 11:20:16.640 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:20:16.640 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:20:19.099 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
-2025-07-29 11:20:26.753 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
-2025-07-29 11:20:26.756 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Connection timeout after 12s for device FD:06:22:F1:4D:2A
-2025-07-29 11:20:36.020 INFO (MainThread) [homeassistant.components.sensor] Setting up goalzero_ble.sensor
-2025-07-29 11:20:36.020 INFO (MainThread) [custom_components.goalzero_ble.sensor] Setting up 33 sensors for gzy5c-74dbb4
-2025-07-29 11:20:36.021 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_state_of_charge
-2025-07-29 11:20:36.021 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_remaining
-2025-07-29 11:20:36.022 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_voltage
-2025-07-29 11:20:36.022 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_cycles
-2025-07-29 11:20:36.023 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_temperature
-2025-07-29 11:20:36.023 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_time_to_empty
-2025-07-29 11:20:36.024 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_input_total
-2025-07-29 11:20:36.024 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_output_total
-2025-07-29 11:20:36.025 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_current_net
-2025-07-29 11:20:36.025 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_current_net_average
-2025-07-29 11:20:36.026 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_power_net
-2025-07-29 11:20:36.026 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_power_net_average
-2025-07-29 11:20:36.027 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_heater_rh
-2025-07-29 11:20:36.027 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_battery_heater_temperature
-2025-07-29 11:20:36.027 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_ac_output_status
-2025-07-29 11:20:36.028 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_ac_output_power
-2025-07-29 11:20:36.029 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_ac_output_voltage
-2025-07-29 11:20:36.029 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_ac_output_current
-2025-07-29 11:20:36.029 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_ac_input_status
-2025-07-29 11:20:36.030 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_ac_input_power
-2025-07-29 11:20:36.030 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_ac_input_voltage
-2025-07-29 11:20:36.031 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_ac_input_current
-2025-07-29 11:20:36.031 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_ac_fast_charging
-2025-07-29 11:20:36.032 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_12v_output_status
-2025-07-29 11:20:36.032 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_12v_output_power
-2025-07-29 11:20:36.032 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_usb_output_status
-2025-07-29 11:20:36.033 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_usb_output_power
-2025-07-29 11:20:36.033 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_lv_dc_input_status
-2025-07-29 11:20:36.033 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_lv_dc_input_power
-2025-07-29 11:20:36.034 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_lv_dc_input_voltage
-2025-07-29 11:20:36.034 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_lv_dc_input_current
-2025-07-29 11:20:36.035 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_wifi_signal_strength
-2025-07-29 11:20:36.035 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.goalzero_ble entity: sensor.gzy5c_74dbb4_app_connected
-2025-07-29 11:20:36.035 INFO (MainThread) [homeassistant.components.button] Setting up goalzero_ble.button
-2025-07-29 11:20:36.036 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:20:36.036 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
-2025-07-29 11:20:36.036 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Failed to connect to D8:13:2A:74:DB:B6: No backend with an available connection slot that can reach address D8:13:2A:74:DB:B6 was found (type: BleakError)
-2025-07-29 11:20:36.036 ERROR (MainThread) [custom_components.goalzero_ble.coordinator] Error updating data for gzy5c-74dbb4: Failed to connect to gzy5c-74dbb4
-2025-07-29 11:20:36.036 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.001 seconds (success: False)
-2025-07-29 11:20:36.037 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new button.goalzero_ble entity: button.gzy5c_74dbb4_reboot_device
-2025-07-29 11:20:36.037 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new button.goalzero_ble entity: button.gzy5c_74dbb4_factory_reset
-2025-07-29 11:20:36.037 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new button.goalzero_ble entity: button.gzy5c_74dbb4_check_for_updates
-2025-07-29 11:20:36.038 INFO (MainThread) [homeassistant.components.switch] Setting up goalzero_ble.switch
-2025-07-29 11:20:36.038 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new switch.goalzero_ble entity: switch.gzy5c_74dbb4_ac_output
-2025-07-29 11:20:36.039 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new switch.goalzero_ble entity: switch.gzy5c_74dbb4_12v_output
-2025-07-29 11:20:36.039 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new switch.goalzero_ble entity: switch.gzy5c_74dbb4_usb_output
-2025-07-29 11:20:36.039 INFO (MainThread) [homeassistant.components.select] Setting up goalzero_ble.select
-2025-07-29 11:20:36.039 INFO (MainThread) [homeassistant.components.number] Setting up goalzero_ble.number
-2025-07-29 11:20:36.040 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new number.goalzero_ble entity: number.gzy5c_74dbb4_charge_profile_min_soc
-2025-07-29 11:20:36.040 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new number.goalzero_ble entity: number.gzy5c_74dbb4_charge_profile_max_soc
-2025-07-29 11:20:36.041 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new number.goalzero_ble entity: number.gzy5c_74dbb4_charge_profile_recharge_soc
-2025-07-29 11:20:36.041 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new number.goalzero_ble entity: number.gzy5c_74dbb4_display_blackout_time
-2025-07-29 11:20:36.041 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new number.goalzero_ble entity: number.gzy5c_74dbb4_display_brightness
-2025-07-29 11:20:36.042 INFO (MainThread) [custom_components.goalzero_ble] Successfully set up Goal Zero BLE integration for gzy5c-74dbb4
-2025-07-29 11:20:36.042 INFO (MainThread) [homeassistant.components.sensor] Setting up goalzero_ble.sensor
-2025-07-29 11:20:36.043 INFO (MainThread) [custom_components.goalzero_ble.sensor] Setting up 72 sensors for gzf1-80-F14D2A
-2025-07-29 11:20:36.059 INFO (MainThread) [homeassistant.components.button] Setting up goalzero_ble.button
-2025-07-29 11:20:36.059 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
-2025-07-29 11:20:36.059 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
-2025-07-29 11:20:36.059 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
-2025-07-29 11:20:36.059 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
-2025-07-29 11:20:36.059 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
-2025-07-29 11:20:36.059 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:20:36.063 INFO (MainThread) [homeassistant.components.switch] Setting up goalzero_ble.switch
-2025-07-29 11:20:36.063 INFO (MainThread) [homeassistant.components.select] Setting up goalzero_ble.select
-2025-07-29 11:20:36.064 INFO (MainThread) [homeassistant.components.number] Setting up goalzero_ble.number
-2025-07-29 11:20:37.940 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:20:37.940 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
-2025-07-29 11:20:37.940 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Failed to connect to D8:13:2A:74:DB:B6: No backend with an available connection slot that can reach address D8:13:2A:74:DB:B6 was found (type: BleakError)
-2025-07-29 11:20:44.061 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
-2025-07-29 11:20:46.038 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:20:46.038 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
-2025-07-29 11:20:46.060 WARNING (MainThread) [homeassistant.components.button] Setup of button platform goalzero_ble is taking over 10 seconds.
-2025-07-29 11:20:46.811 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
-2025-07-29 11:20:46.811 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:20:46.812 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:20:46.812 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:20:46.812 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 21 keys
-2025-07-29 11:20:46.812 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Fetching goalzero_ble_gzy5c-74dbb4 data recovered
-2025-07-29 11:20:46.812 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.774 seconds (success: True)
-2025-07-29 11:20:50.384 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
-2025-07-29 11:20:51.082 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection timeout on attempt 1/2: 
-2025-07-29 11:20:54.238 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 2/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:20:55.559 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:20:55.864 WARNING (MainThread) [homeassistant.bootstrap] Waiting on integrations to complete setup: {('local_fcsp', '01K0PKXNMXWVY3VMWR7JCVB9GZ'): 223543.256310448, ('filter', '01JX1ENHXXBCW41XA772ZPQCE5'): 223547.903787431, ('goalzero_ble', '01K19GMV6VVEMC4CE5AP30SHYB'): 223557.839805139}
-2025-07-29 11:20:56.560 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
-2025-07-29 11:20:56.560 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
-2025-07-29 11:20:56.560 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
-2025-07-29 11:20:56.560 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
-2025-07-29 11:20:56.560 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
-2025-07-29 11:20:56.560 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
-2025-07-29 11:20:56.560 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
-2025-07-29 11:20:56.560 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
-2025-07-29 11:20:56.561 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
-2025-07-29 11:20:56.561 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
-2025-07-29 11:20:56.561 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
-2025-07-29 11:20:56.561 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
-2025-07-29 11:20:56.562 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
-2025-07-29 11:20:56.562 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
-2025-07-29 11:20:56.683 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
-2025-07-29 11:20:56.757 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:20:56.757 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:20:56.853 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:20:57.685 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
-2025-07-29 11:20:57.685 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
-2025-07-29 11:20:57.685 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
-2025-07-29 11:20:58.187 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
-2025-07-29 11:20:58.187 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
-2025-07-29 11:20:58.188 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
-2025-07-29 11:20:58.188 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
-2025-07-29 11:20:58.824 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000764 (20 bytes)
-2025-07-29 11:20:58.932 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE0200230000000828 (16 bytes)
-2025-07-29 11:20:58.992 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.8s
-2025-07-29 11:20:58.992 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
-2025-07-29 11:20:58.992 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
-2025-07-29 11:20:58.993 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000764 (20 bytes)
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE0200230000000828 (16 bytes)
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 7°C (raw: 7)
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 40°C (raw: 40)
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
-2025-07-29 11:20:58.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
-2025-07-29 11:20:59.528 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
-2025-07-29 11:20:59.529 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
-2025-07-29 11:20:59.529 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
-2025-07-29 11:20:59.529 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 23.470 seconds (success: True)
-2025-07-29 11:20:59.536 INFO (MainThread) [custom_components.goalzero_ble] Successfully set up Goal Zero BLE integration for gzf1-80-F14D2A
-2025-07-29 11:21:16.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:21:16.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:21:16.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:21:16.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:21:16.233 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 21 keys
-2025-07-29 11:21:16.233 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.001 seconds (success: True)
-2025-07-29 11:21:26.854 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:21:26.855 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:21:29.352 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:21:29.653 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
-2025-07-29 11:21:29.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
-2025-07-29 11:21:29.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
-2025-07-29 11:21:29.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
-2025-07-29 11:21:29.653 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
-2025-07-29 11:21:29.653 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:21:29.705 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
-2025-07-29 11:21:30.706 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
-2025-07-29 11:21:30.769 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
-2025-07-29 11:21:31.771 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
-2025-07-29 11:21:31.771 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
-2025-07-29 11:21:31.772 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
-2025-07-29 11:21:32.273 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
-2025-07-29 11:21:32.274 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
-2025-07-29 11:21:32.274 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
-2025-07-29 11:21:32.274 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
-2025-07-29 11:21:32.515 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000764 (20 bytes)
-2025-07-29 11:21:32.677 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.4s
-2025-07-29 11:21:32.677 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 1)...
-2025-07-29 11:21:32.686 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE0200220000000827 (16 bytes)
-2025-07-29 11:21:32.879 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
-2025-07-29 11:21:32.880 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000764 (20 bytes)
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE0200220000000827 (16 bytes)
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 7°C (raw: 7)
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 39°C (raw: 39)
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
-2025-07-29 11:21:32.880 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
-2025-07-29 11:21:33.189 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
-2025-07-29 11:21:33.189 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
-2025-07-29 11:21:33.190 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
-2025-07-29 11:21:33.190 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 3.537 seconds (success: True)
-2025-07-29 11:21:46.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:21:46.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:21:46.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:21:46.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:21:46.233 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 21 keys
-2025-07-29 11:21:46.233 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.001 seconds (success: True)
-2025-07-29 11:21:46.714 DEBUG (MainThread) [custom_components.goalzero_ble.config_flow] Bluetooth discovery triggered for gzf1-80-F14D2A
-2025-07-29 11:21:46.714 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Detected device type alta80 for name gzf1-80-F14D2A
-2025-07-29 11:21:46.714 DEBUG (MainThread) [custom_components.goalzero_ble.config_flow] Bluetooth discovery triggered for gzy5c-74dbb4
-2025-07-29 11:21:46.714 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Detected device type yeti500 for name gzy5c-74dbb4
-2025-07-29 11:21:46.714 DEBUG (MainThread) [custom_components.goalzero_ble.config_flow] Bluetooth discovery triggered for gzf1-80-F14D2A
-2025-07-29 11:21:46.714 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Detected device type alta80 for name gzf1-80-F14D2A
-2025-07-29 11:21:59.353 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:21:59.354 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:22:01.900 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:22:03.652 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
-2025-07-29 11:22:03.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
-2025-07-29 11:22:03.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
-2025-07-29 11:22:03.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
-2025-07-29 11:22:03.653 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
-2025-07-29 11:22:03.653 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:22:03.753 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:22:04.754 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
-2025-07-29 11:22:04.754 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
-2025-07-29 11:22:04.754 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
-2025-07-29 11:22:04.755 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
-2025-07-29 11:22:04.755 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
-2025-07-29 11:22:04.755 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
-2025-07-29 11:22:04.755 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
-2025-07-29 11:22:04.755 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
-2025-07-29 11:22:04.755 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
-2025-07-29 11:22:04.756 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
-2025-07-29 11:22:04.756 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
-2025-07-29 11:22:04.756 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
-2025-07-29 11:22:04.756 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
-2025-07-29 11:22:04.756 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
-2025-07-29 11:22:04.933 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
-2025-07-29 11:22:05.933 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
-2025-07-29 11:22:05.934 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
-2025-07-29 11:22:05.934 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
-2025-07-29 11:22:06.434 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
-2025-07-29 11:22:06.434 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
-2025-07-29 11:22:06.435 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
-2025-07-29 11:22:06.435 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
-2025-07-29 11:22:06.682 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000664 (20 bytes)
-2025-07-29 11:22:06.727 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE0200220000000826 (16 bytes)
-2025-07-29 11:22:06.836 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.4s
-2025-07-29 11:22:06.836 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
-2025-07-29 11:22:06.836 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
-2025-07-29 11:22:06.836 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000664 (20 bytes)
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE0200220000000826 (16 bytes)
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 6°C (raw: 6)
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 38°C (raw: 38)
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
-2025-07-29 11:22:06.837 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
-2025-07-29 11:22:06.907 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
-2025-07-29 11:22:06.907 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
-2025-07-29 11:22:06.908 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
-2025-07-29 11:22:06.908 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 3.256 seconds (success: True)
-2025-07-29 11:22:16.240 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:22:16.240 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:22:16.240 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:22:16.241 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:22:16.241 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 21 keys
-2025-07-29 11:22:16.241 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.001 seconds (success: True)
-2025-07-29 11:22:31.901 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:22:31.902 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:22:36.653 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
-2025-07-29 11:22:36.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
-2025-07-29 11:22:36.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
-2025-07-29 11:22:36.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
-2025-07-29 11:22:36.654 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
-2025-07-29 11:22:36.654 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:22:37.627 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:22:38.627 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
-2025-07-29 11:22:38.627 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
-2025-07-29 11:22:38.628 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
-2025-07-29 11:22:38.942 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
-2025-07-29 11:22:39.943 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
-2025-07-29 11:22:39.943 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
-2025-07-29 11:22:39.944 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
-2025-07-29 11:22:40.445 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
-2025-07-29 11:22:40.446 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
-2025-07-29 11:22:40.446 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
-2025-07-29 11:22:40.446 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
-2025-07-29 11:22:40.874 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000564 (20 bytes)
-2025-07-29 11:22:40.874 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE0200220000000825 (16 bytes)
-2025-07-29 11:22:41.048 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.6s
-2025-07-29 11:22:41.049 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
-2025-07-29 11:22:41.049 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
-2025-07-29 11:22:41.049 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
-2025-07-29 11:22:41.049 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000564 (20 bytes)
-2025-07-29 11:22:41.049 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE0200220000000825 (16 bytes)
-2025-07-29 11:22:41.049 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
-2025-07-29 11:22:41.049 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
-2025-07-29 11:22:41.049 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
-2025-07-29 11:22:41.050 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
-2025-07-29 11:22:41.050 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
-2025-07-29 11:22:41.050 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 5°C (raw: 5)
-2025-07-29 11:22:41.050 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
-2025-07-29 11:22:41.050 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
-2025-07-29 11:22:41.050 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 37°C (raw: 37)
-2025-07-29 11:22:41.050 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
-2025-07-29 11:22:41.050 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
-2025-07-29 11:22:41.113 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
-2025-07-29 11:22:41.113 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
-2025-07-29 11:22:41.113 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 4.460 seconds (success: True)
-2025-07-29 11:22:43.728 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Connection timeout after 12s for device FD:06:22:F1:4D:2A
-2025-07-29 11:23:23.789 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:23:23.789 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:23:23.789 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:23:23.790 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:23:23.790 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 21 keys
-2025-07-29 11:23:23.790 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.001 seconds (success: True)
-2025-07-29 11:23:37.425 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
-2025-07-29 11:23:37.426 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
-2025-07-29 11:23:37.426 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
-2025-07-29 11:23:37.426 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
-2025-07-29 11:23:37.431 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
-2025-07-29 11:23:37.432 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:23:37.533 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:23:37.533 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:23:43.079 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:23:53.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:23:53.232 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:23:53.232 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:23:53.232 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:23:53.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 21 keys
-2025-07-29 11:23:53.233 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.001 seconds (success: True)
-2025-07-29 11:24:08.045 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection timeout on attempt 1/2: Timeout waiting for connect response while connecting to FD:06:22:F1:4D:2A after 15.0s, disconnect timed out: False,  after 20.0s
-2025-07-29 11:24:11.046 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 2/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:24:11.129 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
-2025-07-29 11:24:12.130 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
-2025-07-29 11:24:12.231 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
-2025-07-29 11:24:13.233 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
-2025-07-29 11:24:13.233 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
-2025-07-29 11:24:13.234 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
-2025-07-29 11:24:13.737 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
-2025-07-29 11:24:13.737 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
-2025-07-29 11:24:13.738 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
-2025-07-29 11:24:13.738 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
-2025-07-29 11:24:13.854 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000264 (20 bytes)
-2025-07-29 11:24:13.908 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE0200220000000822 (16 bytes)
-2025-07-29 11:24:13.939 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.2s
-2025-07-29 11:24:13.939 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
-2025-07-29 11:24:13.939 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
-2025-07-29 11:24:13.940 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
-2025-07-29 11:24:13.940 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000264 (20 bytes)
-2025-07-29 11:24:13.940 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE0200220000000822 (16 bytes)
-2025-07-29 11:24:13.940 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
-2025-07-29 11:24:13.940 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
-2025-07-29 11:24:13.940 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
-2025-07-29 11:24:13.940 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
-2025-07-29 11:24:13.940 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
-2025-07-29 11:24:13.940 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 2°C (raw: 2)
-2025-07-29 11:24:13.940 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
-2025-07-29 11:24:13.940 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
-2025-07-29 11:24:13.941 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 34°C (raw: 34)
-2025-07-29 11:24:13.941 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
-2025-07-29 11:24:13.941 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
-2025-07-29 11:24:14.073 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
-2025-07-29 11:24:14.073 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
-2025-07-29 11:24:14.073 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
-2025-07-29 11:24:14.074 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 36.648 seconds (success: True)
-2025-07-29 11:24:23.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:24:23.232 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:24:23.232 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:24:23.232 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:24:23.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 21 keys
-2025-07-29 11:24:23.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.001 seconds (success: True)
-2025-07-29 11:24:43.081 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
-2025-07-29 11:24:43.082 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:24:43.653 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
-2025-07-29 11:24:43.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
-2025-07-29 11:24:43.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
-2025-07-29 11:24:43.653 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
-2025-07-29 11:24:43.653 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
-2025-07-29 11:24:43.653 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:24:46.327 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:24:47.328 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
-2025-07-29 11:24:47.328 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
-2025-07-29 11:24:47.328 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
-2025-07-29 11:24:47.328 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
-2025-07-29 11:24:47.328 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
-2025-07-29 11:24:47.329 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
-2025-07-29 11:24:47.329 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
-2025-07-29 11:24:47.329 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
-2025-07-29 11:24:47.329 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
-2025-07-29 11:24:47.329 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
-2025-07-29 11:24:47.329 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
-2025-07-29 11:24:47.329 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
-2025-07-29 11:24:47.329 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
-2025-07-29 11:24:47.329 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
-2025-07-29 11:24:47.457 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
-2025-07-29 11:24:48.458 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
-2025-07-29 11:24:48.458 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
-2025-07-29 11:24:48.459 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
-2025-07-29 11:24:48.959 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
-2025-07-29 11:24:48.959 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
-2025-07-29 11:24:48.960 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
-2025-07-29 11:24:48.960 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
-2025-07-29 11:24:49.491 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000164 (20 bytes)
-2025-07-29 11:24:49.491 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE0200210000000820 (16 bytes)
-2025-07-29 11:24:49.565 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.6s
-2025-07-29 11:24:49.565 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
-2025-07-29 11:24:49.565 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
-2025-07-29 11:24:49.566 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
-2025-07-29 11:24:49.566 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000164 (20 bytes)
-2025-07-29 11:24:49.566 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE0200210000000820 (16 bytes)
-2025-07-29 11:24:49.566 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
-2025-07-29 11:24:49.566 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
-2025-07-29 11:24:49.566 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
-2025-07-29 11:24:49.566 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
-2025-07-29 11:24:49.566 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
-2025-07-29 11:24:49.566 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 1°C (raw: 1)
-2025-07-29 11:24:49.566 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
-2025-07-29 11:24:49.567 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
-2025-07-29 11:24:49.567 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 32°C (raw: 32)
-2025-07-29 11:24:49.567 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
-2025-07-29 11:24:49.567 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
-2025-07-29 11:24:50.027 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
-2025-07-29 11:24:50.028 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
-2025-07-29 11:24:50.028 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 6.375 seconds (success: True)
-2025-07-29 11:24:50.718 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:24:53.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:24:53.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:24:53.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:24:53.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:24:53.233 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 21 keys
-2025-07-29 11:24:53.233 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.001 seconds (success: True)
-2025-07-29 11:25:19.654 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
-2025-07-29 11:25:19.654 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
-2025-07-29 11:25:19.654 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
-2025-07-29 11:25:19.654 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
-2025-07-29 11:25:19.655 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
-2025-07-29 11:25:19.655 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
-2025-07-29 11:25:23.233 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:25:23.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:25:23.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:25:23.233 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:25:23.233 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 21 keys
-2025-07-29 11:25:23.233 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.001 seconds (success: True)
-2025-07-29 11:25:50.475 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection timeout on attempt 1/2: Timeout waiting for connect response while connecting to FD:06:22:F1:4D:2A after 15.0s, disconnect timed out: False,  after 20.0s
-2025-07-29 11:25:53.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
-2025-07-29 11:25:53.232 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:25:53.232 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:25:53.232 ERROR (MainThread) [custom_components.goalzero_ble.devices.yeti500] Failed to send JSON message: 'GoalZeroBLEManager' object has no attribute 'write_characteristic'
-2025-07-29 11:25:53.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 21 keys
-2025-07-29 11:25:53.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 0.001 seconds (success: True)
-2025-07-29 11:25:53.477 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 2/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:23:47.843 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration goalzero_ble which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-07-29 12:24:35.373 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 2: {'govee_ble', 'sensi', 'wyoming', 'withings', 'icloud', 'input_button', 'otbr', 'thread', 'rpi_power', 'input_number', 'input_text', 'moon', 'nws', 'shopping_list', 'switchbot', 'automation', 'schedule', 'mobile_app', 'filter', 'chime_tts', 'input_boolean', 'matter', 'private_ble_device', 'my', 'cloudflare', 'pirateweather', 'homekit', 'sun', 'llama_conversation', 'local_fcsp', 'scene', 'petlibro', 'thermal_comfort', 'esphome', 'homekit_controller', 'rest_command', 'input_datetime', 'tuya_local', 'integration', 'timer', 'hacs', 'co2signal', 'statistics', 'roomba', 'accuweather', 'wemo', 'input_select', 'go2rtc', 'ibeacon', 'bermuda', 'unifi', 'analytics', 'radio_browser', 'lg_thinq', 'blitzortung', 'scrape', 'forecast_solar', 'notify', 'hardware', 'goalzero_ble', 'homeassistant_sky_connect', 'tag', 'system_health', 'fordpass', 'script', 'ipp', 'person', 'utility_meter', 'apple_tv', 'application_credentials', 'default_config', 'lunar_phase', 'vivint', 'zone'} | {'group', 'frontend', 'backup', 'zeroconf', 'counter', 'bluetooth', 'network', 'hassio', 'cloud', 'http', 'logger', 'recorder', 'sensor', 'template'}
+2025-07-29 12:24:53.228 INFO (MainThread) [homeassistant.setup] Setting up goalzero_ble
+2025-07-29 12:24:53.228 INFO (MainThread) [homeassistant.setup] Setup of domain goalzero_ble took 0.00 seconds
+2025-07-29 12:24:53.228 INFO (MainThread) [custom_components.goalzero_ble] Setting up Goal Zero BLE integration for gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:24:53.229 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Creating device instance for type alta80
+2025-07-29 12:24:53.229 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Initialized BLE manager for FD:06:22:F1:4D:2A (alta80) with persistent connection support
+2025-07-29 12:24:53.229 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Initialized coordinator for gzf1-80-F14D2A (alta80) at FD:06:22:F1:4D:2A with 30s update interval
+2025-07-29 12:24:53.229 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Starting persistent BLE connection for gzf1-80-F14D2A
+2025-07-29 12:24:53.229 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Starting persistent connection to FD:06:22:F1:4D:2A
+2025-07-29 12:24:53.229 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Scanning for device FD:06:22:F1:4D:2A
+2025-07-29 12:24:53.229 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Found device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:24:53.229 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:24:53.372 INFO (MainThread) [custom_components.goalzero_ble] Setting up Goal Zero BLE integration for gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
+2025-07-29 12:24:53.372 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Creating device instance for type yeti500
+2025-07-29 12:24:53.372 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Initialized BLE manager for D8:13:2A:74:DB:B6 (yeti500) with persistent connection support
+2025-07-29 12:24:53.372 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Initialized coordinator for gzy5c-74dbb4 (yeti500) at D8:13:2A:74:DB:B6 with 30s update interval
+2025-07-29 12:24:53.372 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Starting persistent BLE connection for gzy5c-74dbb4
+2025-07-29 12:24:53.372 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Starting persistent connection to D8:13:2A:74:DB:B6
+2025-07-29 12:24:53.372 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Scanning for device D8:13:2A:74:DB:B6
+2025-07-29 12:24:53.372 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Found device: gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
+2025-07-29 12:24:53.372 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
+2025-07-29 12:24:53.373 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
+2025-07-29 12:24:53.373 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
+2025-07-29 12:24:54.491 WARNING (MainThread) [homeassistant.bootstrap] Waiting on integrations to complete setup: {('statistics', '01JWVDPSSPJKMSQN10KYQVD4R4'): 227458.22291727, ('moon', '01JJZSWXZ8PJCWHNYAMDQWCB0N'): 227464.169211441, ('nws', '01JTDYBY9D0E8393TVMZAKDKGK'): 227464.43741458, ('shopping_list', '01JJTJM4R0ZAG8Y4GEDGFSYD0Z'): 227464.490655425, ('local_fcsp', '01K0PKXNMXWVY3VMWR7JCVB9GZ'): 227465.141524623, ('tuya_local', '01JX6QVPCRF84G30B0WC2YQH2A'): 227466.321239462, ('tuya_local', '01JX6R4KV7S9XY25M2E97VRKPV'): 227466.32138916, ('tuya_local', '01JX6RX6QA98KF34S947PTJVWJ'): 227466.321497394, ('hacs', '01K0AJSMR60MQFN5667CVWKPS0'): 227467.28847557, ('co2signal', '01JJZ2MFTW4ZE81K89YGEW1VZ3'): 227467.327570432, ('roomba', '01JXZ8QMC06JEDFZMCN72CV5S1'): 227468.009583206, ('accuweather', '01JV0V1F90CRDSKTJ261CMMAAY'): 227468.185513207, ('vivint', '01JW0DNVG4RHQ3S3VT3TDJ7YTD'): 227476.017562502, ('goalzero_ble', '01K19GMV6VVEMC4CE5AP30SHYB'): 227476.052696692, ('goalzero_ble', '01K19PJME0JAAMP0KMZF99SZVA'): 227476.195950931, ('fordpass', '01JSMNSB8MZSCFHJZGQ5DZF9AF'): 227476.247870745, ('lunar_phase', '01JTDVWCBTRXKWB1Z3MAZYR05K'): 227476.736378391}
+2025-07-29 12:25:04.215 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Connection timeout after 12s for device FD:06:22:F1:4D:2A
+2025-07-29 12:25:04.215 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-29 12:25:04.215 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-29 12:25:04.215 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-29 12:25:04.215 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-29 12:25:04.215 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-29 12:25:04.215 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:25:04.217 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:25:05.375 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Connection timeout after 12s for device D8:13:2A:74:DB:B6
+2025-07-29 12:25:05.375 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:25:05.375 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
+2025-07-29 12:25:06.512 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] BLE error on attempt 1/2: Device with address FD:06:22:F1:4D:2A was not found. It may have been removed from BlueZ when scanning stopped.
+2025-07-29 12:25:06.513 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Failed to connect to FD:06:22:F1:4D:2A: Device with address FD:06:22:F1:4D:2A was not found. It may have been removed from BlueZ when scanning stopped. (type: BleakDeviceNotFoundError)
+2025-07-29 12:25:10.217 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 2/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:25:13.298 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:25:14.299 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
+2025-07-29 12:25:14.299 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
+2025-07-29 12:25:14.299 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
+2025-07-29 12:25:14.299 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
+2025-07-29 12:25:14.299 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
+2025-07-29 12:25:14.299 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
+2025-07-29 12:25:14.299 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
+2025-07-29 12:25:14.299 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
+2025-07-29 12:25:14.299 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
+2025-07-29 12:25:14.300 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
+2025-07-29 12:25:14.300 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
+2025-07-29 12:25:14.300 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
+2025-07-29 12:25:14.300 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
+2025-07-29 12:25:14.300 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
+2025-07-29 12:25:14.516 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
+2025-07-29 12:25:15.380 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Connection timeout after 12s for device D8:13:2A:74:DB:B6
+2025-07-29 12:25:15.381 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
+2025-07-29 12:25:15.518 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
+2025-07-29 12:25:15.518 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
+2025-07-29 12:25:15.519 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
+2025-07-29 12:25:16.020 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
+2025-07-29 12:25:16.021 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
+2025-07-29 12:25:16.021 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
+2025-07-29 12:25:16.021 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
+2025-07-29 12:25:16.221 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
+2025-07-29 12:25:16.729 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:25:17.139 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:25:17.240 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:25:17.446 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:25:17.961 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:25:18.063 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:25:18.675 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:25:19.027 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:25:19.128 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:25:19.129 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:25:19.129 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 13.754 seconds (success: True)
+2025-07-29 12:25:19.206 INFO (MainThread) [homeassistant.components.sensor] Setting up goalzero_ble.sensor
+2025-07-29 12:25:19.207 INFO (MainThread) [custom_components.goalzero_ble.sensor] Setting up 33 sensors for gzy5c-74dbb4
+2025-07-29 12:25:19.215 INFO (MainThread) [homeassistant.components.button] Setting up goalzero_ble.button
+2025-07-29 12:25:19.215 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:25:19.216 INFO (MainThread) [homeassistant.components.switch] Setting up goalzero_ble.switch
+2025-07-29 12:25:19.217 INFO (MainThread) [homeassistant.components.select] Setting up goalzero_ble.select
+2025-07-29 12:25:19.218 INFO (MainThread) [homeassistant.components.number] Setting up goalzero_ble.number
+2025-07-29 12:25:19.913 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:25:20.517 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:25:20.619 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:25:24.063 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to command attempt 1 (Standard status command) after 8s, retrying...
+2025-07-29 12:25:24.314 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:25:24.617 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:25:24.718 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:25:25.028 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:25:25.535 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:25:25.636 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:25:25.636 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:25:25.636 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 6.421 seconds (success: True)
+2025-07-29 12:25:25.639 INFO (MainThread) [custom_components.goalzero_ble] Successfully set up Goal Zero BLE integration for gzy5c-74dbb4
+2025-07-29 12:25:26.064 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 2: FEFE030102 (Status command without length byte) to handle 0x000B
+2025-07-29 12:25:26.065 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
+2025-07-29 12:25:26.065 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 2...
+2025-07-29 12:25:34.110 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to command attempt 2 (Status command without length byte) after 8s, retrying...
+2025-07-29 12:25:36.111 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 3: FEFE0301020000 (Status command with padding) to handle 0x000B
+2025-07-29 12:25:36.112 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
+2025-07-29 12:25:36.112 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 3...
+2025-07-29 12:25:36.403 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000664 (20 bytes)
+2025-07-29 12:25:36.513 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 3 (Status command with padding) after 0.4s
+2025-07-29 12:25:36.513 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 1)...
+2025-07-29 12:25:36.514 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE020027000000082B (16 bytes)
+2025-07-29 12:25:36.514 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
+2025-07-29 12:25:36.514 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:25:36.714 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
+2025-07-29 12:25:36.715 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
+2025-07-29 12:25:36.715 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000664 (20 bytes)
+2025-07-29 12:25:36.715 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE020027000000082B (16 bytes)
+2025-07-29 12:25:36.715 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
+2025-07-29 12:25:36.716 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
+2025-07-29 12:25:36.716 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
+2025-07-29 12:25:36.716 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
+2025-07-29 12:25:36.716 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
+2025-07-29 12:25:36.716 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 6°C (raw: 6)
+2025-07-29 12:25:36.716 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
+2025-07-29 12:25:36.716 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
+2025-07-29 12:25:36.716 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 43°C (raw: 43)
+2025-07-29 12:25:36.716 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
+2025-07-29 12:25:36.716 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
+2025-07-29 12:25:37.310 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
+2025-07-29 12:25:37.311 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
+2025-07-29 12:25:37.311 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 33.096 seconds (success: True)
+2025-07-29 12:25:37.311 INFO (MainThread) [homeassistant.components.sensor] Setting up goalzero_ble.sensor
+2025-07-29 12:25:37.312 INFO (MainThread) [custom_components.goalzero_ble.sensor] Setting up 72 sensors for gzf1-80-F14D2A
+2025-07-29 12:25:37.330 INFO (MainThread) [homeassistant.components.button] Setting up goalzero_ble.button
+2025-07-29 12:25:37.330 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-29 12:25:37.330 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-29 12:25:37.330 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-29 12:25:37.330 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-29 12:25:37.330 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-29 12:25:37.330 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:25:37.331 INFO (MainThread) [homeassistant.components.switch] Setting up goalzero_ble.switch
+2025-07-29 12:25:37.332 INFO (MainThread) [homeassistant.components.select] Setting up goalzero_ble.select
+2025-07-29 12:25:37.333 INFO (MainThread) [homeassistant.components.number] Setting up goalzero_ble.number
+2025-07-29 12:25:38.450 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:25:39.450 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
+2025-07-29 12:25:39.451 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
+2025-07-29 12:25:39.473 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
+2025-07-29 12:25:40.476 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
+2025-07-29 12:25:40.476 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
+2025-07-29 12:25:40.477 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
+2025-07-29 12:25:40.979 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
+2025-07-29 12:25:40.979 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
+2025-07-29 12:25:40.979 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
+2025-07-29 12:25:40.979 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
+2025-07-29 12:25:41.205 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000664 (20 bytes)
+2025-07-29 12:25:41.205 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE020027000000082B (16 bytes)
+2025-07-29 12:25:41.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.4s
+2025-07-29 12:25:41.381 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
+2025-07-29 12:25:41.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
+2025-07-29 12:25:41.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
+2025-07-29 12:25:41.381 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000664 (20 bytes)
+2025-07-29 12:25:41.381 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE020027000000082B (16 bytes)
+2025-07-29 12:25:41.381 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
+2025-07-29 12:25:41.382 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
+2025-07-29 12:25:41.382 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
+2025-07-29 12:25:41.382 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
+2025-07-29 12:25:41.382 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
+2025-07-29 12:25:41.382 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 6°C (raw: 6)
+2025-07-29 12:25:41.382 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
+2025-07-29 12:25:41.382 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
+2025-07-29 12:25:41.382 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 43°C (raw: 43)
+2025-07-29 12:25:41.382 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
+2025-07-29 12:25:41.382 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
+2025-07-29 12:25:41.533 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
+2025-07-29 12:25:41.534 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
+2025-07-29 12:25:41.534 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 4.204 seconds (success: True)
+2025-07-29 12:25:41.538 INFO (MainThread) [custom_components.goalzero_ble] Successfully set up Goal Zero BLE integration for gzf1-80-F14D2A
+2025-07-29 12:25:44.527 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:25:55.456 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:25:55.640 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:25:56.061 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:25:56.162 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:25:56.460 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:25:56.665 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:25:56.766 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:25:57.595 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:25:58.259 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:25:58.502 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:25:58.502 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:25:58.502 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 3.046 seconds (success: True)
+2025-07-29 12:25:59.514 DEBUG (MainThread) [custom_components.goalzero_ble.config_flow] Bluetooth discovery triggered for gzf1-80-F14D2A
+2025-07-29 12:25:59.514 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Detected device type alta80 for name gzf1-80-F14D2A
+2025-07-29 12:25:59.514 DEBUG (MainThread) [custom_components.goalzero_ble.config_flow] Bluetooth discovery triggered for gzy5c-74dbb4
+2025-07-29 12:25:59.515 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Detected device type yeti500 for name gzy5c-74dbb4
+2025-07-29 12:25:59.515 DEBUG (MainThread) [custom_components.goalzero_ble.config_flow] Bluetooth discovery triggered for gzf1-80-F14D2A
+2025-07-29 12:25:59.515 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Detected device type alta80 for name gzf1-80-F14D2A
+2025-07-29 12:26:12.745 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-29 12:26:12.745 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-29 12:26:12.745 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-29 12:26:12.745 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-29 12:26:12.746 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-29 12:26:12.746 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:26:13.332 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:26:15.230 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
+2025-07-29 12:26:15.230 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
+2025-07-29 12:26:15.230 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
+2025-07-29 12:26:15.230 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
+2025-07-29 12:26:15.230 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
+2025-07-29 12:26:15.230 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
+2025-07-29 12:26:15.230 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
+2025-07-29 12:26:15.230 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
+2025-07-29 12:26:15.230 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
+2025-07-29 12:26:15.232 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
+2025-07-29 12:26:15.232 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
+2025-07-29 12:26:15.232 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
+2025-07-29 12:26:15.232 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
+2025-07-29 12:26:15.232 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
+2025-07-29 12:26:15.327 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
+2025-07-29 12:26:16.590 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
+2025-07-29 12:26:16.610 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
+2025-07-29 12:26:16.616 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
+2025-07-29 12:26:21.486 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
+2025-07-29 12:26:21.486 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
+2025-07-29 12:26:21.486 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
+2025-07-29 12:26:21.486 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
+2025-07-29 12:26:22.937 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000664 (20 bytes)
+2025-07-29 12:26:22.937 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE020027000000082B (16 bytes)
+2025-07-29 12:26:22.960 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.2s
+2025-07-29 12:26:22.960 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
+2025-07-29 12:26:22.961 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
+2025-07-29 12:26:22.961 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000664 (20 bytes)
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE020027000000082B (16 bytes)
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 6°C (raw: 6)
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 43°C (raw: 43)
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
+2025-07-29 12:26:22.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
+2025-07-29 12:26:23.099 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
+2025-07-29 12:26:23.100 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
+2025-07-29 12:26:23.101 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
+2025-07-29 12:26:23.114 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 10.355 seconds (success: True)
+2025-07-29 12:26:29.232 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:26:29.536 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:26:29.853 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:26:29.954 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:26:30.161 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:26:30.457 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:26:30.558 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:26:31.709 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:26:32.114 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:26:32.220 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:26:32.220 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:26:32.220 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 2.988 seconds (success: True)
+2025-07-29 12:26:45.237 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
+2025-07-29 12:26:45.238 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:26:48.683 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:26:52.291 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-29 12:26:52.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-29 12:26:52.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-29 12:26:52.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-29 12:26:52.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-29 12:26:52.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:26:52.380 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:26:53.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
+2025-07-29 12:26:53.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
+2025-07-29 12:26:53.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
+2025-07-29 12:26:53.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
+2025-07-29 12:26:53.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
+2025-07-29 12:26:53.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
+2025-07-29 12:26:53.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
+2025-07-29 12:26:53.381 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
+2025-07-29 12:26:53.382 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
+2025-07-29 12:26:53.382 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
+2025-07-29 12:26:53.382 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
+2025-07-29 12:26:53.382 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
+2025-07-29 12:26:53.382 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
+2025-07-29 12:26:53.382 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
+2025-07-29 12:26:53.646 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
+2025-07-29 12:26:54.648 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
+2025-07-29 12:26:54.648 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
+2025-07-29 12:26:54.649 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
+2025-07-29 12:26:55.151 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
+2025-07-29 12:26:55.151 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
+2025-07-29 12:26:55.152 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
+2025-07-29 12:26:55.152 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
+2025-07-29 12:26:55.647 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000564 (20 bytes)
+2025-07-29 12:26:55.647 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE020027000000082A (16 bytes)
+2025-07-29 12:26:55.754 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.6s
+2025-07-29 12:26:55.754 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
+2025-07-29 12:26:55.754 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
+2025-07-29 12:26:55.755 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
+2025-07-29 12:26:55.755 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000564 (20 bytes)
+2025-07-29 12:26:55.755 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE020027000000082A (16 bytes)
+2025-07-29 12:26:55.755 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
+2025-07-29 12:26:55.755 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
+2025-07-29 12:26:55.755 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
+2025-07-29 12:26:55.755 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
+2025-07-29 12:26:55.756 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
+2025-07-29 12:26:55.756 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 5°C (raw: 5)
+2025-07-29 12:26:55.756 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
+2025-07-29 12:26:55.756 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
+2025-07-29 12:26:55.756 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 42°C (raw: 42)
+2025-07-29 12:26:55.756 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
+2025-07-29 12:26:55.756 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
+2025-07-29 12:26:56.106 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
+2025-07-29 12:26:56.106 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
+2025-07-29 12:26:56.107 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
+2025-07-29 12:26:56.107 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 3.816 seconds (success: True)
+2025-07-29 12:27:02.457 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:27:04.360 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:27:06.299 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:27:06.400 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:27:07.126 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:27:07.944 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:27:08.045 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:27:08.449 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:27:08.704 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:27:08.805 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:27:08.806 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:27:08.806 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 6.349 seconds (success: True)
+2025-07-29 12:27:18.685 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
+2025-07-29 12:27:18.686 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:27:23.196 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:27:25.290 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-29 12:27:25.290 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-29 12:27:25.290 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-29 12:27:25.290 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-29 12:27:25.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-29 12:27:25.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:27:25.894 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:27:26.895 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
+2025-07-29 12:27:26.895 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
+2025-07-29 12:27:26.895 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
+2025-07-29 12:27:26.896 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
+2025-07-29 12:27:27.104 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
+2025-07-29 12:27:28.106 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
+2025-07-29 12:27:28.106 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
+2025-07-29 12:27:28.107 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
+2025-07-29 12:27:28.608 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
+2025-07-29 12:27:28.608 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
+2025-07-29 12:27:28.609 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
+2025-07-29 12:27:28.609 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
+2025-07-29 12:27:29.029 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000564 (20 bytes)
+2025-07-29 12:27:29.030 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE020027000000082A (16 bytes)
+2025-07-29 12:27:29.212 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.6s
+2025-07-29 12:27:29.212 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
+2025-07-29 12:27:29.212 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
+2025-07-29 12:27:29.213 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000564 (20 bytes)
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE020027000000082A (16 bytes)
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 5°C (raw: 5)
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 42°C (raw: 42)
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
+2025-07-29 12:27:29.213 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
+2025-07-29 12:27:29.475 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
+2025-07-29 12:27:29.475 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
+2025-07-29 12:27:29.476 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
+2025-07-29 12:27:29.476 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 4.186 seconds (success: True)
+2025-07-29 12:27:38.456 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:27:38.667 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:27:41.012 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:27:41.114 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:27:42.864 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:27:43.170 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:27:43.271 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:27:43.470 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:27:43.674 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:27:43.775 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:27:43.776 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:27:43.776 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 5.319 seconds (success: True)
+2025-07-29 12:27:53.198 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
+2025-07-29 12:27:53.198 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:27:59.291 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-29 12:27:59.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-29 12:27:59.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-29 12:27:59.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-29 12:27:59.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-29 12:27:59.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:28:01.388 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:28:02.389 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
+2025-07-29 12:28:02.389 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
+2025-07-29 12:28:02.389 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
+2025-07-29 12:28:02.389 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
+2025-07-29 12:28:02.389 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
+2025-07-29 12:28:02.390 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
+2025-07-29 12:28:02.390 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
+2025-07-29 12:28:02.390 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
+2025-07-29 12:28:02.390 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
+2025-07-29 12:28:02.390 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
+2025-07-29 12:28:02.390 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
+2025-07-29 12:28:02.390 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
+2025-07-29 12:28:02.390 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
+2025-07-29 12:28:02.390 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
+2025-07-29 12:28:02.550 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
+2025-07-29 12:28:06.921 ERROR (MainThread) [custom_components.goalzero_ble.ble_manager] Connection timeout after 12s for device FD:06:22:F1:4D:2A
+2025-07-29 12:28:06.923 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
+2025-07-29 12:28:06.923 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
+2025-07-29 12:28:06.923 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
+2025-07-29 12:28:07.424 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
+2025-07-29 12:28:07.424 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
+2025-07-29 12:28:07.425 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
+2025-07-29 12:28:07.425 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
+2025-07-29 12:28:07.532 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000464 (20 bytes)
+2025-07-29 12:28:07.532 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE0200270000000829 (16 bytes)
+2025-07-29 12:28:07.626 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.2s
+2025-07-29 12:28:07.626 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
+2025-07-29 12:28:07.626 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
+2025-07-29 12:28:07.627 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
+2025-07-29 12:28:07.627 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000464 (20 bytes)
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE0200270000000829 (16 bytes)
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 4°C (raw: 4)
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 41°C (raw: 41)
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
+2025-07-29 12:28:07.628 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
+2025-07-29 12:28:09.689 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
+2025-07-29 12:28:09.702 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
+2025-07-29 12:28:09.702 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 10.411 seconds (success: True)
+2025-07-29 12:28:13.457 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:28:13.784 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:28:14.296 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:28:14.397 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:28:15.014 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:28:16.037 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:28:16.137 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:28:16.750 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:28:17.160 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:28:17.261 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:28:17.261 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:28:17.261 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 3.804 seconds (success: True)
+2025-07-29 12:28:36.924 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
+2025-07-29 12:28:36.924 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:28:39.290 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-29 12:28:39.290 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-29 12:28:39.290 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-29 12:28:39.290 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-29 12:28:39.290 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-29 12:28:39.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:28:41.064 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
+2025-07-29 12:28:42.066 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
+2025-07-29 12:28:42.173 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
+2025-07-29 12:28:43.174 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
+2025-07-29 12:28:43.174 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
+2025-07-29 12:28:43.175 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
+2025-07-29 12:28:43.676 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
+2025-07-29 12:28:43.677 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
+2025-07-29 12:28:43.677 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
+2025-07-29 12:28:43.677 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
+2025-07-29 12:28:43.984 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000364 (20 bytes)
+2025-07-29 12:28:44.080 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.4s
+2025-07-29 12:28:44.080 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 1)...
+2025-07-29 12:28:44.397 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE0200270000000828 (16 bytes)
+2025-07-29 12:28:44.482 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
+2025-07-29 12:28:44.483 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
+2025-07-29 12:28:44.483 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000364 (20 bytes)
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE0200270000000828 (16 bytes)
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 3°C (raw: 3)
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 40°C (raw: 40)
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
+2025-07-29 12:28:44.484 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
+2025-07-29 12:28:44.939 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
+2025-07-29 12:28:44.940 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
+2025-07-29 12:28:44.940 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 5.650 seconds (success: True)
+2025-07-29 12:28:47.398 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:28:47.457 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:28:47.782 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:28:48.088 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:28:48.190 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:28:48.392 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:28:48.597 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:28:48.698 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:28:48.925 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:28:49.621 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:28:49.723 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:28:49.723 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:28:49.723 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 2.266 seconds (success: True)
+2025-07-29 12:29:14.291 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-29 12:29:14.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-29 12:29:14.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-29 12:29:14.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-29 12:29:14.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-29 12:29:14.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:29:14.414 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Connected to Alta 80 device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:29:15.415 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === Alta 80 GATT Discovery ===
+2025-07-29 12:29:15.415 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001800-0000-1000-8000-00805f9b34fb
+2025-07-29 12:29:15.415 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a00-0000-1000-8000-00805f9b34fb (Handle: 0x0003, Properties: ['read', 'write'])
+2025-07-29 12:29:15.415 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a01-0000-1000-8000-00805f9b34fb (Handle: 0x0005, Properties: ['read'])
+2025-07-29 12:29:15.415 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00002a04-0000-1000-8000-00805f9b34fb (Handle: 0x0007, Properties: ['read'])
+2025-07-29 12:29:15.415 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001801-0000-1000-8000-00805f9b34fb
+2025-07-29 12:29:15.415 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Service: 00001234-0000-1000-8000-00805f9b34fb
+2025-07-29 12:29:15.415 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001235-0000-1000-8000-00805f9b34fb (Handle: 0x000B, Properties: ['write-without-response'])
+2025-07-29 12:29:15.415 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected write-without-response characteristic: 0x000B
+2025-07-29 12:29:15.416 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80]   Characteristic: 00001236-0000-1000-8000-00805f9b34fb (Handle: 0x000D, Properties: ['read', 'notify'])
+2025-07-29 12:29:15.416 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Selected read/notify characteristic: 0x000D
+2025-07-29 12:29:15.416 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] === End GATT Discovery ===
+2025-07-29 12:29:15.416 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Using write characteristic 0x000B and read/notify characteristic 0x000D
+2025-07-29 12:29:15.416 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Starting notifications on characteristic 0x000D...
+2025-07-29 12:29:15.538 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Notifications started successfully
+2025-07-29 12:29:16.539 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Notification setup delay complete
+2025-07-29 12:29:16.540 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Testing device responsiveness...
+2025-07-29 12:29:16.540 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Probe command sent successfully
+2025-07-29 12:29:17.041 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] No response to probe command - device may be sleeping or unresponsive
+2025-07-29 12:29:17.041 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Sending command attempt 1: FEFE03010200 (Standard status command) to handle 0x000B
+2025-07-29 12:29:17.042 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Command sent successfully
+2025-07-29 12:29:17.042 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 8s for response to command 1...
+2025-07-29 12:29:17.373 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 1 from 0x000D: FEFE2101000100010044FC040001FEFE02000364 (20 bytes)
+2025-07-29 12:29:17.389 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] 🔔 Alta 80 Notification 2 from 0x000D: 0E0324000004FEFE0200270000000828 (16 bytes)
+2025-07-29 12:29:17.444 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Got response on command attempt 1 (Standard status command) after 0.4s
+2025-07-29 12:29:17.444 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Waiting up to 20s for all responses (currently have 2)...
+2025-07-29 12:29:17.444 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Received all 2 expected responses from Alta 80
+2025-07-29 12:29:17.445 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully captured 2 responses from Alta 80
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 1: FEFE2101000100010044FC040001FEFE02000364 (20 bytes)
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Response 2: 0E0324000004FEFE0200270000000828 (16 bytes)
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Parsing 36 total bytes from concatenated response
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 6 (Eco Mode): False (raw: 0)
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 7 (Battery Protection): Medium (raw: 1)
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 8 (Zone 1 Setpoint): 0°F (raw: 0)
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 9 (Max Setpoint): 68°F (raw: 68)
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 18 (Zone 1 Temperature): 3°C (raw: 3)
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 22 (Zone 2 Setpoint): 36°F (raw: 36)
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 34 (Zone 1 Setpoint Exceeded): 8
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Byte 35 (Zone 2 Temperature): 40°C (raw: 40)
+2025-07-29 12:29:17.445 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed all 36 status bytes
+2025-07-29 12:29:17.446 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Successfully parsed Alta 80 data with 76 sensor values
+2025-07-29 12:29:17.500 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device FD:06:22:F1:4D:2A disconnected
+2025-07-29 12:29:17.500 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Device gzf1-80-F14D2A disconnected
+2025-07-29 12:29:17.501 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
+2025-07-29 12:29:17.502 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 3.211 seconds (success: True)
+2025-07-29 12:29:19.456 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:29:19.737 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:29:20.151 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:29:20.252 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:29:20.449 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:29:20.860 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:29:20.961 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:29:21.573 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:29:23.009 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:29:23.110 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:29:23.110 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:29:23.110 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 3.654 seconds (success: True)
+2025-07-29 12:29:47.290 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzf1-80-F14D2A
+2025-07-29 12:29:47.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Updating Alta 80 data via direct BLE connection
+2025-07-29 12:29:47.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scanning for device: gzf1-80-F14D2A
+2025-07-29 12:29:47.291 DEBUG (MainThread) [custom_components.goalzero_ble.devices.alta80] Scan attempt 1 for device gzf1-80-F14D2A
+2025-07-29 12:29:47.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] ✓ Found target device: gzf1-80-F14D2A (FD:06:22:F1:4D:2A) on attempt 1
+2025-07-29 12:29:47.291 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 1/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:29:47.400 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
+2025-07-29 12:29:47.400 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:29:48.087 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:29:52.457 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:29:53.007 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:29:53.317 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:29:53.418 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:29:53.734 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:29:54.850 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:29:54.952 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:29:55.158 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:29:55.468 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 27 bytes to handle 0x0003
+2025-07-29 12:29:55.569 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:29:55.569 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:29:55.569 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 3.112 seconds (success: True)
+2025-07-29 12:30:17.529 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection timeout on attempt 1/2: Timeout waiting for connect response while connecting to FD:06:22:F1:4D:2A after 15.0s, disconnect timed out: False,  after 20.0s
+2025-07-29 12:30:20.551 INFO (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection attempt 2/2 to gzf1-80-F14D2A (FD:06:22:F1:4D:2A)
+2025-07-29 12:30:22.843 INFO (MainThread) [custom_components.goalzero_ble] Unloading Goal Zero BLE integration for gzy5c-74dbb4
+2025-07-29 12:30:22.847 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Shutting down coordinator for gzy5c-74dbb4
+2025-07-29 12:30:22.847 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Stopping persistent connection to D8:13:2A:74:DB:B6
+2025-07-29 12:30:24.445 WARNING (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Device D8:13:2A:74:DB:B6 disconnected
+2025-07-29 12:30:24.445 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Disconnected from device D8:13:2A:74:DB:B6
+2025-07-29 12:30:24.445 INFO (MainThread) [custom_components.goalzero_ble] Successfully unloaded Goal Zero BLE integration for gzy5c-74dbb4
+2025-07-29 12:30:24.445 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Shutting down coordinator for gzy5c-74dbb4
+2025-07-29 12:30:24.446 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Stopping persistent connection to D8:13:2A:74:DB:B6
+2025-07-29 12:30:24.446 INFO (MainThread) [custom_components.goalzero_ble] Setting up Goal Zero BLE integration for gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
+2025-07-29 12:30:24.446 DEBUG (MainThread) [custom_components.goalzero_ble.device_registry] Creating device instance for type yeti500
+2025-07-29 12:30:24.446 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Initialized BLE manager for D8:13:2A:74:DB:B6 (yeti500) with persistent connection support
+2025-07-29 12:30:24.446 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Initialized coordinator for gzy5c-74dbb4 (yeti500) at D8:13:2A:74:DB:B6 with 30s update interval
+2025-07-29 12:30:24.446 INFO (MainThread) [custom_components.goalzero_ble.coordinator] Starting persistent BLE connection for gzy5c-74dbb4
+2025-07-29 12:30:24.446 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Starting persistent connection to D8:13:2A:74:DB:B6
+2025-07-29 12:30:24.446 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Scanning for device D8:13:2A:74:DB:B6
+2025-07-29 12:30:24.446 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Found device: gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
+2025-07-29 12:30:24.446 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Attempting to connect to gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
+2025-07-29 12:30:24.447 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] [BLEManager] Connection lost, attempting reconnection...
+2025-07-29 12:30:25.104 INFO (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully connected to device gzy5c-74dbb4 (D8:13:2A:74:DB:B6)
+2025-07-29 12:30:25.104 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:30:25.369 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:30:25.673 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:30:25.775 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:30:26.398 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:30:29.169 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:30:29.270 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:30:29.471 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:30:29.773 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:30:29.873 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:30:29.874 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:30:29.874 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 4.769 seconds (success: True)
+2025-07-29 12:30:29.874 INFO (MainThread) [homeassistant.components.sensor] Setting up goalzero_ble.sensor
+2025-07-29 12:30:29.874 INFO (MainThread) [custom_components.goalzero_ble.sensor] Setting up 33 sensors for gzy5c-74dbb4
+2025-07-29 12:30:29.884 INFO (MainThread) [homeassistant.components.button] Setting up goalzero_ble.button
+2025-07-29 12:30:29.884 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:30:29.886 INFO (MainThread) [homeassistant.components.switch] Setting up goalzero_ble.switch
+2025-07-29 12:30:29.888 INFO (MainThread) [homeassistant.components.select] Setting up goalzero_ble.select
+2025-07-29 12:30:29.888 INFO (MainThread) [homeassistant.components.number] Setting up goalzero_ble.number
+2025-07-29 12:30:30.084 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:30:30.399 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:30:30.499 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:30:30.819 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:30:31.932 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:30:32.033 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:30:32.228 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:30:32.451 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:30:32.552 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:30:32.552 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:30:32.552 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 2.668 seconds (success: True)
+2025-07-29 12:30:32.556 INFO (MainThread) [custom_components.goalzero_ble] Successfully set up Goal Zero BLE integration for gzy5c-74dbb4
+2025-07-29 12:30:50.667 WARNING (MainThread) [custom_components.goalzero_ble.devices.alta80] Connection timeout on attempt 2/2: Timeout waiting for connect response while connecting to FD:06:22:F1:4D:2A after 15.0s, disconnect timed out: False,  after 20.0s
+2025-07-29 12:30:50.667 ERROR (MainThread) [custom_components.goalzero_ble.devices.alta80] All connection attempts failed for gzf1-80-F14D2A (FD:06:22:F1:4D:2A). Last error: Timeout waiting for connect response while connecting to FD:06:22:F1:4D:2A after 15.0s, disconnect timed out: False,  after 20.0s
+2025-07-29 12:30:50.667 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzf1-80-F14D2A: 76 keys
+2025-07-29 12:30:50.667 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzf1-80-F14D2A data in 63.377 seconds (success: True)
+2025-07-29 12:31:02.362 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Updating data for gzy5c-74dbb4
+2025-07-29 12:31:02.947 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:31:03.364 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:31:03.465 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Device info updated
+2025-07-29 12:31:03.664 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:31:04.892 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:31:04.993 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Config updated
+2025-07-29 12:31:05.617 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 4 bytes to handle 0x0008
+2025-07-29 12:31:06.325 DEBUG (MainThread) [custom_components.goalzero_ble.ble_manager] Successfully wrote 26 bytes to handle 0x0003
+2025-07-29 12:31:06.427 DEBUG (MainThread) [custom_components.goalzero_ble.devices.yeti500] Status updated
+2025-07-29 12:31:06.427 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Successfully updated data for gzy5c-74dbb4: 38 keys
+2025-07-29 12:31:06.427 DEBUG (MainThread) [custom_components.goalzero_ble.coordinator] Finished fetching goalzero_ble_gzy5c-74dbb4 data in 4.065 seconds (success: True)

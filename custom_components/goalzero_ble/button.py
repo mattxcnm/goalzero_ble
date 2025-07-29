@@ -63,12 +63,21 @@ class GoalZeroButton(GoalZeroEntity, ButtonEntity):
         try:
             _LOGGER.debug("Button %s pressed", self._key)
             
-            # Get current device data for context
-            current_data = self.coordinator.data or {}
-            
-            # Create command for the button
             device = self.coordinator.device
-            if hasattr(device, 'create_button_command'):
+            ble_manager = self.coordinator.ble_manager
+            success = False
+            
+            # Check if device has send_button_command method (for Yeti 500)
+            if hasattr(device, 'send_button_command'):
+                _LOGGER.info("[BUTTON] Using send_button_command method")
+                success = await device.send_button_command(ble_manager, self._key)
+            
+            # Fallback to create_button_command method (for other devices)
+            elif hasattr(device, 'create_button_command'):
+                _LOGGER.info("[BUTTON] Device has create_button_command method")
+                # Get current device data for context
+                current_data = self.coordinator.data or {}
+                
                 # Get current setpoint values from sensors
                 kwargs = {}
                 if "zone1" in self._key and "temp" in self._key:
@@ -83,19 +92,17 @@ class GoalZeroButton(GoalZeroEntity, ButtonEntity):
                     kwargs["current_battery_protection"] = current_data.get("battery_protection", "low")
                 
                 command = device.create_button_command(self._key, **kwargs)
-                
-                # Send command via BLE manager
-                ble_manager = self.coordinator.ble_manager
                 success = await device.send_command(ble_manager, command)
-                
-                if success:
-                    # Request a data refresh to get updated device state
-                    await self.coordinator.async_request_refresh()
-                    _LOGGER.info("Successfully executed button %s", self._key)
-                else:
-                    _LOGGER.error("Failed to execute button %s", self._key)
             else:
-                _LOGGER.error("Device does not support button commands")
+                _LOGGER.error("[BUTTON] Device does not support button commands")
+                return
+                
+            if success:
+                _LOGGER.info("[BUTTON] Successfully executed button %s", self._key)
+                # Request immediate refresh to update any changed states
+                await self.coordinator.async_request_refresh()
+            else:
+                _LOGGER.error("[BUTTON] Failed to execute button %s", self._key)
                 
         except Exception as e:
             _LOGGER.error("Error pressing button %s: %s", self._key, e)
