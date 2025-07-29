@@ -1,0 +1,189 @@
+{
+  "messages": [
+    {
+      "row": 4,
+      "raw_json": "{\"id\"1,\"method\"\"device\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 11,
+      "raw_json": "{\"id\"2,\"method\"\"status\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 18,
+      "raw_json": "{\"id\"3,\"method\"\"config\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 24,
+      "raw_json": "{\"id\"4,\"method\"\"ota\"}",
+      "decoded_length": 23,
+      "actual_length": 21,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 30,
+      "raw_json": "{\"id\"5,\"method\"\"lifetime\"}",
+      "decoded_length": 28,
+      "actual_length": 26,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 37,
+      "raw_json": "{\"id\"6,\"method\"\"status\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 54,
+      "raw_json": "{\"id\"8,\"method\"\"status\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 61,
+      "raw_json": "{\"id\"9,\"method\"\"status\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 78,
+      "raw_json": "{\"id\"11,\"method\"\"status\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 95,
+      "raw_json": "{\"id\"13,\"method\"\"status\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 112,
+      "raw_json": "{\"id\"15,\"method\"\"config\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 118,
+      "raw_json": "{\"id\"16,\"method\"\"device\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 134,
+      "raw_json": "{\"id\"19,\"method\"\"status\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 151,
+      "raw_json": "{\"id\"21,\"method\"\"status\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 168,
+      "raw_json": "{\"id\"23,\"method\"\"status\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row": 176,
+      "raw_json": "{\"id\"24,\"src\"\"gzy5c-d8132a74dbb4\",\"result\"{\"body\" {\"_version\"2,\"shdw\"{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512},\"wifiRssi\"0,\"appOn\"0,\"notify\"[0,0],\"batt\"{\"cyc\"10,\"soc\"11,\"whRem\"60,\"v\"27.2,\"aNetAvg\"7.8,\"aNet\"7.8,\"cTmp\"36.6,\"mTtef\"124,\"wNetAvg\"211,\"wNet\"212,\"pctHtsRh\"0,\"cHtsTmp\"36.6,\"whIn\"4861,\"whOut\"0},\"ports\"{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1172,\"a\"0.2,\"w\"284,\"fastChg\"0}",
+      "decoded_length": 27,
+      "actual_length": 459,
+      "parsed": {
+        "type": "response",
+        "result": {}
+      }
+    },
+    {
+      "row": 181,
+      "raw_json": "{\"id\"25,\"src\"\"gzy5c-d8132a74dbb4\",\"result\"{\"body\" {\"_version\"2,\"shdw\"{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512},\"wifiRssi\"0,\"appOn\"0,\"notify\"[0,0],\"batt\"{\"cyc\"10,\"soc\"12,\"whRem\"61,\"v\"27.2,\"aNetAvg\"7.5,\"aNet\"7.6,\"cTmp\"36.4,\"mTtef\"125,\"wNetAvg\"203,\"wNet\"205,\"pctHtsRh\"0,\"cHtsTmp\"36.4,\"whIn\"4861,\"whOut\"0},\"ports\"{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1173,\"a\"0.2,\"w\"285,\"fastChg\"0}",
+      "decoded_length": 27,
+      "actual_length": 459,
+      "parsed": {
+        "type": "response",
+        "result": {}
+      }
+    }
+  ],
+  "analysis": {
+    "total_messages": 17,
+    "methods": {
+      "unknown": {
+        "requests": 15,
+        "responses": 2,
+        "examples": [
+          {
+            "type": "request"
+          },
+          {
+            "type": "request"
+          },
+          {
+            "type": "request"
+          }
+        ]
+      }
+    },
+    "entities": {
+      "sensors": [],
+      "controls": [],
+      "device_info": {}
+    },
+    "ble_handles": {
+      "0x0008": "Message length prefix",
+      "0x0003": "JSON message data",
+      "0x0005": "Response status/acknowledgment"
+    }
+  }
+}

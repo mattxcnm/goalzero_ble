@@ -1,0 +1,204 @@
+{
+  "messages": [
+    {
+      "row": 4,
+      "raw_json": "{\"id\"1,\"method\"\"device\"}",
+      "fixed_json": "{\"id\":1,\"method\":\"device\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 1,
+        "method": "device",
+        "type": "request"
+      }
+    },
+    {
+      "row": 11,
+      "raw_json": "{\"id\"2,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":2,\"method\":\"status\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 2,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row": 18,
+      "raw_json": "{\"id\"3,\"method\"\"config\"}",
+      "fixed_json": "{\"id\":3,\"method\":\"config\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 3,
+        "method": "config",
+        "type": "request"
+      }
+    },
+    {
+      "row": 24,
+      "raw_json": "{\"id\"4,\"method\"\"ota\"}",
+      "fixed_json": "{\"id\":4,\"method\":\"ota\"}",
+      "decoded_length": 23,
+      "actual_length": 21,
+      "parsed": {
+        "id": 4,
+        "method": "ota",
+        "type": "request"
+      }
+    },
+    {
+      "row": 30,
+      "raw_json": "{\"id\"5,\"method\"\"lifetime\"}",
+      "fixed_json": "{\"id\":5,\"method\":\"lifetime\"}",
+      "decoded_length": 28,
+      "actual_length": 26,
+      "parsed": {
+        "id": 5,
+        "method": "lifetime",
+        "type": "request"
+      }
+    },
+    {
+      "row": 37,
+      "raw_json": "{\"id\"6,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":6,\"method\":\"status\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 6,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row": 54,
+      "raw_json": "{\"id\"8,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":8,\"method\":\"status\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 8,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row": 61,
+      "raw_json": "{\"id\"9,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":9,\"method\":\"status\"}",
+      "decoded_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 9,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row": 78,
+      "raw_json": "{\"id\"11,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":11,\"method\":\"status\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 11,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row": 95,
+      "raw_json": "{\"id\"13,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":13,\"method\":\"status\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 13,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row": 112,
+      "raw_json": "{\"id\"15,\"method\"\"config\"}",
+      "fixed_json": "{\"id\":15,\"method\":\"config\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 15,
+        "method": "config",
+        "type": "request"
+      }
+    },
+    {
+      "row": 118,
+      "raw_json": "{\"id\"16,\"method\"\"device\"}",
+      "fixed_json": "{\"id\":16,\"method\":\"device\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 16,
+        "method": "device",
+        "type": "request"
+      }
+    },
+    {
+      "row": 134,
+      "raw_json": "{\"id\"19,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":19,\"method\":\"status\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 19,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row": 151,
+      "raw_json": "{\"id\"21,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":21,\"method\":\"status\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 21,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row": 168,
+      "raw_json": "{\"id\"23,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":23,\"method\":\"status\"}",
+      "decoded_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 23,
+        "method": "status",
+        "type": "request"
+      }
+    }
+  ],
+  "analysis": {
+    "total_messages": 15,
+    "methods": {
+      "device": 2,
+      "status": 9,
+      "config": 2,
+      "ota": 1,
+      "lifetime": 1
+    },
+    "entities_found": {
+      "sensors": [],
+      "controls": [],
+      "device_info": {}
+    }
+  },
+  "entities": {
+    "sensors": [],
+    "controls": [],
+    "device_info": {}
+  }
+}

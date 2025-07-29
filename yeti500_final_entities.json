@@ -1,0 +1,1571 @@
+{
+  "protocol_analysis": {
+    "total_messages": 71,
+    "methods": {
+      "device_request": 2,
+      "unknown_request": 56,
+      "status_request": 9,
+      "config_request": 2,
+      "ota_request": 1,
+      "lifetime_request": 1
+    },
+    "ble_communication": {
+      "length_handle": "0x0008",
+      "data_handle": "0x0003",
+      "ack_handle": "0x0005",
+      "description": "JSON-RPC over BLE with length prefixes"
+    }
+  },
+  "entities": {
+    "sensors": [],
+    "switches": [],
+    "numbers": [],
+    "device_info": {}
+  },
+  "sample_messages": [
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"id\"1,\"method\"\"device\"}",
+      "fixed_json": "{\"id\":1,\"method\":\"device\"}",
+      "expected_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 1,
+        "method": "device",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"thingName\"\"gzy5c-d8132a74dbb4\",\"local\"\"gzy5c-74dbb4\",\"lbl\"\"\",\"hostId\"\"H-37000-A20-B1-C1\",\"sn\"\"37000-02-24D01034\",\"mac\"\"d8132a74dbb4\"}",
+      "fixed_json": "{\"thingName\":\"gzy5c-d8132a74dbb4\",\":local\":\"gzy5c-74dbb4\",\":lbl\":\"\",\":hostId\":\"H-37000-A20-B1-C1\",\":sn\":\":37000-02-24D01034\",\":mac\":\"d8132a74dbb4\"}",
+      "expected_length": 26,
+      "actual_length": 135,
+      "parsed": {
+        "thingName": "gzy5c-d8132a74dbb4",
+        ":local": "gzy5c-74dbb4",
+        ":lbl": "",
+        ":hostId": "H-37000-A20-B1-C1",
+        ":sn": ":37000-02-24D01034",
+        ":mac": "d8132a74dbb4",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"sys\"1690000111,\"up\"111}",
+      "fixed_json": "{\"sys\":1690000111,\"up\":111}",
+      "expected_length": 26,
+      "actual_length": 25,
+      "parsed": {
+        "sys": 1690000111,
+        "up": 111,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"0\"{\"ssid\"\"IronCanoe\",\"conn\"1749310809},\"1\"{\"ssid\"\"\",\"conn\"0},\"2\"{\"ssid\"\"\",\"conn\"0}}",
+      "fixed_json": "{\"0\":{\":ssid\":\"IronCanoe\",\":conn\":1749310809},\":1\":{\":ssid\":\"\",\":conn\":0},\":2\":{\":ssid\":\"\",\":conn\":0}}",
+      "expected_length": 26,
+      "actual_length": 85,
+      "parsed": {
+        "0": {
+          ":ssid": "IronCanoe",
+          ":conn": 1749310809
+        },
+        ":1": {
+          ":ssid": "",
+          ":conn": 0
+        },
+        ":2": {
+          ":ssid": "",
+          ":conn": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"s0,\"err\"0,\"env\"\"prod\",\"mqtt\"\"a1xyddj5i8k7t5-ats.iot.us-east-1.amazonaws.com\",\"api\"\"yeti-prod.goalzeroapp.com\"}",
+      "fixed_json": "{\"s0,\":err\":0,\":env\":\"prod\",\":mqtt\":\"a1xyddj5i8k7t5-ats.iot.us-east-1.amazonaws.com\",\":api\":\"yeti-prod.goalzeroapp.com\"}",
+      "expected_length": 26,
+      "actual_length": 112,
+      "parsed": {
+        "type": "request"
+      }
+    }
+  ],
+  "all_messages": [
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"id\"1,\"method\"\"device\"}",
+      "fixed_json": "{\"id\":1,\"method\":\"device\"}",
+      "expected_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 1,
+        "method": "device",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"thingName\"\"gzy5c-d8132a74dbb4\",\"local\"\"gzy5c-74dbb4\",\"lbl\"\"\",\"hostId\"\"H-37000-A20-B1-C1\",\"sn\"\"37000-02-24D01034\",\"mac\"\"d8132a74dbb4\"}",
+      "fixed_json": "{\"thingName\":\"gzy5c-d8132a74dbb4\",\":local\":\"gzy5c-74dbb4\",\":lbl\":\"\",\":hostId\":\"H-37000-A20-B1-C1\",\":sn\":\":37000-02-24D01034\",\":mac\":\"d8132a74dbb4\"}",
+      "expected_length": 26,
+      "actual_length": 135,
+      "parsed": {
+        "thingName": "gzy5c-d8132a74dbb4",
+        ":local": "gzy5c-74dbb4",
+        ":lbl": "",
+        ":hostId": "H-37000-A20-B1-C1",
+        ":sn": ":37000-02-24D01034",
+        ":mac": "d8132a74dbb4",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"sys\"1690000111,\"up\"111}",
+      "fixed_json": "{\"sys\":1690000111,\"up\":111}",
+      "expected_length": 26,
+      "actual_length": 25,
+      "parsed": {
+        "sys": 1690000111,
+        "up": 111,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"0\"{\"ssid\"\"IronCanoe\",\"conn\"1749310809},\"1\"{\"ssid\"\"\",\"conn\"0},\"2\"{\"ssid\"\"\",\"conn\"0}}",
+      "fixed_json": "{\"0\":{\":ssid\":\"IronCanoe\",\":conn\":1749310809},\":1\":{\":ssid\":\"\",\":conn\":0},\":2\":{\":ssid\":\"\",\":conn\":0}}",
+      "expected_length": 26,
+      "actual_length": 85,
+      "parsed": {
+        "0": {
+          ":ssid": "IronCanoe",
+          ":conn": 1749310809
+        },
+        ":1": {
+          ":ssid": "",
+          ":conn": 0
+        },
+        ":2": {
+          ":ssid": "",
+          ":conn": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"s0,\"err\"0,\"env\"\"prod\",\"mqtt\"\"a1xyddj5i8k7t5-ats.iot.us-east-1.amazonaws.com\",\"api\"\"yeti-prod.goalzeroapp.com\"}",
+      "fixed_json": "{\"s0,\":err\":0,\":env\":\"prod\",\":mqtt\":\"a1xyddj5i8k7t5-ats.iot.us-east-1.amazonaws.com\",\":api\":\"yeti-prod.goalzeroapp.com\"}",
+      "expected_length": 26,
+      "actual_length": 112,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"s\"0,\"req\"{\"reboot\"0,\"reset\"0,\"chkUpd\"0}}",
+      "fixed_json": "{\"s\":0,\"req\":{\":reboot\":0,\":reset\":0,\":chkUpd\":0}}",
+      "expected_length": 26,
+      "actual_length": 42,
+      "parsed": {
+        "s": 0,
+        "req": {
+          ":reboot": 0,
+          ":reset": 0,
+          ":chkUpd": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"N-37000-A20-1\"{\"fw\"\"2.0.6\"},\"N-37000-A20-2\"{\"fw\"\"1.7.9\"},\"N-37000-B1-1\"{\"fw\"\"0.5.8\"},\"N-37000-C1-1\"{\"fw\"\"0.3.1\"}}",
+      "fixed_json": "{\"N-37000-A20-1\":{\":fw\":\":2.0.6\"},\":N-37000-A20-2\":{\":fw\":\":1.7.9\"},\":N-37000-B1-1\":{\":fw\":\":0.5.8\"},\":N-37000-C1-1\":{\":fw\":\":0.3.1\"}}",
+      "expected_length": 26,
+      "actual_length": 115,
+      "parsed": {
+        "N-37000-A20-1": {
+          ":fw": ":2.0.6"
+        },
+        ":N-37000-A20-2": {
+          ":fw": ":1.7.9"
+        },
+        ":N-37000-B1-1": {
+          ":fw": ":0.5.8"
+        },
+        ":N-37000-C1-1": {
+          ":fw": ":0.3.1"
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 2,
+      "row_end": 8,
+      "raw_json": "{\"sn\"\"IDU191GAPCM240318000693\",\"whCap\"499}",
+      "fixed_json": "{\"sn\":\"IDU191GAPCM240318000693\",\":whCap\":499}",
+      "expected_length": 26,
+      "actual_length": 42,
+      "parsed": {
+        "sn": "IDU191GAPCM240318000693",
+        ":whCap": 499,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 9,
+      "row_end": 15,
+      "raw_json": "{\"id\"2,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":2,\"method\":\"status\"}",
+      "expected_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 2,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 9,
+      "row_end": 15,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 26,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 9,
+      "row_end": 15,
+      "raw_json": "{\"cyc\"10,\"soc\"11,\"whRem\"57,\"v\"27.2,\"aNetAvg\"7.5,\"aNet\"7.7,\"cTmp\"36.8,\"mTtef\"125,\"wNetAvg\"203,\"wNet\"208,\"pctHtsRh\"0,\"cHtsTmp\"36.8,\"whIn\"4856,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":11,\"whRem\":57,\"v\":27.2,\"aNetAvg\":7.5,\"aNet\":7.7,\"cTmp\":36.8,\"mTtef\":125,\"wNetAvg\":203,\"wNet\":208,\"pctHtsRh\":0,\"cHtsTmp\":36.8,\"whIn\":4856,\"whOut\":0}",
+      "expected_length": 26,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 11,
+        "whRem": 57,
+        "v": 27.2,
+        "aNetAvg": 7.5,
+        "aNet": 7.7,
+        "cTmp": 36.8,
+        "mTtef": 125,
+        "wNetAvg": 203,
+        "wNet": 208,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.8,
+        "whIn": 4856,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 9,
+      "row_end": 15,
+      "raw_json": "{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1175,\"a\"0.2,\"w\"287,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":0,\":w\":0,\":v\":0,\":a\":0},\":v12Out\":{\":s\":0,\":w\":0},\":usbOut\":{\":s\":0,\":w\":0},\":acIn\":{\":s\":2,\":v\":1175,\":a\":0.2,\":w\":287,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 26,
+      "actual_length": 146,
+      "parsed": {
+        "acOut": {
+          ":s": 0,
+          ":w": 0,
+          ":v": 0,
+          ":a": 0
+        },
+        ":v12Out": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1175,
+          ":a": 0.2,
+          ":w": 287,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 16,
+      "row_end": 21,
+      "raw_json": "{\"id\"3,\"method\"\"config\"}",
+      "fixed_json": "{\"id\":3,\"method\":\"config\"}",
+      "expected_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 3,
+        "method": "config",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 16,
+      "row_end": 21,
+      "raw_json": "{\"_version\"2,\"fwAutoUpd\"24,\"notify\"[0,0],\"chgPrfl\"{\"min\"0,\"max\"100,\"rchg\"95},\"dsp\"{\"blkOut\"0,\"brt\"0}}",
+      "fixed_json": "{\"_version\":2,\"fwAutoUpd\":24,\"notify\":[0,0],\":chgPrfl\":{\":min\":0,\":max\":100,\":rchg\":95},\":dsp\":{\":blkOut\":0,\":brt\":0}}",
+      "expected_length": 26,
+      "actual_length": 101,
+      "parsed": {
+        "_version": 2,
+        "fwAutoUpd": 24,
+        "notify": [
+          0,
+          0
+        ],
+        ":chgPrfl": {
+          ":min": 0,
+          ":max": 100,
+          ":rchg": 95
+        },
+        ":dsp": {
+          ":blkOut": 0,
+          ":brt": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 22,
+      "row_end": 27,
+      "raw_json": "{\"id\"4,\"method\"\"ota\"}",
+      "fixed_json": "{\"id\":4,\"method\":\"ota\"}",
+      "expected_length": 23,
+      "actual_length": 21,
+      "parsed": {
+        "id": 4,
+        "method": "ota",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 22,
+      "row_end": 27,
+      "raw_json": "{\"N-37000-A20-1\"{\"fw\"\"2.0.6\",\"p\"0,\"s\"0},\"N-37000-A20-2\"{\"fw\"\"1.7.9\",\"p\"0,\"s\"0},\"N-37000-B1-1\"{\"fw\"\"0.5.8\",\"p\"0,\"s\"0}}",
+      "fixed_json": "{\"N-37000-A20-1\":{\":fw\":\":2.0.6\",\":p\":0,\":s\":0},\":N-37000-A20-2\":{\":fw\":\":1.7.9\",\":p\":0,\":s\":0},\":N-37000-B1-1\":{\":fw\":\":0.5.8\",\":p\":0,\":s\":0}}",
+      "expected_length": 23,
+      "actual_length": 117,
+      "parsed": {
+        "N-37000-A20-1": {
+          ":fw": ":2.0.6",
+          ":p": 0,
+          ":s": 0
+        },
+        ":N-37000-A20-2": {
+          ":fw": ":1.7.9",
+          ":p": 0,
+          ":s": 0
+        },
+        ":N-37000-B1-1": {
+          ":fw": ":0.5.8",
+          ":p": 0,
+          ":s": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 28,
+      "row_end": 34,
+      "raw_json": "{\"id\"5,\"method\"\"lifetime\"}",
+      "fixed_json": "{\"id\":5,\"method\":\"lifetime\"}",
+      "expected_length": 28,
+      "actual_length": 26,
+      "parsed": {
+        "id": 5,
+        "method": "lifetime",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 28,
+      "row_end": 34,
+      "raw_json": "{\"reset\"5,\"mUp\"98810,\"fwUpd\"3,\"confWr\"7454,\"crash\"0}",
+      "fixed_json": "{\"reset\":5,\"mUp\":98810,\"fwUpd\":3,\"confWr\":7454,\"crash\":0}",
+      "expected_length": 28,
+      "actual_length": 52,
+      "parsed": {
+        "reset": 5,
+        "mUp": 98810,
+        "fwUpd": 3,
+        "confWr": 7454,
+        "crash": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 28,
+      "row_end": 34,
+      "raw_json": "{\"cyc\"21,\"soh\"100,\"whIn\"9301,\"whOut\"298,\"uvp\"0,\"ovp\"0,\"otp\"0,\"ocp\"0,\"utp\"0,\"mht\"0,\"mlt\"0,\"mlv\"0,\"cTmpMax\"0,\"cTmpMin\"0}",
+      "fixed_json": "{\"cyc\":21,\"soh\":100,\"whIn\":9301,\"whOut\":298,\"uvp\":0,\"ovp\":0,\"otp\":0,\"ocp\":0,\"utp\":0,\"mht\":0,\"mlt\":0,\"mlv\":0,\"cTmpMax\":0,\"cTmpMin\":0}",
+      "expected_length": 28,
+      "actual_length": 118,
+      "parsed": {
+        "cyc": 21,
+        "soh": 100,
+        "whIn": 9301,
+        "whOut": 298,
+        "uvp": 0,
+        "ovp": 0,
+        "otp": 0,
+        "ocp": 0,
+        "utp": 0,
+        "mht": 0,
+        "mlt": 0,
+        "mlv": 0,
+        "cTmpMax": 0,
+        "cTmpMin": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 28,
+      "row_end": 34,
+      "raw_json": "{\"pctRhMax\"0,\"cTmpMax\"0,\"cTmpMin\"0}",
+      "fixed_json": "{\"pctRhMax\":0,\"cTmpMax\":0,\"cTmpMin\":0}",
+      "expected_length": 28,
+      "actual_length": 35,
+      "parsed": {
+        "pctRhMax": 0,
+        "cTmpMax": 0,
+        "cTmpMin": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 28,
+      "row_end": 34,
+      "raw_json": "{\"otp\"0,\"mht\"0,\"ovp\"0,\"uvp\"0,\"ocp\"0,\"scp\"0}",
+      "fixed_json": "{\"otp\":0,\"mht\":0,\"ovp\":0,\"uvp\":0,\"ocp\":0,\"scp\":0}",
+      "expected_length": 28,
+      "actual_length": 43,
+      "parsed": {
+        "otp": 0,
+        "mht": 0,
+        "ovp": 0,
+        "uvp": 0,
+        "ocp": 0,
+        "scp": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 28,
+      "row_end": 34,
+      "raw_json": "{\"acIn\"{\"wMax\"0,\"wh\"4579,\"ovp\"0,\"uvp\"0,\"ocp\"0},\"lvDcIn\"{\"wMax\"0,\"wh\"4722,\"ovp\"0,\"uvp\"0,\"ocp\"0},\"acOut\"{\"wMax\"0,\"wh\"298,\"scp\"0,ocp\"0},\"usbOut\"{\"wMax\"0,\"wh\"0,\"scp\"0,\"ocp\"0},\"v12Out\"{\"wMax\"0,\"wh\"0,\"scp\"0,\"ocp\"0}}",
+      "fixed_json": "{\"acIn\":{\":wMax\":0,\":wh\":4579,\":ovp\":0,\":uvp\":0,\":ocp\":0},\":lvDcIn\":{\":wMax\":0,\":wh\":4722,\":ovp\":0,\":uvp\":0,\":ocp\":0},\":acOut\":{\":wMax\":0,\":wh\":298,\":scp\":0,ocp\":0},\"usbOut\":{\":wMax\":0,\":wh\":0,\":scp\":0,\":ocp\":0},\":v12Out\":{\":wMax\":0,\":wh\":0,\":scp\":0,\":ocp\":0}}",
+      "expected_length": 28,
+      "actual_length": 209,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 28,
+      "row_end": 34,
+      "raw_json": "{\"ac\"42,\"v12\"45,\"usb\"17,\"pair\"21,\"lght\"41,\"info\"21}",
+      "fixed_json": "{\"ac\":42,\"v12\":45,\"usb\":17,\"pair\":21,\"lght\":41,\"info\":21}",
+      "expected_length": 28,
+      "actual_length": 51,
+      "parsed": {
+        "ac": 42,
+        "v12": 45,
+        "usb": 17,
+        "pair": 21,
+        "lght": 41,
+        "info": 21,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 35,
+      "row_end": 41,
+      "raw_json": "{\"id\"6,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":6,\"method\":\"status\"}",
+      "expected_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 6,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 35,
+      "row_end": 41,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 26,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 35,
+      "row_end": 41,
+      "raw_json": "{\"cyc\"10,\"soc\"11,\"whRem\"58,\"v\"27.2,\"aNetAvg\"8.2,\"aNet\"8.1,\"cTmp\"36.4,\"mTtef\"122,\"wNetAvg\"222,\"wNet\"218,\"pctHtsRh\"0,\"cHtsTmp\"36.4,\"whIn\"4857,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":11,\"whRem\":58,\"v\":27.2,\"aNetAvg\":8.2,\"aNet\":8.1,\"cTmp\":36.4,\"mTtef\":122,\"wNetAvg\":222,\"wNet\":218,\"pctHtsRh\":0,\"cHtsTmp\":36.4,\"whIn\":4857,\"whOut\":0}",
+      "expected_length": 26,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 11,
+        "whRem": 58,
+        "v": 27.2,
+        "aNetAvg": 8.2,
+        "aNet": 8.1,
+        "cTmp": 36.4,
+        "mTtef": 122,
+        "wNetAvg": 222,
+        "wNet": 218,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.4,
+        "whIn": 4857,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 35,
+      "row_end": 41,
+      "raw_json": "{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1173,\"a\"0.2,\"w\"285,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":0,\":w\":0,\":v\":0,\":a\":0},\":v12Out\":{\":s\":0,\":w\":0},\":usbOut\":{\":s\":0,\":w\":0},\":acIn\":{\":s\":2,\":v\":1173,\":a\":0.2,\":w\":285,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 26,
+      "actual_length": 146,
+      "parsed": {
+        "acOut": {
+          ":s": 0,
+          ":w": 0,
+          ":v": 0,
+          ":a": 0
+        },
+        ":v12Out": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1173,
+          ":a": 0.2,
+          ":w": 285,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 52,
+      "row_end": 58,
+      "raw_json": "{\"id\"8,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":8,\"method\":\"status\"}",
+      "expected_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 8,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 52,
+      "row_end": 58,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 26,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 52,
+      "row_end": 58,
+      "raw_json": "{\"cyc\"10,\"soc\"11,\"whRem\"58,\"v\"27.2,\"aNetAvg\"7.7,\"aNet\"7.2,\"cTmp\"36.4,\"mTtef\"123,\"wNetAvg\"209,\"wNet\"194,\"pctHtsRh\"0,\"cHtsTmp\"36.4,\"whIn\"4857,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":11,\"whRem\":58,\"v\":27.2,\"aNetAvg\":7.7,\"aNet\":7.2,\"cTmp\":36.4,\"mTtef\":123,\"wNetAvg\":209,\"wNet\":194,\"pctHtsRh\":0,\"cHtsTmp\":36.4,\"whIn\":4857,\"whOut\":0}",
+      "expected_length": 26,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 11,
+        "whRem": 58,
+        "v": 27.2,
+        "aNetAvg": 7.7,
+        "aNet": 7.2,
+        "cTmp": 36.4,
+        "mTtef": 123,
+        "wNetAvg": 209,
+        "wNet": 194,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.4,
+        "whIn": 4857,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 52,
+      "row_end": 58,
+      "raw_json": "{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"1,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1174,\"a\"0.2,\"w\"286,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":0,\":w\":0,\":v\":0,\":a\":0},\":v12Out\":{\":s\":1,\":w\":0},\":usbOut\":{\":s\":0,\":w\":0},\":acIn\":{\":s\":2,\":v\":1174,\":a\":0.2,\":w\":286,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 26,
+      "actual_length": 146,
+      "parsed": {
+        "acOut": {
+          ":s": 0,
+          ":w": 0,
+          ":v": 0,
+          ":a": 0
+        },
+        ":v12Out": {
+          ":s": 1,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1174,
+          ":a": 0.2,
+          ":w": 286,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 59,
+      "row_end": 65,
+      "raw_json": "{\"id\"9,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":9,\"method\":\"status\"}",
+      "expected_length": 26,
+      "actual_length": 24,
+      "parsed": {
+        "id": 9,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 59,
+      "row_end": 65,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 26,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 59,
+      "row_end": 65,
+      "raw_json": "{\"cyc\"10,\"soc\"11,\"whRem\"58,\"v\"27.2,\"aNetAvg\"7.4,\"aNet\"8.0,\"cTmp\"36.3,\"mTtef\"125,\"wNetAvg\"200,\"wNet\"217,\"pctHtsRh\"0,\"cHtsTmp\"36.3,\"whIn\"4858,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":11,\"whRem\":58,\"v\":27.2,\"aNetAvg\":7.4,\"aNet\":8.0,\"cTmp\":36.3,\"mTtef\":125,\"wNetAvg\":200,\"wNet\":217,\"pctHtsRh\":0,\"cHtsTmp\":36.3,\"whIn\":4858,\"whOut\":0}",
+      "expected_length": 26,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 11,
+        "whRem": 58,
+        "v": 27.2,
+        "aNetAvg": 7.4,
+        "aNet": 8.0,
+        "cTmp": 36.3,
+        "mTtef": 125,
+        "wNetAvg": 200,
+        "wNet": 217,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.3,
+        "whIn": 4858,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 59,
+      "row_end": 65,
+      "raw_json": "{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"1,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1174,\"a\"0.2,\"w\"285,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":0,\":w\":0,\":v\":0,\":a\":0},\":v12Out\":{\":s\":1,\":w\":0},\":usbOut\":{\":s\":0,\":w\":0},\":acIn\":{\":s\":2,\":v\":1174,\":a\":0.2,\":w\":285,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 26,
+      "actual_length": 146,
+      "parsed": {
+        "acOut": {
+          ":s": 0,
+          ":w": 0,
+          ":v": 0,
+          ":a": 0
+        },
+        ":v12Out": {
+          ":s": 1,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1174,
+          ":a": 0.2,
+          ":w": 285,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 76,
+      "row_end": 82,
+      "raw_json": "{\"id\"11,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":11,\"method\":\"status\"}",
+      "expected_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 11,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 76,
+      "row_end": 82,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 27,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 76,
+      "row_end": 82,
+      "raw_json": "{\"cyc\"10,\"soc\"11,\"whRem\"58,\"v\"27.2,\"aNetAvg\"8.2,\"aNet\"8.3,\"cTmp\"36.7,\"mTtef\"124,\"wNetAvg\"221,\"wNet\"224,\"pctHtsRh\"0,\"cHtsTmp\"36.7,\"whIn\"4858,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":11,\"whRem\":58,\"v\":27.2,\"aNetAvg\":8.2,\"aNet\":8.3,\"cTmp\":36.7,\"mTtef\":124,\"wNetAvg\":221,\"wNet\":224,\"pctHtsRh\":0,\"cHtsTmp\":36.7,\"whIn\":4858,\"whOut\":0}",
+      "expected_length": 27,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 11,
+        "whRem": 58,
+        "v": 27.2,
+        "aNetAvg": 8.2,
+        "aNet": 8.3,
+        "cTmp": 36.7,
+        "mTtef": 124,
+        "wNetAvg": 221,
+        "wNet": 224,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.7,
+        "whIn": 4858,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 76,
+      "row_end": 82,
+      "raw_json": "{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1174,\"a\"0.2,\"w\"286,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":0,\":w\":0,\":v\":0,\":a\":0},\":v12Out\":{\":s\":0,\":w\":0},\":usbOut\":{\":s\":0,\":w\":0},\":acIn\":{\":s\":2,\":v\":1174,\":a\":0.2,\":w\":286,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 27,
+      "actual_length": 146,
+      "parsed": {
+        "acOut": {
+          ":s": 0,
+          ":w": 0,
+          ":v": 0,
+          ":a": 0
+        },
+        ":v12Out": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1174,
+          ":a": 0.2,
+          ":w": 286,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 93,
+      "row_end": 99,
+      "raw_json": "{\"id\"13,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":13,\"method\":\"status\"}",
+      "expected_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 13,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 93,
+      "row_end": 99,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 27,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 93,
+      "row_end": 99,
+      "raw_json": "{\"cyc\"10,\"soc\"11,\"whRem\"59,\"v\"27.2,\"aNetAvg\"7.4,\"aNet\"7.7,\"cTmp\"36.8,\"mTtef\"125,\"wNetAvg\"201,\"wNet\"207,\"pctHtsRh\"0,\"cHtsTmp\"36.8,\"whIn\"4859,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":11,\"whRem\":59,\"v\":27.2,\"aNetAvg\":7.4,\"aNet\":7.7,\"cTmp\":36.8,\"mTtef\":125,\"wNetAvg\":201,\"wNet\":207,\"pctHtsRh\":0,\"cHtsTmp\":36.8,\"whIn\":4859,\"whOut\":0}",
+      "expected_length": 27,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 11,
+        "whRem": 59,
+        "v": 27.2,
+        "aNetAvg": 7.4,
+        "aNet": 7.7,
+        "cTmp": 36.8,
+        "mTtef": 125,
+        "wNetAvg": 201,
+        "wNet": 207,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.8,
+        "whIn": 4859,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 93,
+      "row_end": 99,
+      "raw_json": "{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"1,\"w\"0},\"acIn\"{\"s\"2,\"v\"1174,\"a\"0.2,\"w\"284,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":0,\":w\":0,\":v\":0,\":a\":0},\":v12Out\":{\":s\":0,\":w\":0},\":usbOut\":{\":s\":1,\":w\":0},\":acIn\":{\":s\":2,\":v\":1174,\":a\":0.2,\":w\":284,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 27,
+      "actual_length": 146,
+      "parsed": {
+        "acOut": {
+          ":s": 0,
+          ":w": 0,
+          ":v": 0,
+          ":a": 0
+        },
+        ":v12Out": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 1,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1174,
+          ":a": 0.2,
+          ":w": 284,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 110,
+      "row_end": 115,
+      "raw_json": "{\"id\"15,\"method\"\"config\"}",
+      "fixed_json": "{\"id\":15,\"method\":\"config\"}",
+      "expected_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 15,
+        "method": "config",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 110,
+      "row_end": 115,
+      "raw_json": "{\"_version\"2,\"fwAutoUpd\"24,\"notify\"[0,0],\"chgPrfl\"{\"min\"0,\"max\"100,\"rchg\"95},\"dsp\"{\"blkOut\"0,\"brt\"0}}",
+      "fixed_json": "{\"_version\":2,\"fwAutoUpd\":24,\"notify\":[0,0],\":chgPrfl\":{\":min\":0,\":max\":100,\":rchg\":95},\":dsp\":{\":blkOut\":0,\":brt\":0}}",
+      "expected_length": 27,
+      "actual_length": 101,
+      "parsed": {
+        "_version": 2,
+        "fwAutoUpd": 24,
+        "notify": [
+          0,
+          0
+        ],
+        ":chgPrfl": {
+          ":min": 0,
+          ":max": 100,
+          ":rchg": 95
+        },
+        ":dsp": {
+          ":blkOut": 0,
+          ":brt": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 116,
+      "row_end": 122,
+      "raw_json": "{\"id\"16,\"method\"\"device\"}",
+      "fixed_json": "{\"id\":16,\"method\":\"device\"}",
+      "expected_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 16,
+        "method": "device",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 116,
+      "row_end": 122,
+      "raw_json": "{\"thingName\"\"gzy5c-d8132a74dbb4\",\"local\"\"gzy5c-74dbb4\",\"lbl\"\"\",\"hostId\"\"H-37000-A20-B1-C1\",\"sn\"\"37000-02-24D01034\",\"mac\"\"d8132a74dbb4\"}",
+      "fixed_json": "{\"thingName\":\"gzy5c-d8132a74dbb4\",\":local\":\"gzy5c-74dbb4\",\":lbl\":\"\",\":hostId\":\"H-37000-A20-B1-C1\",\":sn\":\":37000-02-24D01034\",\":mac\":\"d8132a74dbb4\"}",
+      "expected_length": 27,
+      "actual_length": 135,
+      "parsed": {
+        "thingName": "gzy5c-d8132a74dbb4",
+        ":local": "gzy5c-74dbb4",
+        ":lbl": "",
+        ":hostId": "H-37000-A20-B1-C1",
+        ":sn": ":37000-02-24D01034",
+        ":mac": "d8132a74dbb4",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 116,
+      "row_end": 122,
+      "raw_json": "{\"sys\"1690000148,\"up\"148}",
+      "fixed_json": "{\"sys\":1690000148,\"up\":148}",
+      "expected_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "sys": 1690000148,
+        "up": 148,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 116,
+      "row_end": 122,
+      "raw_json": "{\"0\"{\"ssid\"\"IronCanoe\",\"conn\"1749310809},\"1\"{\"ssid\"\"\",\"conn\"0},\"2\"{\"ssid\"\"\",\"conn\"0}}",
+      "fixed_json": "{\"0\":{\":ssid\":\"IronCanoe\",\":conn\":1749310809},\":1\":{\":ssid\":\"\",\":conn\":0},\":2\":{\":ssid\":\"\",\":conn\":0}}",
+      "expected_length": 27,
+      "actual_length": 85,
+      "parsed": {
+        "0": {
+          ":ssid": "IronCanoe",
+          ":conn": 1749310809
+        },
+        ":1": {
+          ":ssid": "",
+          ":conn": 0
+        },
+        ":2": {
+          ":ssid": "",
+          ":conn": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 116,
+      "row_end": 122,
+      "raw_json": "{\"s0,\"err\"0,\"env\"\"prod\",\"mqtt\"\"a1xyddj5i8k7t5-ats.iot.us-east-1.amazonaws.com\",\"api\"\"yeti-prod.goalzeroapp.com\"}",
+      "fixed_json": "{\"s0,\":err\":0,\":env\":\"prod\",\":mqtt\":\"a1xyddj5i8k7t5-ats.iot.us-east-1.amazonaws.com\",\":api\":\"yeti-prod.goalzeroapp.com\"}",
+      "expected_length": 27,
+      "actual_length": 112,
+      "parsed": {
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 116,
+      "row_end": 122,
+      "raw_json": "{\"s\"0,\"req\"{\"reboot\"0,\"reset\"0,\"chkUpd\"0}}",
+      "fixed_json": "{\"s\":0,\"req\":{\":reboot\":0,\":reset\":0,\":chkUpd\":0}}",
+      "expected_length": 27,
+      "actual_length": 42,
+      "parsed": {
+        "s": 0,
+        "req": {
+          ":reboot": 0,
+          ":reset": 0,
+          ":chkUpd": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 116,
+      "row_end": 122,
+      "raw_json": "{\"N-37000-A20-1\"{\"fw\"\"2.0.6\"},\"N-37000-A20-2\"{\"fw\"\"1.7.9\"},\"N-37000-B1-1\"{\"fw\"\"0.5.8\"},\"N-37000-C1-1\"{\"fw\"\"0.3.1\"}}",
+      "fixed_json": "{\"N-37000-A20-1\":{\":fw\":\":2.0.6\"},\":N-37000-A20-2\":{\":fw\":\":1.7.9\"},\":N-37000-B1-1\":{\":fw\":\":0.5.8\"},\":N-37000-C1-1\":{\":fw\":\":0.3.1\"}}",
+      "expected_length": 27,
+      "actual_length": 115,
+      "parsed": {
+        "N-37000-A20-1": {
+          ":fw": ":2.0.6"
+        },
+        ":N-37000-A20-2": {
+          ":fw": ":1.7.9"
+        },
+        ":N-37000-B1-1": {
+          ":fw": ":0.5.8"
+        },
+        ":N-37000-C1-1": {
+          ":fw": ":0.3.1"
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 116,
+      "row_end": 122,
+      "raw_json": "{\"sn\"\"IDU191GAPCM240318000693\",\"whCap\"499}",
+      "fixed_json": "{\"sn\":\"IDU191GAPCM240318000693\",\":whCap\":499}",
+      "expected_length": 27,
+      "actual_length": 42,
+      "parsed": {
+        "sn": "IDU191GAPCM240318000693",
+        ":whCap": 499,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 132,
+      "row_end": 138,
+      "raw_json": "{\"id\"19,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":19,\"method\":\"status\"}",
+      "expected_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 19,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 132,
+      "row_end": 138,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 27,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 132,
+      "row_end": 138,
+      "raw_json": "{\"cyc\"10,\"soc\"11,\"whRem\"59,\"v\"27.2,\"aNetAvg\"8.1,\"aNet\"7.7,\"cTmp\"36.7,\"mTtef\"123,\"wNetAvg\"219,\"wNet\"208,\"pctHtsRh\"0,\"cHtsTmp\"36.7,\"whIn\"4859,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":11,\"whRem\":59,\"v\":27.2,\"aNetAvg\":8.1,\"aNet\":7.7,\"cTmp\":36.7,\"mTtef\":123,\"wNetAvg\":219,\"wNet\":208,\"pctHtsRh\":0,\"cHtsTmp\":36.7,\"whIn\":4859,\"whOut\":0}",
+      "expected_length": 27,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 11,
+        "whRem": 59,
+        "v": 27.2,
+        "aNetAvg": 8.1,
+        "aNet": 7.7,
+        "cTmp": 36.7,
+        "mTtef": 123,
+        "wNetAvg": 219,
+        "wNet": 208,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.7,
+        "whIn": 4859,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 132,
+      "row_end": 138,
+      "raw_json": "{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1172,\"a\"0.2,\"w\"285,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":0,\":w\":0,\":v\":0,\":a\":0},\":v12Out\":{\":s\":0,\":w\":0},\":usbOut\":{\":s\":0,\":w\":0},\":acIn\":{\":s\":2,\":v\":1172,\":a\":0.2,\":w\":285,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 27,
+      "actual_length": 146,
+      "parsed": {
+        "acOut": {
+          ":s": 0,
+          ":w": 0,
+          ":v": 0,
+          ":a": 0
+        },
+        ":v12Out": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1172,
+          ":a": 0.2,
+          ":w": 285,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 149,
+      "row_end": 155,
+      "raw_json": "{\"id\"21,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":21,\"method\":\"status\"}",
+      "expected_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 21,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 149,
+      "row_end": 155,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 27,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 149,
+      "row_end": 155,
+      "raw_json": "{\"cyc\"10,\"soc\"11,\"whRem\"60,\"v\"27.2,\"aNetAvg\"7.7,\"aNet\"8.0,\"cTmp\"36.7,\"mTtef\"124,\"wNetAvg\"208,\"wNet\"216,\"pctHtsRh\"0,\"cHtsTmp\"36.7,\"whIn\"4860,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":11,\"whRem\":60,\"v\":27.2,\"aNetAvg\":7.7,\"aNet\":8.0,\"cTmp\":36.7,\"mTtef\":124,\"wNetAvg\":208,\"wNet\":216,\"pctHtsRh\":0,\"cHtsTmp\":36.7,\"whIn\":4860,\"whOut\":0}",
+      "expected_length": 27,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 11,
+        "whRem": 60,
+        "v": 27.2,
+        "aNetAvg": 7.7,
+        "aNet": 8.0,
+        "cTmp": 36.7,
+        "mTtef": 124,
+        "wNetAvg": 208,
+        "wNet": 216,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.7,
+        "whIn": 4860,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 149,
+      "row_end": 155,
+      "raw_json": "{\"acOut\"{\"s\"2,\"w\"6,\"v\"117.3,\"a\"0.1},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1173,\"a\"0.2,\"w\"284,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":2,\":w\":6,\":v\":117.3,\":a\":0.1},\":v12Out\":{\":s\":0,\":w\":0},\":usbOut\":{\":s\":0,\":w\":0},\":acIn\":{\":s\":2,\":v\":1173,\":a\":0.2,\":w\":284,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 27,
+      "actual_length": 152,
+      "parsed": {
+        "acOut": {
+          ":s": 2,
+          ":w": 6,
+          ":v": 117.3,
+          ":a": 0.1
+        },
+        ":v12Out": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1173,
+          ":a": 0.2,
+          ":w": 284,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 166,
+      "row_end": 172,
+      "raw_json": "{\"id\"23,\"method\"\"status\"}",
+      "fixed_json": "{\"id\":23,\"method\":\"status\"}",
+      "expected_length": 27,
+      "actual_length": 25,
+      "parsed": {
+        "id": 23,
+        "method": "status",
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 166,
+      "row_end": 172,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 27,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 166,
+      "row_end": 172,
+      "raw_json": "{\"cyc\"10,\"soc\"11,\"whRem\"60,\"v\"27.2,\"aNetAvg\"8.2,\"aNet\"7.0,\"cTmp\"36.7,\"mTtef\"123,\"wNetAvg\"222,\"wNet\"189,\"pctHtsRh\"0,\"cHtsTmp\"36.7,\"whIn\"4860,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":11,\"whRem\":60,\"v\":27.2,\"aNetAvg\":8.2,\"aNet\":7.0,\"cTmp\":36.7,\"mTtef\":123,\"wNetAvg\":222,\"wNet\":189,\"pctHtsRh\":0,\"cHtsTmp\":36.7,\"whIn\":4860,\"whOut\":0}",
+      "expected_length": 27,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 11,
+        "whRem": 60,
+        "v": 27.2,
+        "aNetAvg": 8.2,
+        "aNet": 7.0,
+        "cTmp": 36.7,
+        "mTtef": 123,
+        "wNetAvg": 222,
+        "wNet": 189,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.7,
+        "whIn": 4860,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 166,
+      "row_end": 172,
+      "raw_json": "{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1176,\"a\"0.2,\"w\"285,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":0,\":w\":0,\":v\":0,\":a\":0},\":v12Out\":{\":s\":0,\":w\":0},\":usbOut\":{\":s\":0,\":w\":0},\":acIn\":{\":s\":2,\":v\":1176,\":a\":0.2,\":w\":285,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 27,
+      "actual_length": 146,
+      "parsed": {
+        "acOut": {
+          ":s": 0,
+          ":w": 0,
+          ":v": 0,
+          ":a": 0
+        },
+        ":v12Out": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1176,
+          ":a": 0.2,
+          ":w": 285,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 173,
+      "row_end": 177,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 27,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 173,
+      "row_end": 177,
+      "raw_json": "{\"cyc\"10,\"soc\"11,\"whRem\"60,\"v\"27.2,\"aNetAvg\"7.8,\"aNet\"7.8,\"cTmp\"36.6,\"mTtef\"124,\"wNetAvg\"211,\"wNet\"212,\"pctHtsRh\"0,\"cHtsTmp\"36.6,\"whIn\"4861,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":11,\"whRem\":60,\"v\":27.2,\"aNetAvg\":7.8,\"aNet\":7.8,\"cTmp\":36.6,\"mTtef\":124,\"wNetAvg\":211,\"wNet\":212,\"pctHtsRh\":0,\"cHtsTmp\":36.6,\"whIn\":4861,\"whOut\":0}",
+      "expected_length": 27,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 11,
+        "whRem": 60,
+        "v": 27.2,
+        "aNetAvg": 7.8,
+        "aNet": 7.8,
+        "cTmp": 36.6,
+        "mTtef": 124,
+        "wNetAvg": 211,
+        "wNet": 212,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.6,
+        "whIn": 4861,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 173,
+      "row_end": 177,
+      "raw_json": "{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1172,\"a\"0.2,\"w\"284,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":0,\":w\":0,\":v\":0,\":a\":0},\":v12Out\":{\":s\":0,\":w\":0},\":usbOut\":{\":s\":0,\":w\":0},\":acIn\":{\":s\":2,\":v\":1172,\":a\":0.2,\":w\":284,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 27,
+      "actual_length": 146,
+      "parsed": {
+        "acOut": {
+          ":s": 0,
+          ":w": 0,
+          ":v": 0,
+          ":a": 0
+        },
+        ":v12Out": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1172,
+          ":a": 0.2,
+          ":w": 284,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 178,
+      "row_end": 182,
+      "raw_json": "{\"config\"1749217511,\"device\"1749217511,\"ota\"1749217512,\"lifetime\"1749217512}",
+      "fixed_json": "{\"config\":1749217511,\"device\":1749217511,\"ota\":1749217512,\"lifetime\":1749217512}",
+      "expected_length": 27,
+      "actual_length": 76,
+      "parsed": {
+        "config": 1749217511,
+        "device": 1749217511,
+        "ota": 1749217512,
+        "lifetime": 1749217512,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 178,
+      "row_end": 182,
+      "raw_json": "{\"cyc\"10,\"soc\"12,\"whRem\"61,\"v\"27.2,\"aNetAvg\"7.5,\"aNet\"7.6,\"cTmp\"36.4,\"mTtef\"125,\"wNetAvg\"203,\"wNet\"205,\"pctHtsRh\"0,\"cHtsTmp\"36.4,\"whIn\"4861,\"whOut\"0}",
+      "fixed_json": "{\"cyc\":10,\"soc\":12,\"whRem\":61,\"v\":27.2,\"aNetAvg\":7.5,\"aNet\":7.6,\"cTmp\":36.4,\"mTtef\":125,\"wNetAvg\":203,\"wNet\":205,\"pctHtsRh\":0,\"cHtsTmp\":36.4,\"whIn\":4861,\"whOut\":0}",
+      "expected_length": 27,
+      "actual_length": 149,
+      "parsed": {
+        "cyc": 10,
+        "soc": 12,
+        "whRem": 61,
+        "v": 27.2,
+        "aNetAvg": 7.5,
+        "aNet": 7.6,
+        "cTmp": 36.4,
+        "mTtef": 125,
+        "wNetAvg": 203,
+        "wNet": 205,
+        "pctHtsRh": 0,
+        "cHtsTmp": 36.4,
+        "whIn": 4861,
+        "whOut": 0,
+        "type": "request"
+      }
+    },
+    {
+      "row_start": 178,
+      "row_end": 182,
+      "raw_json": "{\"acOut\"{\"s\"0,\"w\"0,\"v\"0,\"a\"0},\"v12Out\"{\"s\"0,\"w\"0},\"usbOut\"{\"s\"0,\"w\"0},\"acIn\"{\"s\"2,\"v\"1173,\"a\"0.2,\"w\"285,\"fastChg\"0},\"lvDcIn\"{\"s\"0,\"v\"0,\"a\"0,\"w\"0}}",
+      "fixed_json": "{\"acOut\":{\":s\":0,\":w\":0,\":v\":0,\":a\":0},\":v12Out\":{\":s\":0,\":w\":0},\":usbOut\":{\":s\":0,\":w\":0},\":acIn\":{\":s\":2,\":v\":1173,\":a\":0.2,\":w\":285,\":fastChg\":0},\":lvDcIn\":{\":s\":0,\":v\":0,\":a\":0,\":w\":0}}",
+      "expected_length": 27,
+      "actual_length": 146,
+      "parsed": {
+        "acOut": {
+          ":s": 0,
+          ":w": 0,
+          ":v": 0,
+          ":a": 0
+        },
+        ":v12Out": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":usbOut": {
+          ":s": 0,
+          ":w": 0
+        },
+        ":acIn": {
+          ":s": 2,
+          ":v": 1173,
+          ":a": 0.2,
+          ":w": 285,
+          ":fastChg": 0
+        },
+        ":lvDcIn": {
+          ":s": 0,
+          ":v": 0,
+          ":a": 0,
+          ":w": 0
+        },
+        "type": "request"
+      }
+    }
+  ]
+}

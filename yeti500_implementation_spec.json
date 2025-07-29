@@ -1,0 +1,115 @@
+{
+  "device_info": {
+    "name": "Goal Zero Yeti 500",
+    "model": "Yeti 500",
+    "manufacturer": "Goal Zero",
+    "firmware_version": "1.3.6",
+    "serial_number": "37000-02-24D01034",
+    "mac_address": "d8132a74dbb4",
+    "battery_capacity_wh": 499
+  },
+  "sensors": [
+    "battery_state_of_charge",
+    "battery_remaining_wh",
+    "battery_voltage",
+    "battery_cycles",
+    "battery_temperature",
+    "battery_time_to_empty_minutes",
+    "battery_input_wh",
+    "battery_output_wh",
+    "battery_current_net",
+    "battery_current_net_avg",
+    "battery_power_net",
+    "battery_power_net_avg",
+    "battery_heater_relative_humidity",
+    "battery_heater_temperature",
+    "acOut_status",
+    "acOut_watts",
+    "acOut_voltage",
+    "acOut_amperage",
+    "acIn_status",
+    "acIn_watts",
+    "acIn_voltage",
+    "acIn_amperage",
+    "acIn_fast_charging",
+    "v12Out_status",
+    "v12Out_watts",
+    "usbOut_status",
+    "usbOut_watts",
+    "lvDcIn_status",
+    "lvDcIn_watts",
+    "lvDcIn_voltage",
+    "lvDcIn_amperage",
+    "wifi_rssi",
+    "app_connected"
+  ],
+  "switches": [
+    "acOut_switch",
+    "v12Out_switch",
+    "usbOut_switch"
+  ],
+  "numbers": [
+    "charge_profile_min_soc",
+    "charge_profile_max_soc",
+    "charge_profile_recharge_soc",
+    "display_blackout_time",
+    "display_brightness"
+  ],
+  "buttons": [
+    "reboot_device",
+    "reset_device",
+    "check_for_updates"
+  ],
+  "ble_protocol": {
+    "handles": {
+      "0x0008": {
+        "name": "Message Length",
+        "format": "00:00:00:XX where XX is message length in hex",
+        "direction": "write",
+        "description": "Prefix before each JSON message indicating length"
+      },
+      "0x0003": {
+        "name": "JSON Data",
+        "format": "ASCII hex encoded JSON, potentially fragmented",
+        "direction": "write/notify",
+        "description": "Actual JSON-RPC message data"
+      },
+      "0x0005": {
+        "name": "Status/ACK",
+        "format": "00:00:XX:YY status codes",
+        "direction": "notify",
+        "description": "Response status and acknowledgment"
+      }
+    },
+    "message_types": {
+      "device": {
+        "request": "{\"id\":N,\"method\":\"device\"}",
+        "description": "Get device information, firmware, serial, etc."
+      },
+      "status": {
+        "request": "{\"id\":N,\"method\":\"status\"}",
+        "description": "Get current status (battery, ports, power)",
+        "update_frequency": "User configurable (default: 30 seconds)"
+      },
+      "config": {
+        "request": "{\"id\":N,\"method\":\"config\"}",
+        "description": "Get/set configuration (charge profile, display)"
+      },
+      "control": {
+        "request": "{\"id\":N,\"method\":\"status\",\"params\":{\"action\":\"PATCH\",\"body\":{\"ports\":{\"portName\":{\"s\":1}}}}}",
+        "description": "Control port on/off states"
+      }
+    }
+  },
+  "implementation_notes": {
+    "status_polling_frequency": "User configurable in seconds",
+    "on_connect_read_all": "device, config, lifetime, ota on initial connection",
+    "voltage_scaling": "AC input voltage scaled by 10 (1175 = 117.5V)",
+    "port_status_codes": {
+      "0": "Off/Disconnected",
+      "1": "On/Connected",
+      "2": "Charging (AC Input only)"
+    },
+    "message_id_management": "Increment for each request, match with response"
+  }
+}
