@@ -75,11 +75,27 @@ class GoalZeroSensor(CoordinatorEntity, SensorEntity):
         self._attr_name = f"{coordinator.device_name} {sensor_definition['name']}"
         self._attr_device_class = sensor_definition.get("device_class")
         self._attr_state_class = sensor_definition.get("state_class")
-        self._attr_native_unit_of_measurement = sensor_definition.get("unit")
         self._attr_icon = sensor_definition.get("icon")
+        
+        # For temperature sensors, unit will be set dynamically
+        self._attr_native_unit_of_measurement = sensor_definition.get("unit")
         
         # Device info
         self._attr_device_info = coordinator.device_info
+
+    @property
+    def native_unit_of_measurement(self) -> str | None:
+        """Return the unit of measurement."""
+        # For temperature sensors on Alta 80, get dynamic unit
+        if (hasattr(self.coordinator.device, 'get_dynamic_sensor_config') and 
+            self.coordinator.device_type == DEVICE_TYPE_ALTA80):
+            
+            dynamic_config = self.coordinator.device.get_dynamic_sensor_config(self._sensor_key)
+            if "unit" in dynamic_config:
+                return dynamic_config["unit"]
+        
+        # Fallback to static unit
+        return self._attr_native_unit_of_measurement
 
     @property
     def native_value(self) -> Any:

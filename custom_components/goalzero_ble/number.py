@@ -68,11 +68,47 @@ class GoalZeroNumberEntity(GoalZeroEntity, NumberEntity):
     ) -> None:
         """Initialize the number entity."""
         super().__init__(coordinator, key, name, icon)
-        self._attr_native_min_value = min_value
-        self._attr_native_max_value = max_value
+        self._base_min_value = min_value
+        self._base_max_value = max_value
         self._attr_native_step = step
-        self._attr_native_unit_of_measurement = unit
+        self._base_unit = unit
         self._attr_mode = mode
+
+    @property
+    def native_min_value(self) -> float:
+        """Return the minimum value."""
+        # Get dynamic config from device if available
+        if hasattr(self.coordinator.device, 'get_dynamic_number_config'):
+            dynamic_config = self.coordinator.device.get_dynamic_number_config(self._key)
+            if "min_value" in dynamic_config:
+                return dynamic_config["min_value"]
+        
+        # Fallback to base value
+        return self._base_min_value or 0
+
+    @property
+    def native_max_value(self) -> float:
+        """Return the maximum value."""
+        # Get dynamic config from device if available
+        if hasattr(self.coordinator.device, 'get_dynamic_number_config'):
+            dynamic_config = self.coordinator.device.get_dynamic_number_config(self._key)
+            if "max_value" in dynamic_config:
+                return dynamic_config["max_value"]
+        
+        # Fallback to base value
+        return self._base_max_value or 100
+
+    @property
+    def native_unit_of_measurement(self) -> str | None:
+        """Return the unit of measurement."""
+        # Get dynamic config from device if available
+        if hasattr(self.coordinator.device, 'get_dynamic_number_config'):
+            dynamic_config = self.coordinator.device.get_dynamic_number_config(self._key)
+            if "unit" in dynamic_config:
+                return dynamic_config["unit"]
+        
+        # Fallback to base unit
+        return self._base_unit
 
     @property
     def native_value(self) -> float | None:

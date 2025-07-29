@@ -31,28 +31,87 @@ class Alta80Device(GoalZeroDevice):
         """Return list of sensor definitions for this device."""
         sensors = []
         
-        # Create dual entities for each byte (0-35) - measurement and discrete versions
+        # Bytes to exclude from raw entity creation (replaced with rich entities)
+        excluded_bytes = {0, 1, 6, 7, 8, 9, 10, 14, 15, 18, 26, 27, 35}
+        
+        # Create dual entities for remaining bytes (0-35) - measurement and discrete versions
         # Based on updated byte mapping from protocol analysis
         for i in range(36):
-            # Regular entity for line graphs
-            sensors.append({
-                "key": f"status_byte_{i}",
-                "name": f"Status Byte {i}",
-                "device_class": None,
+            if i not in excluded_bytes:
+                # Regular entity for line graphs
+                sensors.append({
+                    "key": f"status_byte_{i}",
+                    "name": f"Status Byte {i}",
+                    "device_class": None,
+                    "state_class": SensorStateClass.MEASUREMENT,
+                    "unit": None,
+                    "icon": "mdi:database"
+                })
+                
+                # Discrete entity for bar charts
+                sensors.append({
+                    "key": f"status_byte_{i}_discrete",
+                    "name": f"Status Byte {i} (Discrete)",
+                    "device_class": None,
+                    "state_class": None,
+                    "unit": None,
+                    "icon": "mdi:chart-bar"
+                })
+        
+        # Rich temperature and control sensors
+        sensors.extend([
+            # Temperature sensors
+            {
+                "key": "left_zone_temperature",
+                "name": "Left Zone Temperature",
+                "device_class": SensorDeviceClass.TEMPERATURE,
                 "state_class": SensorStateClass.MEASUREMENT,
-                "unit": None,
-                "icon": "mdi:database"
-            })
-            
-            # Discrete entity for bar charts
-            sensors.append({
-                "key": f"status_byte_{i}_discrete",
-                "name": f"Status Byte {i} (Discrete)",
+                "unit": None,  # Will be set dynamically based on B14
+                "icon": "mdi:thermometer"
+            },
+            {
+                "key": "right_zone_temperature", 
+                "name": "Right Zone Temperature",
+                "device_class": SensorDeviceClass.TEMPERATURE,
+                "state_class": SensorStateClass.MEASUREMENT,
+                "unit": None,  # Will be set dynamically based on B14
+                "icon": "mdi:thermometer"
+            },
+            # Setpoint sensors
+            {
+                "key": "max_setpoint_temperature",
+                "name": "Maximum Setpoint Temperature",
+                "device_class": SensorDeviceClass.TEMPERATURE,
+                "state_class": SensorStateClass.MEASUREMENT,
+                "unit": None,  # Will be set dynamically based on B14
+                "icon": "mdi:thermometer-high"
+            },
+            {
+                "key": "min_setpoint_temperature",
+                "name": "Minimum Setpoint Temperature", 
+                "device_class": SensorDeviceClass.TEMPERATURE,
+                "state_class": SensorStateClass.MEASUREMENT,
+                "unit": None,  # Will be set dynamically based on B14
+                "icon": "mdi:thermometer-low"
+            },
+            # Control state sensors
+            {
+                "key": "eco_mode_status",
+                "name": "Eco Mode Status",
                 "device_class": None,
                 "state_class": None,
                 "unit": None,
-                "icon": "mdi:chart-bar"
-            })
+                "icon": "mdi:leaf"
+            },
+            {
+                "key": "battery_protection_status",
+                "name": "Battery Protection Level",
+                "device_class": None,
+                "state_class": None,
+                "unit": None,
+                "icon": "mdi:battery-heart"
+            },
+        ])
         
         return sensors
 
@@ -95,27 +154,72 @@ class Alta80Device(GoalZeroDevice):
         return [
             {
                 "key": "zone1_setpoint",
-                "name": "Zone 1 Temperature Setpoint",
-                "icon": "mdi:thermometer",
-                "min_value": -4,
-                "max_value": 68,
+                "name": "Left Zone Temperature Setpoint",
+                "icon": "mdi:thermometer-lines",
+                "min_value": None,  # Will be set dynamically based on B10
+                "max_value": None,  # Will be set dynamically based on B9
                 "step": 1,
-                "unit": UnitOfTemperature.FAHRENHEIT,
+                "unit": None,  # Will be set dynamically based on B14
                 "mode": "slider",
                 "command": self._generate_zone1_setpoint_command,
             },
             {
                 "key": "zone2_setpoint",
-                "name": "Zone 2 Temperature Setpoint",
-                "icon": "mdi:thermometer",
-                "min_value": -4,
-                "max_value": 68,
+                "name": "Right Zone Temperature Setpoint",
+                "icon": "mdi:thermometer-lines",
+                "min_value": None,  # Will be set dynamically based on B10
+                "max_value": None,  # Will be set dynamically based on B9
                 "step": 1,
-                "unit": UnitOfTemperature.FAHRENHEIT,
+                "unit": None,  # Will be set dynamically based on B14
                 "mode": "slider",
                 "command": self._generate_zone2_setpoint_command,
             },
         ]
+
+    def get_dynamic_number_config(self, key: str) -> dict[str, Any]:
+        """Get dynamic configuration for number entities based on current device state."""
+        config = {}
+        
+        if self._data and (key == "zone1_setpoint" or key == "zone2_setpoint"):
+            # Get temperature unit from device data
+            temp_unit = self._data.get("temperature_unit", "°F")
+            min_temp = self._data.get("min_setpoint_temperature")
+            max_temp = self._data.get("max_setpoint_temperature")
+            
+            config["unit"] = UnitOfTemperature.FAHRENHEIT if temp_unit == "°F" else UnitOfTemperature.CELSIUS
+            
+            # Set limits based on device's min/max values, with fallbacks
+            if min_temp is not None:
+                config["min_value"] = min_temp
+            else:
+                config["min_value"] = -4 if temp_unit == "°F" else -20  # Fallback values
+                
+            if max_temp is not None:
+                config["max_value"] = max_temp
+            else:
+                config["max_value"] = 68 if temp_unit == "°F" else 20  # Fallback values
+                
+            _LOGGER.debug("Dynamic config for %s: unit=%s, min=%s, max=%s", 
+                         key, config["unit"], config["min_value"], config["max_value"])
+        
+        return config
+
+    def get_dynamic_sensor_config(self, key: str) -> dict[str, Any]:
+        """Get dynamic configuration for sensor entities based on current device state."""
+        config = {}
+        
+        # Temperature sensors need dynamic units
+        temp_sensors = {
+            "left_zone_temperature", "right_zone_temperature",
+            "max_setpoint_temperature", "min_setpoint_temperature"
+        }
+        
+        if self._data and key in temp_sensors:
+            temp_unit = self._data.get("temperature_unit", "°F")
+            config["unit"] = UnitOfTemperature.FAHRENHEIT if temp_unit == "°F" else UnitOfTemperature.CELSIUS
+            _LOGGER.debug("Dynamic config for %s: unit=%s", key, config["unit"])
+        
+        return config
 
     async def update_data(self, ble_manager) -> dict[str, Any]:
         """Update device data from BLE connection with improved reliability."""
@@ -427,18 +531,39 @@ class Alta80Device(GoalZeroDevice):
         """Return default data structure with None values."""
         data = {}
         
-        # Initialize all status bytes to None (exactly 36 bytes)
+        # Bytes to exclude from raw entity creation (replaced with rich entities)
+        excluded_bytes = {0, 1, 6, 7, 8, 9, 10, 14, 15, 18, 26, 27, 35}
+        
+        # Initialize remaining status bytes to None
         # Create both regular and discrete versions for each byte
         for i in range(36):
-            data[f"status_byte_{i}"] = None
-            data[f"status_byte_{i}_discrete"] = None
+            if i not in excluded_bytes:
+                data[f"status_byte_{i}"] = None
+                data[f"status_byte_{i}_discrete"] = None
         
-        # Initialize control state values based on byte mappings
+        # Initialize rich entity values
         data.update({
+            # Control states
             "eco_mode": False,  # From byte 6
             "battery_protection": "Low",  # From byte 7
-            "zone1_setpoint": None,  # From byte 8 (signed)
-            "zone2_setpoint": None,  # From byte 22 (signed)
+            "eco_mode_status": "Off",  # Human readable status
+            "battery_protection_status": "Low",  # Human readable status
+            
+            # Temperature setpoints (from bytes 8, 22)
+            "zone1_setpoint": None,  # Left zone setpoint
+            "zone2_setpoint": None,  # Right zone setpoint
+            
+            # Temperature readings (from bytes 18, 35)
+            "left_zone_temperature": None,  # From byte 18
+            "right_zone_temperature": None,  # From byte 35
+            
+            # System temperature limits (from bytes 9, 10)
+            "max_setpoint_temperature": None,  # From byte 9
+            "min_setpoint_temperature": None,  # From byte 10
+            
+            # Temperature unit indicator (from byte 14)
+            "temperature_unit": "°F",  # Default to Fahrenheit
+            "temperature_unit_code": 0xFE,  # B14 value
         })
         
         return data
@@ -456,57 +581,102 @@ class Alta80Device(GoalZeroDevice):
             
             _LOGGER.debug("Parsing %d total bytes from concatenated response", len(all_bytes))
             
+            # Bytes to exclude from raw entity creation (replaced with rich entities)
+            excluded_bytes = {0, 1, 6, 7, 8, 9, 10, 14, 15, 18, 26, 27, 35}
+            
+            # First pass: detect temperature unit from byte 14
+            temp_unit = "°F"  # Default
+            temp_unit_code = 0xFE
+            if len(all_bytes) > 14:
+                temp_unit_code = all_bytes[14]
+                if temp_unit_code == 0xFF:  # 255 = Celsius
+                    temp_unit = "°C"
+                else:  # 0xFE = 254 = Fahrenheit
+                    temp_unit = "°F"
+                parsed_data["temperature_unit"] = temp_unit
+                parsed_data["temperature_unit_code"] = temp_unit_code
+                _LOGGER.debug("Byte 14 (Temperature Unit): %s (raw: 0x%02X)", temp_unit, temp_unit_code)
+            
+            # Helper function to convert signed byte
+            def to_signed(byte_val: int) -> int:
+                return byte_val if byte_val <= 127 else byte_val - 256
+            
             # Parse each byte individually (exactly 36 bytes)
             for i, byte_val in enumerate(all_bytes):
                 if i < 36:  # Exactly 36 bytes in response
-                    # Store both versions: one for line graphs, one for discrete values
-                    parsed_data[f"status_byte_{i}"] = byte_val
-                    parsed_data[f"status_byte_{i}_discrete"] = byte_val
+                    # Store remaining raw bytes (excluding rich entity bytes)
+                    if i not in excluded_bytes:
+                        parsed_data[f"status_byte_{i}"] = byte_val
+                        parsed_data[f"status_byte_{i}_discrete"] = byte_val
                     
-                    # Log known byte meanings based on updated protocol table
+                    # Parse rich entities from specific bytes
                     if i == 6:
                         # Byte 6: Eco Mode (1 = on, 0 = off)
                         parsed_data["eco_mode"] = bool(byte_val == 1)
-                        _LOGGER.debug("Byte 6 (Eco Mode): %s (raw: %d)", parsed_data["eco_mode"], byte_val)
+                        parsed_data["eco_mode_status"] = "On" if byte_val == 1 else "Off"
+                        _LOGGER.debug("Byte 6 (Eco Mode): %s (raw: %d)", parsed_data["eco_mode_status"], byte_val)
+                        
                     elif i == 7:
                         # Byte 7: Battery Protection (0 = low, 1 = medium, 2 = high)
                         if byte_val == 0:
                             parsed_data["battery_protection"] = "Low"
+                            parsed_data["battery_protection_status"] = "Low"
                         elif byte_val == 1:
                             parsed_data["battery_protection"] = "Medium"
+                            parsed_data["battery_protection_status"] = "Medium"
                         else:
                             parsed_data["battery_protection"] = "High"
-                        _LOGGER.debug("Byte 7 (Battery Protection): %s (raw: %d)", parsed_data["battery_protection"], byte_val)
+                            parsed_data["battery_protection_status"] = "High"
+                        _LOGGER.debug("Byte 7 (Battery Protection): %s (raw: %d)", 
+                                    parsed_data["battery_protection_status"], byte_val)
+                        
                     elif i == 8:
-                        # Zone 1 setpoint (signed int, °F)
-                        signed_val = byte_val if byte_val <= 127 else byte_val - 256
+                        # Byte 8: Left Zone setpoint (signed int)
+                        signed_val = to_signed(byte_val)
                         parsed_data["zone1_setpoint"] = signed_val
-                        _LOGGER.debug("Byte 8 (Zone 1 Setpoint): %d°F (raw: %d)", signed_val, byte_val)
+                        _LOGGER.debug("Byte 8 (Left Zone Setpoint): %d%s (raw: %d)", 
+                                    signed_val, temp_unit, byte_val)
+                        
                     elif i == 9:
-                        # Max setpoint (signed int, °F)
-                        signed_val = byte_val if byte_val <= 127 else byte_val - 256
-                        _LOGGER.debug("Byte 9 (Max Setpoint): %d°F (raw: %d)", signed_val, byte_val)
+                        # Byte 9: Max setpoint (signed int)
+                        signed_val = to_signed(byte_val)
+                        parsed_data["max_setpoint_temperature"] = signed_val
+                        _LOGGER.debug("Byte 9 (Max Setpoint): %d%s (raw: %d)", 
+                                    signed_val, temp_unit, byte_val)
+                        
+                    elif i == 10:
+                        # Byte 10: Min setpoint (signed int)
+                        signed_val = to_signed(byte_val)
+                        parsed_data["min_setpoint_temperature"] = signed_val
+                        _LOGGER.debug("Byte 10 (Min Setpoint): %d%s (raw: %d)", 
+                                    signed_val, temp_unit, byte_val)
+                        
                     elif i == 18:
-                        # Zone 1 temperature (signed int, °C)
-                        signed_val = byte_val if byte_val <= 127 else byte_val - 256
-                        _LOGGER.debug("Byte 18 (Zone 1 Temperature): %d°C (raw: %d)", signed_val, byte_val)
+                        # Byte 18: Left Zone temperature (signed int)
+                        signed_val = to_signed(byte_val)
+                        parsed_data["left_zone_temperature"] = signed_val
+                        _LOGGER.debug("Byte 18 (Left Zone Temperature): %d%s (raw: %d)", 
+                                    signed_val, temp_unit, byte_val)
+                        
                     elif i == 22:
-                        # Zone 2 setpoint (signed int, °F)
-                        signed_val = byte_val if byte_val <= 127 else byte_val - 256
+                        # Byte 22: Right Zone setpoint (signed int)
+                        signed_val = to_signed(byte_val)
                         parsed_data["zone2_setpoint"] = signed_val
-                        _LOGGER.debug("Byte 22 (Zone 2 Setpoint): %d°F (raw: %d)", signed_val, byte_val)
-                    elif i == 34:
-                        _LOGGER.debug("Byte 34 (Zone 1 Setpoint Exceeded): %d", byte_val)
+                        _LOGGER.debug("Byte 22 (Right Zone Setpoint): %d%s (raw: %d)", 
+                                    signed_val, temp_unit, byte_val)
+                        
                     elif i == 35:
-                        # Zone 2 temperature (signed int, °C)
-                        signed_val = byte_val if byte_val <= 127 else byte_val - 256
-                        _LOGGER.debug("Byte 35 (Zone 2 Temperature): %d°C (raw: %d)", signed_val, byte_val)
+                        # Byte 35: Right Zone temperature (signed int)
+                        signed_val = to_signed(byte_val)
+                        parsed_data["right_zone_temperature"] = signed_val
+                        _LOGGER.debug("Byte 35 (Right Zone Temperature): %d%s (raw: %d)", 
+                                    signed_val, temp_unit, byte_val)
             
             # Validate expected response length
             if len(all_bytes) != 36:
                 _LOGGER.warning("Expected 36 bytes, got %d bytes in response", len(all_bytes))
             
-            _LOGGER.debug("Successfully parsed all 36 status bytes")
+            _LOGGER.debug("Successfully parsed all 36 status bytes with rich entities")
             
         except Exception as e:
             _LOGGER.error("Error parsing Alta 80 status responses: %s", e)
