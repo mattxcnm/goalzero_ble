@@ -42,9 +42,23 @@ class Yeti500Device(GoalZeroDevice):
         self._status_update_frequency = max(1, seconds)  # Minimum 1 second
         _LOGGER.info(f"Status update frequency set to {self._status_update_frequency} seconds")
     
+    def reset_message_id(self) -> None:
+        """Reset message ID to 1 for new connections."""
+        self._message_id = 1
+        _LOGGER.debug("Message ID reset to 1 for new connection")
+    
+    def _get_next_message_id(self) -> int:
+        """Get the current message ID and increment it for the next message."""
+        current_id = self._message_id
+        self._message_id += 1
+        return current_id
+    
     async def update_data(self, ble_manager) -> dict[str, Any]:
         """Update device data from BLE connection."""
         try:
+            # Reset message ID to 1 for each new update session
+            self.reset_message_id()
+            
             # Read all data types on update
             await self._read_device_info(ble_manager)
             await self._read_config(ble_manager)
@@ -129,6 +143,8 @@ class Yeti500Device(GoalZeroDevice):
             json_str = json.dumps(message, separators=(',', ':'))
             json_bytes = json_str.encode('utf-8')
             
+            _LOGGER.debug(f"Sending JSON message ID {message.get('id')}: {json_str}")
+            
             # Send length prefix (4 bytes: 00:00:00:XX)
             length_bytes = struct.pack('>I', len(json_bytes))
             await ble_manager.write_characteristic(YETI500_HANDLE_LENGTH, length_bytes)
@@ -147,9 +163,6 @@ class Yeti500Device(GoalZeroDevice):
             # Wait for response
             await asyncio.sleep(0.1)
             
-            # Increment message ID for next request
-            self._message_id += 1
-            
             return {"status": "sent", "id": message.get("id")}
             
         except Exception as e:
@@ -159,7 +172,7 @@ class Yeti500Device(GoalZeroDevice):
     async def _read_device_info(self, ble_manager) -> None:
         """Read device information."""
         message = {
-            "id": self._message_id,
+            "id": self._get_next_message_id(),
             "method": "device"
         }
         
@@ -179,7 +192,7 @@ class Yeti500Device(GoalZeroDevice):
     async def _read_config(self, ble_manager) -> None:
         """Read device configuration."""
         message = {
-            "id": self._message_id,
+            "id": self._get_next_message_id(),
             "method": "config"
         }
         
@@ -202,7 +215,7 @@ class Yeti500Device(GoalZeroDevice):
     async def _read_status(self, ble_manager) -> None:
         """Read current device status."""
         message = {
-            "id": self._message_id,
+            "id": self._get_next_message_id(),
             "method": "status"
         }
         
@@ -377,7 +390,7 @@ class Yeti500Device(GoalZeroDevice):
     async def _control_port(self, ble_manager, port_name: str, state: int) -> bool:
         """Send port control command."""
         message = {
-            "id": self._message_id,
+            "id": self._get_next_message_id(),
             "method": "status", 
             "params": {
                 "action": "PATCH",
@@ -400,7 +413,7 @@ class Yeti500Device(GoalZeroDevice):
     async def _set_charge_profile(self, ble_manager, min_soc: int, max_soc: int, recharge_soc: int) -> bool:
         """Set battery charge profile."""
         message = {
-            "id": self._message_id,
+            "id": self._get_next_message_id(),
             "method": "config",
             "params": {
                 "action": "PATCH", 
@@ -425,7 +438,7 @@ class Yeti500Device(GoalZeroDevice):
     async def _set_display_settings(self, ble_manager, blackout_time: int, brightness: int) -> bool:
         """Set display blackout time and brightness."""
         message = {
-            "id": self._message_id,
+            "id": self._get_next_message_id(),
             "method": "config",
             "params": {
                 "action": "PATCH",
@@ -449,7 +462,7 @@ class Yeti500Device(GoalZeroDevice):
     async def _reboot_device(self, ble_manager) -> bool:
         """Reboot the device."""
         message = {
-            "id": self._message_id,
+            "id": self._get_next_message_id(),
             "method": "status",
             "params": {
                 "action": "PATCH",
@@ -464,7 +477,7 @@ class Yeti500Device(GoalZeroDevice):
     async def _factory_reset(self, ble_manager) -> bool:
         """Perform factory reset."""
         message = {
-            "id": self._message_id,
+            "id": self._get_next_message_id(),
             "method": "status", 
             "params": {
                 "action": "PATCH",
@@ -479,7 +492,7 @@ class Yeti500Device(GoalZeroDevice):
     async def _check_for_updates(self, ble_manager) -> bool:
         """Check for firmware updates.""" 
         message = {
-            "id": self._message_id,
+            "id": self._get_next_message_id(),
             "method": "status",
             "params": {
                 "action": "PATCH",
